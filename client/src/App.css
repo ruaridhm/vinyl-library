@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: aqua;
+  padding-left: 24px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  font-weight: bold;
+  margin-right: 24px;
+}
+
+.nav-links li {
+  margin: 16px;
+}
