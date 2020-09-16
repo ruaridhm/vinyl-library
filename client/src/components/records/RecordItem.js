@@ -4,15 +4,10 @@ import RecordContext from '../../context/record/recordContext';
 
 const RecordItem = ({ record }) => {
   const recordContext = useContext(RecordContext);
-
   const { deleteRecord, setCurrent, clearCurrent } = recordContext;
-  const onDelete = () => {
-    deleteRecord(id);
-    clearCurrent();
-  };
 
   const {
-    id,
+    _id,
     title,
     artist,
     label,
@@ -28,6 +23,12 @@ const RecordItem = ({ record }) => {
     locationPrimary,
     locationSecondary,
   } = record;
+
+  const onDelete = () => {
+    deleteRecord(_id);
+    clearCurrent();
+  };
+
   return (
     <div className='card'>
       <h3>{title}</h3>

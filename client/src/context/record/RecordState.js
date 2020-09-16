@@ -1,91 +1,102 @@
 import React, { useReducer } from 'react';
-import { v4 as uuid } from 'uuid';
 import RecordContext from './recordContext';
 import recordReducer from './recordReducer';
+import axios from 'axios';
 import {
+  GET_RECORDS,
   ADD_RECORD,
   DELETE_RECORD,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_RECORD,
   FILTER_RECORDS,
+  CLEAR_RECORDS,
   CLEAR_FILTER,
+  RECORD_ERROR,
 } from '../types';
 
 const RecordState = (props) => {
   const initialState = {
-    records: [
-      {
-        id: 1,
-        title: 'Never Gonna Give You Up',
-        artist: 'Rick Astley',
-        label: 'RCA',
-        catalogNumber: 'PB 41447',
-        releaseDate: 'Jul 1987',
-        format: 'Single',
-        country: 'UK',
-        condition: 'VG',
-        barcode: '5 012394 144777',
-        locationPrimary: '01',
-        locationSecondary: '01',
-      },
-      {
-        id: 2,
-        title: 'Black Sabbath',
-        artist: 'Black Sabbath',
-        label: 'Vertigo',
-        catalogNumber: 'VO 6',
-        releaseDate: '1970',
-        format: 'Album',
-        country: 'UK',
-        condition: 'M',
-        barcode: '',
-        locationPrimary: '01',
-        locationSecondary: '02',
-      },
-      {
-        id: 3,
-        title: 'The Dark Side Of The Moon',
-        artist: 'Pink Floyd',
-        label: 'Harvest',
-        catalogNumber: '2C 064-05249',
-        releaseDate: '1973',
-        format: 'Album',
-        country: 'UK',
-        condition: 'NM',
-        barcode: '',
-        locationPrimary: '01',
-        locationSecondary: '03',
-      },
-      {
-        id: 4,
-        title: 'Blood On The Tracks',
-        artist: 'Bob Dylan',
-        label: 'Columbia',
-        catalogNumber: 'PC 33235',
-        releaseDate: 'nov 1974',
-        format: 'Album',
-        country: 'US',
-        condition: 'VG',
-        barcode: '',
-        locationPrimary: '01',
-        locationSecondary: '04',
-      },
-    ],
+    records: [],
     current: null,
     filtered: null,
+    error: null,
   };
 
   const [state, dispatch] = useReducer(recordReducer, initialState);
 
+  // Get Records
+  const getRecords = async () => {
+    try {
+      const res = await axios.get('./api/records');
+      dispatch({ type: GET_RECORDS, payload: res.data });
+    } catch (err) {
+      dispatch({
+        type: RECORD_ERROR,
+        payload: err.response.msg,
+      });
+    }
+  };
+
   // Add Record
-  const addRecord = (record) => {
-    record.id = uuid();
-    dispatch({ type: ADD_RECORD, payload: record });
+  const addRecord = async (record) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.post('./api/records', record, config);
+      dispatch({ type: ADD_RECORD, payload: res.data });
+    } catch (err) {
+      dispatch({
+        type: RECORD_ERROR,
+        payload: err.response.msg,
+      });
+    }
   };
   //Delete Record
-  const deleteRecord = (id) => {
-    dispatch({ type: DELETE_RECORD, payload: id });
+  const deleteRecord = async (id) => {
+    try {
+      await axios.delete(`./api/records/${id}`);
+      dispatch({
+        type: DELETE_RECORD,
+        payload: id,
+      });
+    } catch (err) {
+      dispatch({
+        type: RECORD_ERROR,
+        payload: err.response.msg,
+      });
+    }
+  };
+  //Update Record
+  const updateRecord = async (record) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.put(
+        `./api/records/${record._id}`,
+        record,
+        config
+      );
+      dispatch({
+        type: UPDATE_RECORD,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: RECORD_ERROR,
+        payload: err.response.msg,
+      });
+    }
+  };
+  //Clear Records
+  const clearRecords = () => {
+    dispatch({ type: CLEAR_RECORDS });
   };
   //Set Current Record
   const setCurrent = (record) => {
@@ -95,16 +106,10 @@ const RecordState = (props) => {
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
   };
-  //Update Record
-  const updateRecord = (record) => {
-    dispatch({ type: UPDATE_RECORD, payload: record });
-  };
-
   //Filter Records
   const filterRecords = (text) => {
     dispatch({ type: FILTER_RECORDS, payload: text });
   };
-
   //Clear Filter
   const clearFilter = () => {
     dispatch({ type: CLEAR_FILTER });
@@ -116,6 +121,7 @@ const RecordState = (props) => {
         records: state.records,
         current: state.current,
         filtered: state.filtered,
+        error: state.error,
         addRecord,
         deleteRecord,
         setCurrent,
@@ -123,6 +129,8 @@ const RecordState = (props) => {
         updateRecord,
         filterRecords,
         clearFilter,
+        getRecords,
+        clearRecords,
       }}
     >
       {props.children}

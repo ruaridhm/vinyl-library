@@ -1,4 +1,5 @@
 import {
+  GET_RECORDS,
   ADD_RECORD,
   DELETE_RECORD,
   SET_CURRENT,
@@ -6,26 +7,47 @@ import {
   UPDATE_RECORD,
   FILTER_RECORDS,
   CLEAR_FILTER,
+  RECORD_ERROR,
+  CLEAR_RECORDS,
 } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_RECORDS:
+      return {
+        ...state,
+        contacts: action.payload,
+        loading: false,
+      };
     case ADD_RECORD:
       return {
         ...state,
-        records: [...state.records, action.payload],
+        records: [action.payload, ...state.records],
+        loading: false,
       };
     case UPDATE_RECORD:
       return {
         ...state,
         records: state.records.map((record) =>
-          record.id === action.payload.id ? action.payload : record
+          record._id === action.payload._id ? action.payload : record
         ),
+        loading: false,
       };
     case DELETE_RECORD:
       return {
         ...state,
-        records: state.records.filter((record) => record.id !== action.payload),
+        records: state.records.filter(
+          (record) => record._id !== action.payload
+        ),
+        loading: false,
+      };
+    case CLEAR_RECORDS:
+      return {
+        ...state,
+        contacts: null,
+        filtered: null,
+        error: null,
+        current: null,
       };
     case SET_CURRENT:
       return {
@@ -59,6 +81,11 @@ export default (state, action) => {
       return {
         ...state,
         filtered: null,
+      };
+    case RECORD_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;
