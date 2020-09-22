@@ -1,0 +1,85 @@
+:root {
+  --primary-color: #0b00d6;
+  --secondary-color: #1838d8;
+  --background-light: #d7d8da;
+  --light-color: #f7f7f7;
+  --dark-color: #0a1e47;
+  --danger-color: #db302d;
+  --success-color: #14a837;
+  --warning-color: #ffd028;
+}
+
+.btn {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+  margin: 1rem;
+}
+
+.btn:hover {
+  filter: brightness(90%);
+  color: white;
+}
+
+/*Button Colors and Styles*/
+
+.btn--primary--solid {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: none;
+}
+
+.btn--warning--solid {
+  background-color: var(--warning-color);
+  color: var(--dark-color);
+  border: none;
+}
+.btn--danger--solid {
+  background-color: var(--danger-color);
+  color: var(--light-color);
+  border: none;
+}
+.btn--success--solid {
+  background-color: var(--success-color);
+  color: var(--light-color);
+  border: none;
+}
+.btn--primary--outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+.btn--warning--outline {
+  background-color: transparent;
+  color: var(--warning-color);
+  border: 2px solid var(--warning-color);
+}
+.btn--danger--outline {
+  background-color: transparent;
+  color: var(--danger-color);
+  border: 2px solid var(--danger-color);
+}
+.btn--success--outline {
+  background-color: transparent;
+  color: var(--success-color);
+  border: 2px solid var(--success-color);
+}
+
+/* Button Sizes */
+
+.btn--small {
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.btn--medium {
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+.btn--large {
+  padding: 15px 30px;
+  font-size: 20px;
+}

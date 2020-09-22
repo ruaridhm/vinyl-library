@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import RecordContext from '../../context/record/recordContext';
+import Button from '../button/Button';
+import TextField from '../text field/TextField';
 
 const RecordForm = () => {
   const recordContext = useContext(RecordContext);
@@ -94,93 +96,96 @@ const RecordForm = () => {
     clearCurrent();
   };
   return (
-    <form onSubmit={onSubmit}>
-      <h2>{current ? 'Edit Record' : 'Add Contact'}</h2>
-      <input
+    <form onSubmit={onSubmit} className='form'>
+      <h2>{current ? 'Edit Record' : 'Add Record'}</h2>
+      <TextField
+        textFieldStyle='textField--standard'
         type='text'
         placeholder='Title'
         name='title'
         value={title}
         onChange={onChange}
       />
-      <input
+      <TextField
+        textFieldStyle='textField--filled'
         type='text'
         placeholder='Artist'
         name='artist'
         value={artist}
         onChange={onChange}
       />
-      <input
+      <TextField
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Label'
         name='label'
         value={label}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Catalog Number'
         name='catalogNumber'
         value={catalogNumber}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Release Date'
         name='releaseDate'
         value={releaseDate}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Country'
         name='country'
         value={country}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Cover Front'
         name='coverFront'
         value={coverFront}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Cover Back'
         name='coverBack'
         value={coverBack}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Cover Lp'
         name='coverLp'
         value={coverLp}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Condition'
         name='condition'
         value={condition}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Barcode'
         name='barcode'
         value={barcode}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Location Primary'
         name='locationPrimary'
         value={locationPrimary}
         onChange={onChange}
       />
-      <input
+      <TextField
         type='text'
         placeholder='Location Secondary'
         name='locationSecondary'
@@ -188,14 +193,24 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <div>
-        <input
+        <Button
           type='submit'
-          value={current ? 'Update Record' : 'Add Contact'}
-        />
+          buttonSize='btn--small'
+          buttonStyle='btn--success--solid'
+        >
+          {current ? 'Update Record' : 'Add Record'}
+        </Button>
       </div>
       {current && (
         <div>
-          <button onClick={clearAll}>Clear</button>
+          <Button
+            buttonSize='btn--small'
+            buttonStyle='btn--success--solid'
+            type='button'
+            onClick={clearAll}
+          >
+            Clear
+          </Button>
         </div>
       )}
     </form>

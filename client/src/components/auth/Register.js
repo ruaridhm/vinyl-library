@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/AlertContext';
 import AuthContext from '../../context/auth/AuthContext';
+import Button from '../button/Button';
+import TextField from '../text field/TextField';
 
 const Register = (props) => {
   const alertContext = useContext(AlertContext);
@@ -48,14 +50,14 @@ const Register = (props) => {
     }
   };
   return (
-    <div className='form'>
+    <div className='form-container'>
       <h1>
         Account <span className='text-primary'>Register</span>
       </h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='form'>
         <div className='form-group'>
-          <label htmlFor='name'>Name</label>
-          <input
+          <TextField
+            placeholder='Name'
             type='text'
             name='name'
             value={name}
@@ -64,8 +66,8 @@ const Register = (props) => {
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='email'>Email</label>
-          <input
+          <TextField
+            placeholder='Email'
             type='email'
             name='email'
             value={email}
@@ -74,8 +76,8 @@ const Register = (props) => {
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='password'>Password</label>
-          <input
+          <TextField
+            placeholder='Password'
             type='password'
             name='password'
             value={password}
@@ -85,8 +87,8 @@ const Register = (props) => {
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='password2'>Confirm Password</label>
-          <input
+          <TextField
+            placeholder='Confirm Password'
             type='password'
             name='password2'
             value={password2}
@@ -95,7 +97,13 @@ const Register = (props) => {
             minLength='6'
           />
         </div>
-        <input type='submit' value='Register' className='' />
+        <Button
+          type='submit'
+          buttonSize='btn--small'
+          buttonStyle='btn--success--solid'
+        >
+          Register
+        </Button>
       </form>
     </div>
   );

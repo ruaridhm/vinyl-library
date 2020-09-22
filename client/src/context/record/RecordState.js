@@ -17,7 +17,7 @@ import {
 
 const RecordState = (props) => {
   const initialState = {
-    records: [],
+    records: null,
     current: null,
     filtered: null,
     error: null,
@@ -28,7 +28,7 @@ const RecordState = (props) => {
   // Get Records
   const getRecords = async () => {
     try {
-      const res = await axios.get('./api/records');
+      const res = await axios.get('/api/records');
       dispatch({ type: GET_RECORDS, payload: res.data });
     } catch (err) {
       dispatch({
@@ -46,7 +46,7 @@ const RecordState = (props) => {
       },
     };
     try {
-      const res = await axios.post('./api/records', record, config);
+      const res = await axios.post('/api/records', record, config);
       dispatch({ type: ADD_RECORD, payload: res.data });
     } catch (err) {
       dispatch({
@@ -58,7 +58,7 @@ const RecordState = (props) => {
   //Delete Record
   const deleteRecord = async (id) => {
     try {
-      await axios.delete(`./api/records/${id}`);
+      await axios.delete(`/api/records/${id}`);
       dispatch({
         type: DELETE_RECORD,
         payload: id,
@@ -78,11 +78,7 @@ const RecordState = (props) => {
       },
     };
     try {
-      const res = await axios.put(
-        `./api/records/${record._id}`,
-        record,
-        config
-      );
+      const res = await axios.put(`/api/records/${record._id}`, record, config);
       dispatch({
         type: UPDATE_RECORD,
         payload: res.data,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
+import mainLogo from '../../images/Logo.png';
 
 const Navbar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
@@ -18,7 +19,9 @@ const Navbar = ({ title, icon }) => {
 
   const authLinks = (
     <Fragment>
-      <li>Hello {user && user.name}</li>
+      <li>
+        <Link to='/user'>Hello {user && user.name}</Link>
+      </li>
       <li>
         <a onClick={onLogout} href='#!'>
           <i className='fas fa-sign-out-alt'></i>{' '}
@@ -43,9 +46,11 @@ const Navbar = ({ title, icon }) => {
   );
   return (
     <div className='navbar'>
-      <h1>
-        <i className={icon} /> {title}
-      </h1>
+      <Link to='/'>
+        <h1 className='nav-links'>
+          <img src={mainLogo} alt='Site Logo' className='main-logo' /> {title}
+        </h1>
+      </Link>
       <ul className='nav-links'>{isAuthenticated ? authLinks : guestLinks}</ul>
     </div>
   );
@@ -58,7 +63,7 @@ Navbar.propTypes = {
 
 Navbar.defaultProps = {
   title: 'Vinyl Library',
-  icon: 'fas fa-record-vinyl',
+  icon: mainLogo,
 };
 
 export default Navbar;

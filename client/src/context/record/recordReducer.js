@@ -16,7 +16,7 @@ export default (state, action) => {
     case GET_RECORDS:
       return {
         ...state,
-        contacts: action.payload,
+        records: action.payload,
         loading: false,
       };
     case ADD_RECORD:
@@ -44,7 +44,7 @@ export default (state, action) => {
     case CLEAR_RECORDS:
       return {
         ...state,
-        contacts: null,
+        records: null,
         filtered: null,
         error: null,
         current: null,
@@ -70,7 +70,6 @@ export default (state, action) => {
             record.label.match(regex) ||
             record.catalogNumber.match(regex) ||
             record.releaseDate.match(regex) ||
-            record.format.match(regex) ||
             record.country.match(regex) ||
             record.condition.match(regex) ||
             record.barcode.match(regex)

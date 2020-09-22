@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import AlertContext from './AlertContext';
 import AlertReducer from './AlertReducer';
 
-import { SET_ALERT, GET_ALERT, REMOVE_ALERT } from '../types';
+import { SET_ALERT, REMOVE_ALERT } from '../types';
 
 const AlertState = (props) => {
   const initialState = [];

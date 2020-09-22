@@ -44,6 +44,7 @@ router.post(
       coverFront,
       coverBack,
       coverLp,
+      condition,
       barcode,
       locationPrimary,
       locationSecondary,
@@ -61,6 +62,7 @@ router.post(
         coverFront,
         coverBack,
         coverLp,
+        condition,
         barcode,
         locationPrimary,
         locationSecondary,
@@ -92,6 +94,7 @@ router.put('/:id', auth, async (req, res) => {
     coverFront,
     coverBack,
     coverLp,
+    condition,
     barcode,
     locationPrimary,
     locationSecondary,
@@ -109,6 +112,7 @@ router.put('/:id', auth, async (req, res) => {
   if (coverFront) recordFields.coverFront = coverFront;
   if (coverBack) recordFields.coverBack = coverBack;
   if (coverLp) recordFields.coverLp = coverLp;
+  if (condition) recordFields.condition = condition;
   if (barcode) recordFields.barcode = barcode;
   if (locationPrimary) recordFields.locationPrimary = locationPrimary;
   if (locationSecondary) recordFields.locationSecondary = locationSecondary;

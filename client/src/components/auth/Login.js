@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/AuthContext';
 import AlertContext from '../../context/alert/AlertContext';
+import Button from '../button/Button';
+import TextField from '../text field/TextField';
 
 const Login = (props) => {
   const alertContext = useContext(AlertContext);
@@ -32,7 +34,7 @@ const Login = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (email === '' || password === '') {
-      setAlert('please fill in all Fields', 'danger');
+      setAlert('Please fill in all Fields', 'danger');
     } else {
       login({
         email,
@@ -41,25 +43,38 @@ const Login = (props) => {
     }
   };
   return (
-    <div className='form'>
+    <div className='form-container'>
       <h1>
         Account <span className='text-primary'>Login</span>
       </h1>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='form'>
         <div className='form-group'>
-          <label htmlFor='email'>Email</label>
-          <input type='email' name='email' value={email} onChange={onChange} />
+          <TextField
+            type='email'
+            name='email'
+            placeholder='Email'
+            value={email}
+            onChange={onChange}
+            required
+          />
         </div>
         <div className='form-group'>
-          <label htmlFor='password'>Password</label>
-          <input
+          <TextField
             type='password'
             name='password'
             value={password}
+            placeholder='Password'
             onChange={onChange}
+            required
           />
         </div>
-        <input type='submit' value='Login' className='' />
+        <Button
+          type='submit'
+          buttonSize='btn--small'
+          buttonStyle='btn--success--solid'
+        >
+          Login
+        </Button>
       </form>
     </div>
   );

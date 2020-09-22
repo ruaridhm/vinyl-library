@@ -14,7 +14,7 @@ const Records = () => {
     // eslint-disable-next-line
   }, []);
 
-  if (records.length === 0) {
+  if (records !== null && records.length === 0 && !loading) {
     return <h4>Please add a record</h4>;
   }
 

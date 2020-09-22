@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import RecordContext from '../../context/record/recordContext';
+import Button from '../button/Button';
 
 const RecordItem = ({ record }) => {
   const recordContext = useContext(RecordContext);
@@ -64,8 +65,20 @@ const RecordItem = ({ record }) => {
         {coverLp && <img src={coverLp} alt='Lp Cover' />}
       </ul>
       <p>
-        <button onClick={() => setCurrent(record)}>Edit</button>
-        <button onClick={onDelete}>Delete</button>
+        <Button
+          buttonStyle='btn--primary--solid'
+          buttonSize='btn--small'
+          onClick={() => setCurrent(record)}
+        >
+          Edit
+        </Button>
+        <Button
+          buttonStyle='btn--danger--solid'
+          buttonSize='btn--small'
+          onClick={onDelete}
+        >
+          Delete
+        </Button>
       </p>
     </div>
   );
