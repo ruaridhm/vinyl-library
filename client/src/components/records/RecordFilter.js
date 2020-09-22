@@ -24,7 +24,7 @@ const RecordFilter = () => {
 
   return (
     <form>
-      <input
+      <Textfield
         ref={text}
         type='text'
         placeholder='Filter Records...'
