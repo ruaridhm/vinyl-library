@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import RecordContext from '../../context/record/recordContext';
 import Button from '../button/Button';
+import DiscogsBtn from '../discogs/DiscogsBtn';
 import TextField from '../text field/TextField';
 
 const RecordForm = () => {
@@ -64,6 +65,21 @@ const RecordForm = () => {
 
   const onChange = (e) => {
     setRecord({ ...record, [e.target.name]: e.target.value });
+  };
+
+  const discogsHandler = (returnedData) => {
+    console.log(returnedData);
+    setRecord({
+      title: returnedData[0],
+      artist: returnedData[1],
+      label: returnedData[2],
+      catalogNumber: returnedData[3],
+      releaseDate: returnedData[4],
+      country: returnedData[5],
+      coverFront: returnedData[6],
+      coverBack: returnedData[7],
+      coverLp: returnedData[8],
+    });
   };
 
   const onSubmit = (e) => {
@@ -200,6 +216,8 @@ const RecordForm = () => {
         >
           {current ? 'Update Record' : 'Add Record'}
         </Button>
+
+        <DiscogsBtn setDiscogsAutofill={discogsHandler} />
       </div>
       {current && (
         <div>
