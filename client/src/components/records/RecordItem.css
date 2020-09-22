@@ -5,6 +5,8 @@
 }
 
 .card {
+  display: grid;
+  grid-template-columns: 50% 50%;
   background-color: #fff;
   border-radius: 0.5rem;
   padding: 0.5rem;
