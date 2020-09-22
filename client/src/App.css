@@ -1,0 +1,101 @@
+:root {
+  --primary-color: #0b00d6;
+  --secondary-color: #1838d8;
+  --background-light: #d7d8da;
+  --light-color: #f7f3b5;
+  --dark-color: #0a1e47;
+  --danger-color: #db302d;
+  --success-color: #14a837;
+  --warning-color: #ffd028;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-light);
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+  padding-left: 24px;
+}
+
+.main-logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  font-weight: bold;
+  margin-right: 24px;
+  color: var(--background-light);
+}
+
+.nav-links li {
+  margin: 16px;
+  color: var(--background-light);
+}
+
+.nav-links li a {
+  color: var(--background-light);
+  text-decoration: none;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+  color: var(--light-color);
+}
+
+/*Home*/
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+/*Transition Group Animation */
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  margin: 0 auto;
+  width: 50%;
+  margin-top: 30px;
+  background-color: #fff;
+  min-width: 275px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
