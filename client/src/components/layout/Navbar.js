@@ -49,11 +49,17 @@ const Navbar = ({ title, icon }) => {
   );
   return (
     <div className='navbar'>
-      <Link to='/'>
-        <h1 className='nav-links'>
-          <img src={mainLogo} alt='Site Logo' className='main-logo' /> {title}
-        </h1>
-      </Link>
+      <ul className='nav-links'>
+        <li>
+          <Link to='/'>
+            <h1 className='main-title'>
+              <img src={mainLogo} alt='Site Logo' className='main-logo' />{' '}
+              {title}
+            </h1>
+          </Link>
+        </li>
+      </ul>
+
       <ul className='nav-links'>{isAuthenticated ? authLinks : guestLinks}</ul>
     </div>
   );
