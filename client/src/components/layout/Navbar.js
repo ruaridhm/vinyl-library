@@ -23,6 +23,9 @@ const Navbar = ({ title, icon }) => {
         <Link to='/user'>Hello {user && user.name}</Link>
       </li>
       <li>
+        <Link to='/library'>Library</Link>
+      </li>
+      <li>
         <a onClick={onLogout} href='#!'>
           <i className='fas fa-sign-out-alt'></i>{' '}
           <span className=''>Logout</span>

@@ -1,0 +1,26 @@
+.record-container {
+  display: flex;
+  flex-direction: row;
+  background-color: rebeccapurple;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  margin: 0.5rem;
+}
+.title {
+  margin: 0;
+}
+
+.record-details-list-container {
+  display: flex;
+}
+
+.record-details-list {
+  list-style: none;
+}
