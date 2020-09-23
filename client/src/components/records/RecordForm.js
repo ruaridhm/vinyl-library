@@ -74,22 +74,6 @@ const RecordForm = () => {
     } else {
       updateRecord(record);
     }
-    recordContext.addRecord(record);
-    setRecord({
-      title: '',
-      artist: '',
-      label: '',
-      catalogNumber: '',
-      releaseDate: '',
-      country: '',
-      coverFront: '',
-      coverBack: '',
-      coverLp: '',
-      condition: '',
-      barcode: '',
-      locationPrimary: '',
-      locationSecondary: '',
-    });
   };
 
   const clearAll = () => {

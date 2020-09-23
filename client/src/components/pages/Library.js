@@ -1,7 +1,13 @@
 import React from 'react';
+import ImageSlider from '../imageSlider/ImageSlider';
+import './library.css';
 
 const Library = () => {
-  return <div>https://www.youtube.com/watch?v=3ax9TW2c2bY</div>;
+  return (
+    <div className='library-container'>
+      <ImageSlider />
+    </div>
+  );
 };
 
 export default Library;
