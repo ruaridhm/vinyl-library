@@ -9,8 +9,6 @@ const DiscogsBtn = ({ setDiscogsAutofill }) => {
 
   //Get release data from discogs ID number
 
-  const searchDiscogs = () => {};
-
   const returnData = (releaseID) => {
     var db = new Discogs().database();
     db.getRelease(176126, function (err, data) {
