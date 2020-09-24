@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import './TextField.css';
 
 const STYLES = [
@@ -9,39 +9,43 @@ const STYLES = [
 
 const SIZES = ['textField--small', 'textField--medium', 'textField--large'];
 
-const TextField = ({
-  disabled,
-  name,
-  placeholder,
-  ref,
-  required,
-  subText,
-  textFieldStyle,
-  textFieldSize,
-  type,
-  onChange,
-  value,
-}) => {
-  const checkStyle = STYLES.includes(textFieldStyle)
-    ? textFieldStyle
-    : STYLES[0];
-  const checkSize = SIZES.includes(textFieldSize) ? textFieldSize : SIZES[1];
+const TextField = forwardRef(
+  (
+    {
+      disabled,
+      name,
+      placeholder,
+      required,
+      subText,
+      textFieldStyle,
+      textFieldSize,
+      type,
+      onChange,
+      value,
+    },
+    ref
+  ) => {
+    const checkStyle = STYLES.includes(textFieldStyle)
+      ? textFieldStyle
+      : STYLES[0];
+    const checkSize = SIZES.includes(textFieldSize) ? textFieldSize : SIZES[1];
 
-  return (
-    <div className='input-group'>
-      <input
-        className={`input-area`}
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        ref={ref}
-      />
-      <label className='label' onClick={() => {}}>
-        {placeholder}
-      </label>
-    </div>
-  );
-};
+    return (
+      <div className='input-group'>
+        <input
+          className={`input-area`}
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          ref={ref}
+        />
+        <label className='label' onClick={() => {}}>
+          {placeholder}
+        </label>
+      </div>
+    );
+  }
+);
 
 export default TextField;

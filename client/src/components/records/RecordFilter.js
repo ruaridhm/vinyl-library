@@ -23,14 +23,16 @@ const RecordFilter = () => {
   };
 
   return (
-    <form>
-      <input
-        ref={text}
-        type='text'
-        placeholder='Filter Records...'
-        onChange={onChange}
-      />
-    </form>
+    <div className='filter-container'>
+      <form>
+        <Textfield
+          ref={text}
+          type='text'
+          placeholder='Filter Records...'
+          onChange={onChange}
+        />
+      </form>
+    </div>
   );
 };
 

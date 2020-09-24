@@ -70,9 +70,9 @@ export default (state, action) => {
             record.label.match(regex) ||
             record.catalogNumber.match(regex) ||
             record.releaseDate.match(regex) ||
-            record.country.match(regex) ||
-            record.condition.match(regex) ||
-            record.barcode.match(regex)
+            record.country.match(regex) //||
+            //  record.condition.match(regex) ||
+            //  record.barcode.match(regex)
           );
         }),
       };
