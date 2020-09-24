@@ -9,7 +9,9 @@
   --warning-color: #ffd028;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 

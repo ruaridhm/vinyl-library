@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
+import AuthContext from '../../context/auth/AuthContext';
 
 const Sort = () => {
+  const authContext = useContext(AuthContext);
+
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
+
   const [sortBy, setSortBy] = useState([]);
   const [orderBy, setOrderBy] = useState([]);
   const [sortType, setSortType] = useState([]);
