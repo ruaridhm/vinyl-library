@@ -33,7 +33,7 @@ const TextField = forwardRef(
     return (
       <div className='input-group'>
         <input
-          className={`input-area`}
+          className={`input-area ${checkSize} ${checkStyle}`}
           type={type}
           name={name}
           value={value}

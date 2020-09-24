@@ -99,7 +99,8 @@ const RecordForm = () => {
     <form onSubmit={onSubmit} className='form'>
       <h2>{current ? 'Edit Record' : 'Add Record'}</h2>
       <TextField
-        textFieldStyle='textField--standard'
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Title'
         name='title'
@@ -107,7 +108,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
-        textFieldStyle='textField--filled'
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Artist'
         name='artist'
@@ -115,6 +117,7 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
         textFieldStyle='textField--outline'
         type='text'
         placeholder='Label'
@@ -123,6 +126,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Catalog Number'
         name='catalogNumber'
@@ -130,6 +135,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Release Date'
         name='releaseDate'
@@ -137,6 +144,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Country'
         name='country'
@@ -144,6 +153,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Cover Front'
         name='coverFront'
@@ -151,6 +162,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Cover Back'
         name='coverBack'
@@ -158,6 +171,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Cover Lp'
         name='coverLp'
@@ -165,6 +180,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Condition'
         name='condition'
@@ -172,6 +189,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Barcode'
         name='barcode'
@@ -179,6 +198,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Location Primary'
         name='locationPrimary'
@@ -186,6 +207,8 @@ const RecordForm = () => {
         onChange={onChange}
       />
       <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
         type='text'
         placeholder='Location Secondary'
         name='locationSecondary'
