@@ -31,8 +31,6 @@ const RecordItem = ({ record }) => {
     locationSecondary,
   } = record;
 
-  const confirmDelete = () => {};
-
   const onDelete = () => {
     deleteRecord(_id);
     clearCurrent();
