@@ -5,10 +5,6 @@
 
 .input-group .input-area {
   outline: none;
-  border: 1px solid #dadce0;
-  padding: 16px 13px;
-  font-size: 18px;
-  border-radius: 5px;
 }
 
 .input-group .input-area:valid + .label {
@@ -19,7 +15,6 @@
 }
 
 .input-group .input-area:focus {
-  border: 2px solid blue;
 }
 
 .input-group .input-area:focus + .label {
@@ -36,6 +31,66 @@
   left: 13px;
   background: #fff;
   transition: 0.1s;
+}
+
+/*STYLES*/
+.textField--standard {
+  border-bottom: 2px solid #dadce0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.textField--standard:focus {
+  border-bottom: 2px solid blue;
+  transition: 0.2s ease-in;
+}
+
+.textField--filled {
+  background-color: grey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 2px solid #dadce0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: #fff;
+}
+
+.textField--filled .label {
+  top: 10px;
+}
+
+.textField--filled:focus {
+  border-bottom: 2px solid blue;
+  transition: 0.2s ease-in;
+}
+
+.textField--outline {
+  border: 2px solid #dadce0;
+  border-radius: 5px;
+}
+
+.textField--outline:focus {
+  border: 2px solid blue;
+  transition: 0.2s ease-in;
+}
+
+.textField--outline:focus + .label {
+}
+
+/*SIZES*/
+
+.textField--small {
+  padding: 12px 9px;
+  font-size: 14px;
+}
+.textField--medium {
+  padding: 16px 13px;
+  font-size: 18px;
+}
+.textField--large {
+  padding: 20px 17px;
+  font-size: 22px;
 }
 
 /*
