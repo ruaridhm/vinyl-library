@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import RecordContext from '../../context/record/recordContext';
 import Button from '../button/Button';
+import Modal from '../modal/Modal';
 import ImageSlider from '../imageSlider/ImageSlider';
 import './RecordItem.css';
 
 const RecordItem = ({ record }) => {
+  const [showModal, setShowModal] = useState(false);
   const recordContext = useContext(RecordContext);
   const { deleteRecord, setCurrent, clearCurrent } = recordContext;
+
+  const closeModalHandler = () => setShowModal(false);
 
   const {
     _id,
@@ -26,6 +30,8 @@ const RecordItem = ({ record }) => {
     locationPrimary,
     locationSecondary,
   } = record;
+
+  const confirmDelete = () => {};
 
   const onDelete = () => {
     deleteRecord(_id);
@@ -64,13 +70,23 @@ const RecordItem = ({ record }) => {
         >
           Edit
         </Button>
+
+        <div>{showModal ? <div onClick={closeModalHandler}></div> : null}</div>
+
         <Button
           buttonStyle='btn--danger--solid'
           buttonSize='btn--small'
-          onClick={onDelete}
+          onClick={() => setShowModal(true)}
         >
           Delete
         </Button>
+        <Modal
+          show={showModal}
+          close={closeModalHandler}
+          confirm={onDelete}
+          headerText={'Confirm Delete'}
+          bodyText={'Are you sure you want to delete this item?'}
+        />
       </div>
 
       <div>
