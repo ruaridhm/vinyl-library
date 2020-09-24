@@ -155,7 +155,7 @@ const RecordForm = () => {
       <TextField
         textFieldSize='textField--medium'
         textFieldStyle='textField--outline'
-        type='text'
+        type='url'
         placeholder='Cover Front'
         name='coverFront'
         value={coverFront}
@@ -164,7 +164,7 @@ const RecordForm = () => {
       <TextField
         textFieldSize='textField--medium'
         textFieldStyle='textField--outline'
-        type='text'
+        type='url'
         placeholder='Cover Back'
         name='coverBack'
         value={coverBack}
@@ -173,7 +173,7 @@ const RecordForm = () => {
       <TextField
         textFieldSize='textField--medium'
         textFieldStyle='textField--outline'
-        type='text'
+        type='url'
         placeholder='Cover Lp'
         name='coverLp'
         value={coverLp}

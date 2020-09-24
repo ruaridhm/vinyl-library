@@ -36,6 +36,18 @@ const RecordItem = ({ record }) => {
     clearCurrent();
   };
 
+  const renderImageSlider = () => {
+    if (coverFront || coverBack || coverLp) {
+      return (
+        <ImageSlider
+          coverFront={coverFront}
+          coverBack={coverBack}
+          coverLp={coverLp}
+        />
+      );
+    }
+  };
+
   return (
     <div className='card'>
       <div>
@@ -88,12 +100,7 @@ const RecordItem = ({ record }) => {
       </div>
 
       <div>
-        <ul className='record-details-list'>
-          <ImageSlider />
-          {/* {coverFront && <img src={coverFront} alt='Front Cover' />}
-          {coverBack && <img src={coverBack} alt='Back Cover' />}
-          {coverLp && <img src={coverLp} alt='Lp Cover' />} */}
-        </ul>
+        <ul className='record-details-list'>{renderImageSlider()}</ul>
       </div>
     </div>
   );

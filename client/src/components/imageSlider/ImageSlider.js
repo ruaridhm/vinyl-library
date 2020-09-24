@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import './imageslider.css';
 import SliderImage from './SliderImage';
 
-const ImageSlider = (coverFront, coverBack, coverLp) => {
-  const sliderArr = [<SliderImage />, <SliderImage />, <SliderImage />];
+const ImageSlider = ({ coverFront, coverBack, coverLp }) => {
+  const sliderArr = [
+    <SliderImage src={coverFront} alt='Front Cover' />,
+    <SliderImage src={coverBack} alt='Back Cover' />,
+    <SliderImage src={coverLp} alt='Lp Cover' />,
+  ];
   const [x, setX] = useState(0);
 
   const goLeft = () => {
