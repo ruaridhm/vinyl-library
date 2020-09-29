@@ -12,8 +12,8 @@ const Sort = () => {
 
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
-  const { records } = recordContext;
-  console.log(records);
+  const { records, getRecords } = recordContext;
+  getRecords();
 
   useEffect(() => {
     authContext.loadUser();
