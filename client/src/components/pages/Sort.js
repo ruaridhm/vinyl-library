@@ -3,34 +3,67 @@ import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
-import { mergeSort } from '../../sorting algorithms/MergeSort';
+import AlertContext from '../../context/alert/AlertContext';
 
 const Sort = () => {
-  const [sortBy, setSortBy] = useState([]);
-  const [orderBy, setOrderBy] = useState([]);
-  const [sortType, setSortType] = useState([]);
+  const [sortBy, setSortBy] = useState(['']);
+  const [orderBy, setOrderBy] = useState(['']);
 
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
+  const alertContext = useContext(AlertContext);
   const { records, getRecords } = recordContext;
-  getRecords();
+  const { setAlert } = alertContext;
+  //getRecords();
 
   useEffect(() => {
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);
 
+  //Used to convert Dropdown values to camelCase
+  function camelize(str) {
+    return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match, index) {
+      if (+match === 0) return ''; // or if (/\s+/.test(match)) for white spaces
+      return index === 0 ? match.toLowerCase() : match.toUpperCase();
+    });
+  }
+
   const sortCollection = (e) => {
     e.preventDefault();
-    //make a new array of of records containing the _id and the selected sortby from the sortBy useState
-    const sortArray = records.map(function (item) {
-      // const picked = (({ releaseDate, _id }) => ({ releaseDate, _id }))(item);
-      const picked = item['releaseDate'];
-      return picked;
-    });
-    console.log(sortArray);
-    console.log(mergeSort(sortArray));
+    //check for null values
+    if (sortBy[0].length || orderBy[0].length <= 0) {
+      setAlert('You must select Something to sort by and an order ', 'danger');
+    } else {
+      //make a new array of of records containing the _id and the selected sortby from the sortBy useState
+
+      const sortArray = records.map(function (item) {
+        //selectedSort takes the value from sortBy state and converts it to camelcase
+        const selectedSort = camelize(sortBy[0].value);
+        //const picked =
+        const picked = [item[selectedSort], item._id];
+        return picked;
+      });
+      const sorted = [...sortArray].sort(function (a, b) {
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      });
+
+      if (orderBy[0].value === 'Descending') {
+        sorted.reverse();
+      }
+      console.log(sorted);
+      return sorted;
+    }
+    return;
   };
+
+  //if orderBy State = Descending
 
   const sortByItems = [
     {
@@ -69,37 +102,11 @@ const Sort = () => {
   const orderByItems = [
     {
       id: 1,
-      value: 'Alphabetically Ascending',
+      value: 'Ascending',
     },
     {
       id: 2,
-      value: 'Alphabetically Descending',
-    },
-    {
-      id: 3,
-      value: 'Numerically Ascending',
-    },
-    {
-      id: 4,
-      value: 'Numerically Descending',
-    },
-  ];
-  const sortTypeItems = [
-    {
-      id: 1,
-      value: 'Bubble Sort',
-    },
-    {
-      id: 2,
-      value: 'Insertion',
-    },
-    {
-      id: 3,
-      value: 'Merge Sort',
-    },
-    {
-      id: 4,
-      value: 'Quick Sort',
+      value: 'Descending',
     },
   ];
 
@@ -119,13 +126,6 @@ const Sort = () => {
           selection={orderBy}
           setSelection={setOrderBy}
         />
-        <Dropdown
-          title='Sort Type:'
-          items={sortTypeItems}
-          selection={sortType}
-          setSelection={setSortType}
-        />
-
         <Button buttonStyle='btn--success--solid'>Sort</Button>
       </form>
     </div>
