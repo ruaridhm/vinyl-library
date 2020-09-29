@@ -2,24 +2,34 @@ import React, { useState, useContext, useEffect } from 'react';
 import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
 import AuthContext from '../../context/auth/AuthContext';
+import RecordContext from '../../context/record/recordContext';
+import { mergeSort } from '../../sorting algorithms/MergeSort';
 
 const Sort = () => {
+  const [sortBy, setSortBy] = useState([]);
+  const [orderBy, setOrderBy] = useState([]);
+  const [sortType, setSortType] = useState([]);
+
   const authContext = useContext(AuthContext);
+  const recordContext = useContext(RecordContext);
+  const { records } = recordContext;
+  console.log(records);
 
   useEffect(() => {
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);
 
-  const [sortBy, setSortBy] = useState([]);
-  const [orderBy, setOrderBy] = useState([]);
-  const [sortType, setSortType] = useState([]);
-
   const sortCollection = (e) => {
     e.preventDefault();
-    console.log(
-      ` Sort by: ${sortBy[0].value}, ${orderBy[0].value} with ${sortType[0].value}`
-    );
+    //make a new array of of records containing the _id and the selected sortby from the sortBy useState
+    const sortArray = records.map(function (item) {
+      // const picked = (({ releaseDate, _id }) => ({ releaseDate, _id }))(item);
+      const picked = item['releaseDate'];
+      return picked;
+    });
+    console.log(sortArray);
+    console.log(mergeSort(sortArray));
   };
 
   const sortByItems = [
