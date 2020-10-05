@@ -1,6 +1,6 @@
 # vinyl-library
 
-Welcome to Vinyl Library
+Welcome to Vinyl Library 
 
 Vinyl Library is a full stack (MERN) CRUD app.
 
