@@ -8,7 +8,7 @@ Vinyl Library is a full stack (MERN) CRUD app.
 
   * **Register & User Login**
   
-  * Full Create, Read, Update and Delete functionallity for adding records to a collection
+  * **Full Create, Read, Update and Delete functionallity for adding records to a collection
   
   * **Filtering through your collection to find specific records**
   
@@ -24,7 +24,7 @@ Vinyl Library is a full stack (MERN) CRUD app.
  
   * **Discogs Oauth login (80% complete)**
   
-   Allowing the user to fetch record information allowing the user to add records faster and with more accuracy
+  > Allowing the user to fetch record information allowing the user to add records faster and with more accuracy
     
     
   * **Sorting the users physical collection (99% complete)**
