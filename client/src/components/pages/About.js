@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div>
       <h1>Welcome to the Vinyl Library</h1>
-      <h2>Your entire collection organized in one place</h2>
+      <h2>Your entire collection organized in one place!</h2>
       <h3>Features:</h3>
       <ul>
         <li>Searchable</li>
