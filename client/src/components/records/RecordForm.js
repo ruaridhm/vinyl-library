@@ -89,6 +89,7 @@ const RecordForm = () => {
       addRecord(record);
     } else {
       updateRecord(record);
+      clearCurrent();
     }
   };
 
@@ -218,18 +219,17 @@ const RecordForm = () => {
       <div>
         <Button
           type='submit'
-          buttonSize='btn--small'
+          buttonSize='btn--medium'
           buttonStyle='btn--success--solid'
         >
           {current ? 'Update Record' : 'Add Record'}
         </Button>
-
-        <DiscogsBtn setDiscogsAutofill={discogsHandler} />
       </div>
+      <DiscogsBtn setDiscogsAutofill={discogsHandler} />
       {current && (
         <div>
           <Button
-            buttonSize='btn--small'
+            buttonSize='btn--medium'
             buttonStyle='btn--success--solid'
             type='button'
             onClick={clearAll}

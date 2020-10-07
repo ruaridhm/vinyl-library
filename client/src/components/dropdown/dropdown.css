@@ -20,7 +20,7 @@
   justify-content: space-between;
   cursor: pointer;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 1.2em;
 }
 .dropdown-wrapper .dropdown-header__title--bold {
   font-weight: bold;
@@ -30,7 +30,7 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 1em;
 }
 .dropdown-wrapper .dropdown-list li {
   list-style-type: none;
@@ -48,8 +48,8 @@
   display: flex;
   justify-content: space-between;
   background-color: white;
-  font-size: 16px;
-  padding: 15px 20px 15px 20px;
+  font-size: 1rem;
+  padding: 0.9em 1.2em 0.9em 1.2em;
   border: 0;
   border-bottom: 1px solid #ccc;
   width: 100%;

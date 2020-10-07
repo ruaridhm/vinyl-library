@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import './imageslider.css';
 import SliderImage from './SliderImage';
+import Placeholder from '../../images/Placeholder.png';
 
-const ImageSlider = ({ coverFront, coverBack, coverLp }) => {
+const ImageSlider = ({
+  coverFront = Placeholder,
+  coverBack = Placeholder,
+  coverLp = Placeholder,
+}) => {
   const sliderArr = [
     <SliderImage src={coverFront} alt='Front Cover' />,
     <SliderImage src={coverBack} alt='Back Cover' />,

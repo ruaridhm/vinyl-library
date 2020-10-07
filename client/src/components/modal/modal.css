@@ -2,9 +2,9 @@
   background: #fff;
   width: 30%;
   max-width: 800px;
-  margin: 4rem auto;
+  margin: 4em auto;
   transition: all 0.5s ease;
-  border-radius: 0.5rem;
+  border-radius: 0.5em;
   position: fixed;
   left: 35%;
   top: 20%;
@@ -15,12 +15,12 @@
 .modal-header {
   background: #2c2c2c;
   color: #e9e9e9;
-  padding: 1rem;
+  padding: 1em;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top-left-radius: 0.4rem;
-  border-top-right-radius: 0.4rem;
+  border-top-left-radius: 0.4em;
+  border-top-right-radius: 0.4em;
 }
 
 .modal-header span {
@@ -29,11 +29,11 @@
 }
 
 .modal-content {
-  padding: 1.5rem 1rem;
+  padding: 1.5em 1em;
 }
 
 .modal-body {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .modal-body h4 {
@@ -45,8 +45,8 @@
   font-size: 1rem;
   background: #eee;
   color: #333;
-  padding: 1rem;
-  margin: 1rem 0 2rem 0;
+  padding: 1em;
+  margin: 1em 0 2em 0;
 }
 
 .back-drop {
