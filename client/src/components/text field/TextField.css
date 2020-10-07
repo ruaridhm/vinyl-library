@@ -1,6 +1,6 @@
 .input-group {
   position: relative;
-  margin-top: 1rem;
+  margin-top: 1em;
 }
 
 .input-group .input-area {
@@ -9,8 +9,8 @@
 
 .input-group .input-area:valid + .label {
   top: -8px;
-  padding: 0 3px;
-  font-size: 14px;
+  padding: 0 0.2em;
+  font-size: 1rem;
   color: #8d8d8d;
 }
 
@@ -19,15 +19,14 @@
 
 .input-group .input-area:focus + .label {
   top: -8px;
-  padding: 0 3px;
-  font-size: 14px;
+  padding: 0 0.2em;
+  font-size: 1rem;
   color: blue;
 }
 
 .input-group .label {
   color: #8d8d8d;
   position: absolute;
-  top: 20px;
   left: 13px;
   background: #fff;
   transition: 0.1s;
@@ -36,6 +35,7 @@
 /*STYLES*/
 .textField--standard {
   border-bottom: 2px solid #dadce0;
+
   border-top: none;
   border-left: none;
   border-right: none;
@@ -81,44 +81,14 @@
 /*SIZES*/
 
 .textField--small {
-  padding: 12px 9px;
-  font-size: 14px;
+  padding: 0.8em 0.6em;
+  font-size: 0.9rem;
 }
 .textField--medium {
-  padding: 16px 13px;
-  font-size: 18px;
+  padding: 0.9em 0.8em;
+  font-size: 1.1rem;
 }
 .textField--large {
-  padding: 20px 17px;
-  font-size: 22px;
+  padding: 1em 1em;
+  font-size: 1.3rem;
 }
-
-/*
-.textField {
-  margin-top: 5px;
-  border: none;
-  height: 50px;
-  width: 200px;
-}
-
-.textField--standard {
-  background-color: transparent;
-  border-bottom: 1px solid white;
-}
-
-.textField--standard:focus {
-  border-bottom: 1px solid gold;
-}
-
-.textField--filled {
-  background-color: #3e3e3e;
-}
-
-.textField--outline {
-  border: 1px solid #3e3e3e;
-  border-radius: 0.25em;
-  background-color: transparent;
-}
-
-
-*/

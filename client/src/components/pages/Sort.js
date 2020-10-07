@@ -8,11 +8,12 @@ import AlertContext from '../../context/alert/AlertContext';
 const Sort = () => {
   const [sortBy, setSortBy] = useState(['']);
   const [orderBy, setOrderBy] = useState(['']);
+  const [sortItems, setSortItems] = useState(['']);
 
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
-  const { records, getRecords } = recordContext;
+  const { records } = recordContext;
   const { setAlert } = alertContext;
   //getRecords();
 
@@ -65,6 +66,29 @@ const Sort = () => {
 
   //if orderBy State = Descending
 
+  const itemsToBeSorted = [
+    {
+      id: 1,
+      value: 'Entire Collection',
+    },
+    {
+      id: 2,
+      value: 'Box A',
+    },
+    {
+      id: 3,
+      value: 'Box B',
+    },
+    {
+      id: 4,
+      value: 'Box C',
+    },
+    {
+      id: 5,
+      value: 'Box D',
+    },
+  ];
+
   const sortByItems = [
     {
       id: 1,
@@ -114,6 +138,12 @@ const Sort = () => {
     <div>
       <form onSubmit={sortCollection} className='form'>
         <h1>Sort By:</h1>
+        <Dropdown
+          title='Sort Items:'
+          items={itemsToBeSorted}
+          selection={sortItems}
+          setSelection={setSortItems}
+        />
         <Dropdown
           title='Sort By:'
           items={sortByItems}

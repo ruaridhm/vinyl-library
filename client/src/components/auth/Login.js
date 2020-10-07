@@ -70,7 +70,7 @@ const Login = (props) => {
         </div>
         <Button
           type='submit'
-          buttonSize='btn--small'
+          buttonSize='btn--medium'
           buttonStyle='btn--success--solid'
         >
           Login

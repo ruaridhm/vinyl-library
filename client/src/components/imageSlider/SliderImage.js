@@ -4,6 +4,10 @@ import './imageslider.css';
 import Placeholder from '../../images/Placeholder.png';
 
 const SliderImage = ({ src, alt }) => {
+  if (src === '') {
+    src = Placeholder;
+  }
+
   return <img className='slider-image' src={src} alt={alt}></img>;
 };
 

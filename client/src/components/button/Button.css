@@ -15,7 +15,7 @@
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.4s ease;
-  margin: 1rem;
+  margin: 1em;
 }
 
 .btn:hover {
@@ -70,16 +70,16 @@
 /* Button Sizes */
 
 .btn--small {
-  padding: 5px 10px;
-  font-size: 16px;
+  padding: 0.3em 0.7em;
+  font-size: 1rem;
 }
 
 .btn--medium {
-  padding: 10px 20px;
-  font-size: 18px;
+  padding: 0.315em 1.05em;
+  font-size: 1.5rem;
 }
 
 .btn--large {
-  padding: 15px 30px;
-  font-size: 20px;
+  padding: 0.6em 1.4em;
+  font-size: 2rem;
 }
