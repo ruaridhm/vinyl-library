@@ -1,0 +1,17 @@
+.current-control-btn {
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--secondary-color);
+  color: white;
+  margin: 0rem 0.5rem;
+}
+
+.current-control-btn:hover {
+  background-color: var(--primary-color);
+}
+
+.spinner-container {
+  height: 80vh;
+  display: flex;
+  align-content: center;
+}

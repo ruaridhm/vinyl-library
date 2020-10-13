@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import RecordContext from '../../context/record/recordContext';
 import Button from '../button/Button';
-import DiscogsBtn from '../discogs/DiscogsBtn';
+import DiscogsBtn2 from '../discogs/DiscogsBtn2';
 import TextField from '../text field/TextField';
 
 const RecordForm = () => {
@@ -225,7 +225,7 @@ const RecordForm = () => {
           {current ? 'Update Record' : 'Add Record'}
         </Button>
       </div>
-      <DiscogsBtn setDiscogsAutofill={discogsHandler} />
+      <DiscogsBtn2 />
       {current && (
         <div>
           <Button

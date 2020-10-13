@@ -5,7 +5,7 @@ import RecordContext from '../../context/record/recordContext';
 const RecordCollection = () => {
   const recordContext = useContext(RecordContext);
 
-  const { getRecords, records, loading, current } = recordContext;
+  const { getRecords, records, loading } = recordContext;
 
   useEffect(() => {
     getRecords();
