@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-
+import Button from '../button/Button';
 import AlertContext from '../../context/alert/AlertContext';
 import RecordContext from '../../context/record/recordContext';
 
@@ -132,9 +132,9 @@ const DiscogsBtn2 = () => {
   };
 
   return (
-    <button onClick={onClick} type='button'>
+    <Button onClick={onClick} type='button' buttonStyle='btn--success--solid'>
       Discogs
-    </button>
+    </Button>
   );
 };
 

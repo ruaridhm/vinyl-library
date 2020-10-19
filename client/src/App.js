@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Navbar from './components/layout/Navbar';
@@ -14,6 +14,9 @@ import AlertState from './context/alert/AlertState';
 import RecordState from './context/record/RecordState';
 import AuthState from './context/auth/AuthState';
 import setAuthToken from './utils/setAuthToken';
+import RecordForm from './components/records/RecordForm';
+
+import SideBar from './components/hamburger/SideBar';
 
 import './App.css';
 
@@ -22,15 +25,29 @@ if (localStorage.token) {
 }
 
 const App = () => {
+  const [displayAddRecord, setDisplayAddRecord] = useState(false);
+
   return (
     <AuthState>
       <RecordState>
         <AlertState>
           <Router>
             <Fragment>
-              <Navbar />
+              <Navbar
+                setDisplayAddRecord={setDisplayAddRecord}
+                displayAddRecord={displayAddRecord}
+              />
+
+              <SideBar
+                pageWrapId={'page-wrap'}
+                outerContainerId={'App'}
+                setDisplayAddRecord={setDisplayAddRecord}
+                displayAddRecord={displayAddRecord}
+              />
+
               <div className='container'>
                 <Alerts />
+                {displayAddRecord ? <RecordForm /> : null}
                 <Switch>
                   <PrivateRoute exact path='/' component={Home} />
                   <PrivateRoute exact path='/user' component={User} />

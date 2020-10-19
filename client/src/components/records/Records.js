@@ -19,9 +19,9 @@ const Records = () => {
   }
 
   return (
-    <Fragment>
+    <div>
       {records !== null && !loading ? (
-        <TransitionGroup>
+        <TransitionGroup className='recordItem-container'>
           {filtered !== null
             ? filtered.map((record) => (
                 <CSSTransition key={record._id} timeout={500} classNames='item'>
@@ -37,7 +37,7 @@ const Records = () => {
       ) : (
         <Spinner />
       )}
-    </Fragment>
+    </div>
   );
 };
 

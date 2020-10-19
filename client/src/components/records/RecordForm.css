@@ -1,0 +1,11 @@
+.record-form-modal-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.form-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}

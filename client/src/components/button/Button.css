@@ -16,6 +16,8 @@
   cursor: pointer;
   transition: transform 0.4s ease;
   margin: 1em;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover {
@@ -67,6 +69,10 @@
   border: 2px solid var(--success-color);
 }
 
+.btn--primary--round {
+  border-radius: 100%;
+}
+
 /* Button Sizes */
 
 .btn--small {
@@ -82,4 +88,20 @@
 .btn--large {
   padding: 0.6em 1.4em;
   font-size: 2rem;
+}
+
+/*ripples*/
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }

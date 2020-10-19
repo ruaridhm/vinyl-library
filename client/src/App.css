@@ -43,6 +43,7 @@ body {
 
 .main-title {
   margin: 0;
+  white-space: nowrap;
 }
 
 .nav-links li h1 {
@@ -66,12 +67,27 @@ body {
   text-decoration: underline;
   color: var(--light-color);
 }
+.bm-burger-button {
+  display: none;
+}
+
+@media (max-width: 981px) {
+  .nav-links-right {
+    display: none;
+  }
+  .nav-links {
+    height: 91.594px;
+  }
+  .bm-burger-button {
+    display: inline-block;
+  }
+}
 
 /*Home*/
 
 .home-grid {
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  flex-direction: column;
 }
 
 /*Transition Group Animation */
@@ -188,7 +204,6 @@ body {
   margin-bottom: 1em;
 }
 .current-control-btn {
-  
 }
 .current-record-details {
   background-color: white;

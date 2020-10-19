@@ -13,11 +13,8 @@ const Home = () => {
   }, []);
   return (
     <div className='home-grid'>
-      <RecordForm />
-      <div>
-        <RecordFilter />
-        <Records />
-      </div>
+      <RecordFilter />
+      <Records />
     </div>
   );
 };

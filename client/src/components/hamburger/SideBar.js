@@ -1,13 +1,16 @@
 import React, { Fragment, useContext } from 'react';
+import { slide as Menu } from 'react-burger-menu';
+
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 import mainLogo from '../../images/Logo.png';
 import Button from '../button/Button';
-import SideBar from '../hamburger/SideBar';
 
-const Navbar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
+import './sidebar.css';
+
+const SideBar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
 
@@ -31,7 +34,7 @@ const Navbar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
         <Button
           onClick={openAddRecordModal}
           buttonSize='btn--small'
-          buttonStyle='btn--success--solid'
+          className='sidebar-button'
         >
           Add Record <i className='fas fa-plus'></i>
         </Button>
@@ -88,39 +91,33 @@ const Navbar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
       </li>
     </Fragment>
   );
-  return (
-    <div className='navbar'>
-      <ul className='nav-links'>
-        <li>
-          <Link
-            to='/'
-            onClick={() => {
-              setDisplayAddRecord(false);
-            }}
-          >
-            <h1 className='main-title'>
-              <img src={mainLogo} alt='Site Logo' className='main-logo' />{' '}
-              {title}
-            </h1>
-          </Link>
-        </li>
-      </ul>
 
-      <ul className='nav-links nav-links-right'>
-        {isAuthenticated ? authLinks : guestLinks}
-      </ul>
-    </div>
+  return (
+    <Menu isOpen={false} right>
+      <Link
+        to='/'
+        onClick={() => {
+          setDisplayAddRecord(false);
+        }}
+      >
+        <h1 className='main-title'>
+          <img src={mainLogo} alt='Site Logo' className='main-logo' /> {title}
+        </h1>
+      </Link>
+
+      <ul className='nav-links'>{isAuthenticated ? authLinks : guestLinks}</ul>
+    </Menu>
   );
 };
 
-Navbar.propTypes = {
+SideBar.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.string,
 };
 
-Navbar.defaultProps = {
+SideBar.defaultProps = {
   title: 'Vinyl Library',
   icon: mainLogo,
 };
 
-export default Navbar;
+export default SideBar;

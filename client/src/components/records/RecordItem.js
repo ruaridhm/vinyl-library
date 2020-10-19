@@ -73,6 +73,19 @@ const RecordItem = ({ record }) => {
             }
           </ul>
         </div>
+        <Modal
+          show={showModal}
+          close={closeModalHandler}
+          confirm={onDelete}
+          headerText={'Confirm Delete'}
+          bodyText={'Are you sure you want to delete this item?'}
+        />
+      </div>
+
+      <div>
+        <ul className='record-details-list'>{renderImageSlider()}</ul>
+      </div>
+      <div className='button-container'>
         <Button
           buttonStyle='btn--primary--solid'
           buttonSize='btn--small'
@@ -90,17 +103,6 @@ const RecordItem = ({ record }) => {
         >
           Delete
         </Button>
-        <Modal
-          show={showModal}
-          close={closeModalHandler}
-          confirm={onDelete}
-          headerText={'Confirm Delete'}
-          bodyText={'Are you sure you want to delete this item?'}
-        />
-      </div>
-
-      <div>
-        <ul className='record-details-list'>{renderImageSlider()}</ul>
       </div>
     </div>
   );

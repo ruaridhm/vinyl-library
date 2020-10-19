@@ -10,6 +10,7 @@
   top: 20%;
   transform: translate(-50%, -50%);
   border: 1px solid #2c2c2c;
+  z-index: 1;
 }
 
 .modal-header {
