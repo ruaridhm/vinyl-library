@@ -5,9 +5,8 @@ import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 import mainLogo from '../../images/Logo.png';
 import Button from '../button/Button';
-import SideBar from '../hamburger/SideBar';
 
-const Navbar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
+const Navbar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
 
@@ -22,7 +21,6 @@ const Navbar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
 
   const openAddRecordModal = () => {
     setDisplayAddRecord(!displayAddRecord);
-    console.log(displayAddRecord);
   };
 
   const authLinks = (

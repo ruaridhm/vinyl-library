@@ -83,7 +83,7 @@ const RecordItem = ({ record }) => {
       </div>
 
       <div>
-        <ul className='record-details-list'>{renderImageSlider()}</ul>
+        <div className='record-details-list'>{renderImageSlider()}</div>
       </div>
       <div className='button-container'>
         <Button

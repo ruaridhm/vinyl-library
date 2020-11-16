@@ -47,7 +47,12 @@ const App = () => {
 
               <div className='container'>
                 <Alerts />
-                {displayAddRecord ? <RecordForm /> : null}
+                {displayAddRecord ? (
+                  <RecordForm
+                    displayAddRecord={displayAddRecord}
+                    setDisplayAddRecord={setDisplayAddRecord}
+                  />
+                ) : null}
                 <Switch>
                   <PrivateRoute exact path='/' component={Home} />
                   <PrivateRoute exact path='/user' component={User} />

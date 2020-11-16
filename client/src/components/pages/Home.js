@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import Records from '../records/Records';
-import RecordForm from '../records/RecordForm';
 import RecordFilter from '../records/RecordFilter';
 import AuthContext from '../../context/auth/AuthContext';
 

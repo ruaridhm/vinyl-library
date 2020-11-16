@@ -157,7 +157,7 @@ const Step2 = ({
   );
 };
 
-const RecordForm = () => {
+const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
   const recordContext = useContext(RecordContext);
 
   const { addRecord, current, clearCurrent, updateRecord } = recordContext;
@@ -251,14 +251,15 @@ const RecordForm = () => {
 
   return (
     <div className='record-form-modal-container'>
-      <span
-      // onClick={() => {
-      //   setDisplayAddRecord(false);
-      // }}
-      >
-        x
-      </span>
       <form onSubmit={onSubmit} className='form'>
+        <div
+          className='record-form-modal-close-btn'
+          onClick={() => {
+            setDisplayAddRecord(!displayAddRecord);
+          }}
+        >
+          <i class='fas fa-times record-form-modal-close-btn-icon'></i>
+        </div>
         <h2>{current ? 'Edit Record' : 'Add Record'}</h2>
 
         {currentStep === 1 ? (
