@@ -43,6 +43,7 @@ body {
 
 .main-title {
   margin: 0;
+  white-space: nowrap;
 }
 
 .nav-links li h1 {
@@ -66,12 +67,27 @@ body {
   text-decoration: underline;
   color: var(--light-color);
 }
+.bm-burger-button {
+  display: none;
+}
+
+@media (max-width: 981px) {
+  .nav-links-right {
+    display: none;
+  }
+  .nav-links {
+    height: 91.594px;
+  }
+  .bm-burger-button {
+    display: inline-block;
+  }
+}
 
 /*Home*/
 
 .home-grid {
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  flex-direction: column;
 }
 
 /*Transition Group Animation */
@@ -108,6 +124,7 @@ body {
   min-width: 17rem;
   padding-bottom: 1em;
   height: fit-content;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 .form-group {
@@ -188,7 +205,6 @@ body {
   margin-bottom: 1em;
 }
 .current-control-btn {
-  
 }
 .current-record-details {
   background-color: white;
@@ -201,21 +217,21 @@ body {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
-  border: 1px solid black;
+  border: 10px solid d;
   width: 55%;
   height: 500px;
 }
 
 .record-collection-row {
   display: flex;
-  border: 1px solid purple;
   width: 100%;
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
 .record-box {
-  border: 1px solid blue;
+  border: 20px solid transparent;
+  border-image: url(./images/woodborder.jpg) 100 1000;
   display: flex;
   flex-direction: row;
   width: 100%;

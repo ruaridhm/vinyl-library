@@ -1,0 +1,28 @@
+.record-form-modal-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.form-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.record-form-modal-close-btn {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.record-form-modal-close-btn-icon {
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.record-form-modal-close-btn-icon:hover {
+  transform: rotateX(180deg);
+
+  transition: 1s;
+}

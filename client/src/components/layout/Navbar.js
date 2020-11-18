@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 import mainLogo from '../../images/Logo.png';
+import Button from '../button/Button';
 
-const Navbar = ({ title, icon }) => {
+const Navbar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
 
@@ -15,18 +16,53 @@ const Navbar = ({ title, icon }) => {
   const onLogout = () => {
     logout();
     clearRecords();
+    setDisplayAddRecord(false);
+  };
+
+  const openAddRecordModal = () => {
+    setDisplayAddRecord(!displayAddRecord);
   };
 
   const authLinks = (
     <Fragment>
       <li>
-        <Link to='/user'>Hello {user && user.name}</Link>
+        <Button
+          onClick={openAddRecordModal}
+          buttonSize='btn--small'
+          buttonStyle='btn--success--solid'
+        >
+          Add Record <i className='fas fa-plus'></i>
+        </Button>
       </li>
       <li>
-        <Link to='/library'>Library</Link>
+        <Link
+          to='/user'
+          onClick={() => {
+            setDisplayAddRecord(false);
+          }}
+        >
+          Hello {user && user.name}
+        </Link>
       </li>
       <li>
-        <Link to='/sort'>Sort Library</Link>
+        <Link
+          to='/library'
+          onClick={() => {
+            setDisplayAddRecord(false);
+          }}
+        >
+          Library
+        </Link>
+      </li>
+      <li>
+        <Link
+          to='/sort'
+          onClick={() => {
+            setDisplayAddRecord(false);
+          }}
+        >
+          Sort Library
+        </Link>
       </li>
       <li>
         <a onClick={onLogout} href='#!'>
@@ -54,7 +90,12 @@ const Navbar = ({ title, icon }) => {
     <div className='navbar'>
       <ul className='nav-links'>
         <li>
-          <Link to='/'>
+          <Link
+            to='/'
+            onClick={() => {
+              setDisplayAddRecord(false);
+            }}
+          >
             <h1 className='main-title'>
               <img src={mainLogo} alt='Site Logo' className='main-logo' />{' '}
               {title}
@@ -63,7 +104,9 @@ const Navbar = ({ title, icon }) => {
         </li>
       </ul>
 
-      <ul className='nav-links'>{isAuthenticated ? authLinks : guestLinks}</ul>
+      <ul className='nav-links nav-links-right'>
+        {isAuthenticated ? authLinks : guestLinks}
+      </ul>
     </div>
   );
 };

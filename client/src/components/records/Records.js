@@ -1,10 +1,10 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import RecordContext from '../../context/record/recordContext';
 import RecordItem from './RecordItem';
 import Spinner from '../layout/spinner';
 
-const Records = () => {
+const Records = ({ displayAddRecord, setDisplayAddRecord }) => {
   const recordContext = useContext(RecordContext);
 
   const { records, filtered, getRecords, loading } = recordContext;
@@ -19,25 +19,33 @@ const Records = () => {
   }
 
   return (
-    <Fragment>
+    <div>
       {records !== null && !loading ? (
-        <TransitionGroup>
+        <TransitionGroup className='recordItem-container'>
           {filtered !== null
             ? filtered.map((record) => (
                 <CSSTransition key={record._id} timeout={500} classNames='item'>
-                  <RecordItem record={record} />
+                  <RecordItem
+                    record={record}
+                    displayAddRecord={displayAddRecord}
+                    setDisplayAddRecord={setDisplayAddRecord}
+                  />
                 </CSSTransition>
               ))
             : records.map((record) => (
                 <CSSTransition key={record._id} timeout={500} classNames='item'>
-                  <RecordItem record={record} />
+                  <RecordItem
+                    record={record}
+                    displayAddRecord={displayAddRecord}
+                    setDisplayAddRecord={setDisplayAddRecord}
+                  />
                 </CSSTransition>
               ))}
         </TransitionGroup>
       ) : (
         <Spinner />
       )}
-    </Fragment>
+    </div>
   );
 };
 

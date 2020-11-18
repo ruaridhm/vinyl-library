@@ -6,7 +6,7 @@ import Modal from '../modal/Modal';
 import ImageSlider from '../imageSlider/ImageSlider';
 import './RecordItem.css';
 
-const RecordItem = ({ record }) => {
+const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
   const [showModal, setShowModal] = useState(false);
   const recordContext = useContext(RecordContext);
   const { deleteRecord, setCurrent, clearCurrent } = recordContext;
@@ -36,6 +36,11 @@ const RecordItem = ({ record }) => {
     clearCurrent();
   };
 
+  const editRecord = () => {
+    setCurrent(record);
+    setDisplayAddRecord(true);
+  };
+
   const renderImageSlider = () => {
     if (coverFront || coverBack || coverLp) {
       return (
@@ -50,33 +55,74 @@ const RecordItem = ({ record }) => {
 
   return (
     <div className='card'>
-      <div>
-        <h3 className='title'>{title}</h3>
-        <h4>{artist}</h4>
+      <div className='card-details'>
+        <h2 className='title'>{title}</h2>
+        <h3>{artist}</h3>
         <div className='record-details-list-container'>
           <ul className='record-details-list'>
-            {label && <li>Label: {label}</li>}
-            {catalogNumber && <li>Catalog Number: {catalogNumber}</li>}
-            {releaseDate && <li>Released: {releaseDate}</li>}
-            {format && <li>Format: {format}</li>}
-            {country && <li>Country: {country}</li>}
-            {condition && <li>Condition: {condition}</li>}
-            {barcode && <li>Barcode: {barcode}</li>}
+            {label && (
+              <li>
+                <strong>Label:</strong> {label}
+              </li>
+            )}
+            {catalogNumber && (
+              <li>
+                <strong>Cat Number:</strong> {catalogNumber}
+              </li>
+            )}
+            {releaseDate && (
+              <li>
+                <strong>Released:</strong> {releaseDate}
+              </li>
+            )}
+            {format && (
+              <li>
+                <strong>Format:</strong> {format}
+              </li>
+            )}
+            {country && (
+              <li>
+                <strong>Country:</strong> {country}
+              </li>
+            )}
+            {condition && (
+              <li>
+                <strong>Condition:</strong> {condition}
+              </li>
+            )}
+            {barcode && (
+              <li>
+                <strong>Barcode:</strong> {barcode}
+              </li>
+            )}
 
             {
               (locationPrimary,
               locationSecondary && (
                 <li>
-                  Location: {locationPrimary}, Index: {locationSecondary}
+                  <strong>Location:</strong> {locationPrimary},{' '}
+                  <strong>Index:</strong> {locationSecondary}
                 </li>
               ))
             }
           </ul>
         </div>
+        <Modal
+          show={showModal}
+          close={closeModalHandler}
+          confirm={onDelete}
+          headerText={'Confirm Delete'}
+          bodyText={'Are you sure you want to delete this item?'}
+        />
+      </div>
+
+      <div className='record-image'>{renderImageSlider()}</div>
+
+      <div className='button-container'>
         <Button
           buttonStyle='btn--primary--solid'
           buttonSize='btn--small'
-          onClick={() => setCurrent(record)}
+          onClick={editRecord}
         >
           Edit
         </Button>
@@ -90,17 +136,6 @@ const RecordItem = ({ record }) => {
         >
           Delete
         </Button>
-        <Modal
-          show={showModal}
-          close={closeModalHandler}
-          confirm={onDelete}
-          headerText={'Confirm Delete'}
-          bodyText={'Are you sure you want to delete this item?'}
-        />
-      </div>
-
-      <div>
-        <ul className='record-details-list'>{renderImageSlider()}</ul>
       </div>
     </div>
   );

@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import Records from '../records/Records';
-import RecordForm from '../records/RecordForm';
 import RecordFilter from '../records/RecordFilter';
 import AuthContext from '../../context/auth/AuthContext';
 
-const Home = () => {
+const Home = ({ displayAddRecord, setDisplayAddRecord }) => {
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
@@ -13,11 +12,11 @@ const Home = () => {
   }, []);
   return (
     <div className='home-grid'>
-      <RecordForm />
-      <div>
-        <RecordFilter />
-        <Records />
-      </div>
+      <RecordFilter />
+      <Records
+        displayAddRecord={displayAddRecord}
+        setDisplayAddRecord={setDisplayAddRecord}
+      />
     </div>
   );
 };

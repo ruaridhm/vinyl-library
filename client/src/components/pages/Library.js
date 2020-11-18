@@ -3,7 +3,7 @@ import ImageSlider from '../imageSlider/ImageSlider';
 import RecordContext from '../../context/record/recordContext';
 
 import AuthContext from '../../context/auth/AuthContext';
-
+import Button from '../button/Button';
 import './library.css';
 import RecordCollection from '../recordBox/RecordCollection';
 import Spinner from '../layout/spinner';
@@ -37,16 +37,19 @@ const Library = () => {
 
       const findNext = (records) => {
         const currentBox = current.locationPrimary;
+
         return (
           records.locationPrimary === currentBox &&
-          records.locationSecondary == parseInt(current.locationSecondary) + 1
+          parseInt(records.locationSecondary) ===
+            parseInt(current.locationSecondary) + 1
         );
       };
       const findPrev = (records) => {
         const currentBox = current.locationPrimary;
         return (
           records.locationPrimary === currentBox &&
-          records.locationSecondary == parseInt(current.locationSecondary) - 1
+          parseInt(records.locationSecondary) ===
+            parseInt(current.locationSecondary) - 1
         );
       };
 
@@ -77,14 +80,13 @@ const Library = () => {
           />
         </div>
         <div className='current-record-details-container'>
-          <button
-            className='current-control-btn'
+          <Button
             onClick={() => {
               onClickChangeCurrentBtn('prev');
             }}
           >
-            Prev. Record
-          </button>
+            Prev
+          </Button>
           <div className='current-record-details'>
             <p>{current === null ? 'Title: ' : current.title}</p>
             <p>{current === null ? 'Artist: ' : current.artist}</p>
@@ -95,14 +97,13 @@ const Library = () => {
               Index: ${current.locationSecondary}`}
             </p>
           </div>
-          <button
-            className='current-control-btn'
+          <Button
             onClick={() => {
               onClickChangeCurrentBtn('next');
             }}
           >
-            Next Record
-          </button>
+            Next
+          </Button>
         </div>
         <RecordCollection />
       </div>
