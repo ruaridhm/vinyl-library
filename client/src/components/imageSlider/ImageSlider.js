@@ -3,16 +3,11 @@ import './imageslider.css';
 import SliderImage from './SliderImage';
 import Placeholder from '../../images/Placeholder.png';
 
-const ImageSlider = ({
-  coverFront = Placeholder,
-  coverBack = Placeholder,
-  coverLp = Placeholder,
-}) => {
-  const sliderArr = [
-    <SliderImage src={coverFront} alt='Front Cover' />,
-    <SliderImage src={coverBack} alt='Back Cover' />,
-    <SliderImage src={coverLp} alt='Lp Cover' />,
-  ];
+const ImageSlider = ({ coverFront = Placeholder, coverBack, coverLp }) => {
+  const sliderArr = [<SliderImage src={coverFront} alt='Front Cover' />];
+  coverBack && sliderArr.push(<SliderImage src={coverBack} alt='Back Cover' />);
+  coverLp && sliderArr.push(<SliderImage src={coverLp} alt='Lp Cover' />);
+
   const [x, setX] = useState(0);
 
   const goLeft = () => {
@@ -35,12 +30,17 @@ const ImageSlider = ({
           </div>
         );
       })}
-      <button className='slider-btn slider-left' onClick={goLeft}>
-        <i className='fas fa-chevron-left' />
-      </button>
-      <button className='slider-btn slider-right' onClick={goRight}>
-        <i className='fas fa-chevron-right' />
-      </button>
+
+      {sliderArr.length > 1 && (
+        <button className='slider-btn slider-left' onClick={goLeft}>
+          <i className='fas fa-chevron-left' />
+        </button>
+      )}
+      {sliderArr.length > 1 && (
+        <button className='slider-btn slider-right' onClick={goRight}>
+          <i className='fas fa-chevron-right' />
+        </button>
+      )}
     </div>
   );
 };

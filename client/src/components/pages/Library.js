@@ -75,8 +75,8 @@ const Library = () => {
         <div className='image-slider'>
           <ImageSlider
             coverFront={current === null ? '' : current.coverFront}
-            coverBack={current === null ? '' : current.coverFront}
-            coverLp={current === null ? '' : current.coverFront}
+            coverBack={current === null ? '' : current.coverBack}
+            coverLp={current === null ? '' : current.coverLp}
           />
         </div>
         <div className='current-record-details-container'>
