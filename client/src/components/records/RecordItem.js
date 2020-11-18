@@ -31,6 +31,10 @@ const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
     locationSecondary,
   } = record;
 
+  const scrollToTop = () => {
+    document.documentElement.scrollTop = 110;
+  };
+
   const onDelete = () => {
     deleteRecord(_id);
     clearCurrent();
@@ -39,6 +43,7 @@ const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
   const editRecord = () => {
     setCurrent(record);
     setDisplayAddRecord(true);
+    scrollToTop();
   };
 
   const renderImageSlider = () => {
