@@ -37,16 +37,19 @@ const Library = () => {
 
       const findNext = (records) => {
         const currentBox = current.locationPrimary;
+
         return (
           records.locationPrimary === currentBox &&
-          records.locationSecondary == parseInt(current.locationSecondary) + 1
+          parseInt(records.locationSecondary) ===
+            parseInt(current.locationSecondary) + 1
         );
       };
       const findPrev = (records) => {
         const currentBox = current.locationPrimary;
         return (
           records.locationPrimary === currentBox &&
-          records.locationSecondary == parseInt(current.locationSecondary) - 1
+          parseInt(records.locationSecondary) ===
+            parseInt(current.locationSecondary) - 1
         );
       };
 

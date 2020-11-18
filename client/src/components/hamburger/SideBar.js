@@ -10,7 +10,7 @@ import Button from '../button/Button';
 
 import './sidebar.css';
 
-const SideBar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
+const SideBar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
 
@@ -94,7 +94,7 @@ const SideBar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
 
   return (
     <Menu isOpen={false} right>
-      <Link
+      {/* <Link
         to='/'
         onClick={() => {
           setDisplayAddRecord(false);
@@ -103,7 +103,7 @@ const SideBar = ({ title, icon, setDisplayAddRecord, displayAddRecord }) => {
         <h1 className='main-title'>
           <img src={mainLogo} alt='Site Logo' className='main-logo' /> {title}
         </h1>
-      </Link>
+      </Link> */}
 
       <ul className='nav-links'>{isAuthenticated ? authLinks : guestLinks}</ul>
     </Menu>

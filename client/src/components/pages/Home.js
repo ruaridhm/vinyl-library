@@ -3,7 +3,7 @@ import Records from '../records/Records';
 import RecordFilter from '../records/RecordFilter';
 import AuthContext from '../../context/auth/AuthContext';
 
-const Home = () => {
+const Home = ({ displayAddRecord, setDisplayAddRecord }) => {
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
@@ -13,7 +13,10 @@ const Home = () => {
   return (
     <div className='home-grid'>
       <RecordFilter />
-      <Records />
+      <Records
+        displayAddRecord={displayAddRecord}
+        setDisplayAddRecord={setDisplayAddRecord}
+      />
     </div>
   );
 };

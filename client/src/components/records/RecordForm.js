@@ -48,6 +48,55 @@ const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
   );
 };
 
+const Step2 = ({
+  condition,
+  country,
+  locationPrimary,
+  locationSecondary,
+  onChange,
+}) => {
+  return (
+    <>
+      <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
+        type='text'
+        placeholder='Condition'
+        name='condition'
+        value={condition}
+        onChange={onChange}
+      />
+      <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
+        type='text'
+        placeholder='Country'
+        name='country'
+        value={country}
+        onChange={onChange}
+      />
+      <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
+        type='text'
+        placeholder='Location Primary'
+        name='locationPrimary'
+        value={locationPrimary}
+        onChange={onChange}
+      />
+      <TextField
+        textFieldSize='textField--medium'
+        textFieldStyle='textField--outline'
+        type='text'
+        placeholder='Location Secondary'
+        name='locationSecondary'
+        value={locationSecondary}
+        onChange={onChange}
+      />
+    </>
+  );
+};
+
 const Step3 = ({
   catalogNumber,
   barcode,
@@ -102,55 +151,6 @@ const Step3 = ({
         placeholder='Cover Lp'
         name='coverLp'
         value={coverLp}
-        onChange={onChange}
-      />
-    </>
-  );
-};
-
-const Step2 = ({
-  condition,
-  country,
-  locationPrimary,
-  locationSecondary,
-  onChange,
-}) => {
-  return (
-    <>
-      <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
-        type='text'
-        placeholder='Condition'
-        name='condition'
-        value={condition}
-        onChange={onChange}
-      />
-      <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
-        type='text'
-        placeholder='Country'
-        name='country'
-        value={country}
-        onChange={onChange}
-      />
-      <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
-        type='text'
-        placeholder='Location Primary'
-        name='locationPrimary'
-        value={locationPrimary}
-        onChange={onChange}
-      />
-      <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
-        type='text'
-        placeholder='Location Secondary'
-        name='locationSecondary'
-        value={locationSecondary}
         onChange={onChange}
       />
     </>
@@ -258,7 +258,7 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
             setDisplayAddRecord(!displayAddRecord);
           }}
         >
-          <i class='fas fa-times record-form-modal-close-btn-icon'></i>
+          <i className='fas fa-times record-form-modal-close-btn-icon'></i>
         </div>
         <h2>{current ? 'Edit Record' : 'Add Record'}</h2>
 
@@ -267,24 +267,25 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
             title={title}
             artist={artist}
             label={label}
-            catalogNumber={catalogNumber}
+            releaseDate={releaseDate}
             onChange={onChange}
           />
         ) : currentStep === 2 ? (
           <Step2
-            releaseDate={releaseDate}
+            condition={condition}
             country={country}
-            coverFront={coverFront}
-            coverBack={coverBack}
-            coverLp={coverLp}
+            locationPrimary={locationPrimary}
+            locationSecondary={locationSecondary}
             onChange={onChange}
           />
         ) : currentStep === 3 ? (
           <Step3
-            condition={condition}
+            catalogNumber={catalogNumber}
             barcode={barcode}
-            locationPrimary={locationPrimary}
-            locationSecondary={locationSecondary}
+            coverFront={coverFront}
+            coverBack={coverBack}
+            coverLp={coverLp}
+            onChange={onChange}
           />
         ) : null}
         <div className='form-button-container'>

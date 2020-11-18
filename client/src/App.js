@@ -54,7 +54,15 @@ const App = () => {
                   />
                 ) : null}
                 <Switch>
-                  <PrivateRoute exact path='/' component={Home} />
+                  <PrivateRoute exact path='/'>
+                    <Home
+                      displayAddRecord={displayAddRecord}
+                      setDisplayAddRecord={setDisplayAddRecord}
+                    />
+                  </PrivateRoute>
+
+                  {/* <PrivateRoute exact path='/' component={Home} /> */}
+
                   <PrivateRoute exact path='/user' component={User} />
                   <PrivateRoute exact path='/library' component={Library} />
                   <PrivateRoute exact path='/sort' component={Sort} />

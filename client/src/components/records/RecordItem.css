@@ -30,6 +30,13 @@
 
 .record-details-list {
   list-style: none;
+  padding: 0;
+  line-height: 2em;
+}
+
+.record-image {
+  display: flex;
+  align-items: center;
 }
 
 .button-container {
