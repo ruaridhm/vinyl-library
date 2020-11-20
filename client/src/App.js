@@ -45,32 +45,30 @@ const App = () => {
                 displayAddRecord={displayAddRecord}
               />
 
-              <div className='container'>
-                <Alerts />
-                {displayAddRecord ? (
-                  <RecordForm
+              <Alerts />
+              {displayAddRecord ? (
+                <RecordForm
+                  displayAddRecord={displayAddRecord}
+                  setDisplayAddRecord={setDisplayAddRecord}
+                />
+              ) : null}
+              <Switch>
+                <PrivateRoute exact path='/'>
+                  <Home
                     displayAddRecord={displayAddRecord}
                     setDisplayAddRecord={setDisplayAddRecord}
                   />
-                ) : null}
-                <Switch>
-                  <PrivateRoute exact path='/'>
-                    <Home
-                      displayAddRecord={displayAddRecord}
-                      setDisplayAddRecord={setDisplayAddRecord}
-                    />
-                  </PrivateRoute>
+                </PrivateRoute>
 
-                  {/* <PrivateRoute exact path='/' component={Home} /> */}
+                {/* <PrivateRoute exact path='/' component={Home} /> */}
 
-                  <PrivateRoute exact path='/user' component={User} />
-                  <PrivateRoute exact path='/library' component={Library} />
-                  <PrivateRoute exact path='/sort' component={Sort} />
-                  <Route exact path='/about' component={About} />
-                  <Route exact path='/register' component={Register} />
-                  <Route exact path='/login' component={Login} />
-                </Switch>
-              </div>
+                <PrivateRoute exact path='/user' component={User} />
+                <PrivateRoute exact path='/library' component={Library} />
+                <PrivateRoute exact path='/sort' component={Sort} />
+                <Route exact path='/about' component={About} />
+                <Route exact path='/register' component={Register} />
+                <Route exact path='/login' component={Login} />
+              </Switch>
             </Fragment>
           </Router>
         </AlertState>

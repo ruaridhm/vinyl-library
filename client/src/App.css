@@ -71,6 +71,7 @@ body {
 .main-title {
   margin: 0;
   white-space: nowrap;
+  color: var(--light-color);
 }
 
 .nav-links li h1 {

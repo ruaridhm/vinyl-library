@@ -38,7 +38,7 @@ function Dropdown({
   };
 
   return (
-    <div className='container'>
+    <div className='dropdown-container'>
       <div className='dropdown-wrapper'>
         <div
           tabIndex={0}

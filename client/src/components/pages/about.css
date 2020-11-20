@@ -1,40 +1,138 @@
+.landing-page {
+  width: 100%;
+  margin: 0;
+}
+
 .site-logo {
 }
 
 .landing-hero {
   display: flex;
+  align-items: center;
   flex-direction: column;
-  height: 90vh;
+  height: 92vh;
+  background: var(--secondary-color);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10vw), 0 100%);
+  margin-bottom: -10vw;
+  color: var(--light-color);
 }
 
 .landing-hero-headline {
+  margin-top: 2.5em;
   font-size: 4.5em;
 }
 .landing-hero-body {
   text-align: center;
   width: 50%;
-  margin: auto;
 }
 .landing-hero-cta-container {
+  padding-top: 4em;
   display: flex;
   flex-direction: column;
-  margin: auto;
 }
 .landing-demo-cta {
   display: flex;
   align-items: center;
   width: fit-content;
-  padding-left: 1.1rem;
+  padding-left: 0.25rem;
   cursor: pointer;
+  color: var(--light-color);
 }
 
 .landing-demo-cta-icon {
-  padding-right: 0.5em;
-  color: var(--primary-color);
+  margin-right: 0.25em;
+  color: var(--danger-color);
+  fill: var(--light-color);
+  font-size: 2em;
 }
 
 .feature-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 4em;
+  background-color: var(--light-color);
+  padding: 15em 10em 5em 10em;
+}
+
+.feature-list::before,
+.feature-list::after {
+  position: absolute;
+  content: '';
+  width: 100px;
+  height: 100px;
+  bottom: -38%;
+  background: var(--light-color);
+
+  z-index: 1;
+}
+.feature-list::before {
+  right: 50%;
+  transform: skew(0, 20deg);
+}
+
+.feature-list::after {
+  left: 50%;
+  transform: skew(0, -20deg);
+}
+
+.feature-details-container {
+  padding: 5em 10em 0 10em;
+}
+
+.footer-top {
+  position: absolute;
+  top: -1;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  background-color: var(--dark-color);
+}
+
+.footer-top svg {
+  position: relative;
+  display: block;
+  height: 100px;
+  animation: waveMove 20s linear infinite;
+  animation-direction: alternate;
+}
+
+@keyframes waveMove {
+  0% {
+    width: calc(100%);
+  }
+  100% {
+    width: calc(300%);
+  }
+}
+
+.footer-top .shape-fill {
+  fill: var(--background-light);
+}
+
+.footer-bottom {
+  padding-top: 8em;
+  background-color: var(--dark-color);
+}
+
+.footer-main-title {
+  padding-left: 2em;
+  padding-bottom: 1em;
+}
+
+.footer-cta {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1em;
+}
+
+.landing-footer-horizontal-rule {
+  width: 80%;
+}
+.landing-footer-copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  color: var(--light-color);
 }
