@@ -18,7 +18,7 @@
 }
 
 .landing-hero-headline {
-  margin-top: 2.5em;
+  margin-top: 2.5rem;
   font-size: 4.5em;
 }
 .landing-hero-body {
@@ -40,7 +40,7 @@
 }
 
 .landing-demo-cta-icon {
-  margin-right: 0.25em;
+  margin-right: 0.5rem;
   color: var(--danger-color);
   fill: var(--light-color);
   font-size: 2em;
@@ -49,34 +49,36 @@
 .feature-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 4em;
+  column-gap: 4rem;
   background-color: var(--light-color);
-  padding: 15em 10em 5em 10em;
+  padding: 15rem 10rem 5rem 10rem;
 }
 
-.feature-list::before,
-.feature-list::after {
+.feature-details-container::before,
+.feature-details-container::after {
   position: absolute;
   content: '';
   width: 100px;
   height: 100px;
-  bottom: -38%;
+  top: -82px;
   background: var(--light-color);
+  /* background: red; */
 
   z-index: 1;
 }
-.feature-list::before {
+.feature-details-container::before {
   right: 50%;
   transform: skew(0, 20deg);
 }
 
-.feature-list::after {
+.feature-details-container::after {
   left: 50%;
   transform: skew(0, -20deg);
 }
 
 .feature-details-container {
-  padding: 5em 10em 0 10em;
+  position: relative;
+  padding: 5rem 10rem 0 10rem;
 }
 
 .footer-top {
@@ -111,19 +113,19 @@
 }
 
 .footer-bottom {
-  padding-top: 8em;
+  padding-top: 8rem;
   background-color: var(--dark-color);
 }
 
 .footer-main-title {
-  padding-left: 2em;
-  padding-bottom: 1em;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
 }
 
 .footer-cta {
   display: flex;
   justify-content: center;
-  padding-bottom: 1em;
+  padding-bottom: 1rem;
 }
 
 .landing-footer-horizontal-rule {
@@ -133,6 +135,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em;
+  padding: 1rem;
   color: var(--light-color);
 }
