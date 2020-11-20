@@ -1,0 +1,40 @@
+.site-logo {
+}
+
+.landing-hero {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
+
+.landing-hero-headline {
+  font-size: 4.5em;
+}
+.landing-hero-body {
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
+.landing-hero-cta-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.landing-demo-cta {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding-left: 1.1rem;
+  cursor: pointer;
+}
+
+.landing-demo-cta-icon {
+  padding-right: 0.5em;
+  color: var(--primary-color);
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 4em;
+}

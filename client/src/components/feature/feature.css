@@ -1,0 +1,25 @@
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-icon {
+  border: 1px solid #a4a5a7;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 5px 5px 15px 5px #a4a5a7;
+  box-shadow: 5px 5px 15px 5px #a4a5a7;
+  color: var(--primary-color);
+}
+
+.feature-title {
+}
+
+.feature-body {
+  text-align: center;
+}
