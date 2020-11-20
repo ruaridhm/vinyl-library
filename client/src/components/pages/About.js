@@ -4,7 +4,14 @@ import Button from '../button/Button';
 import './about.css';
 import FeatureDetails from '../feature/FeatureDetails';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlayCircle, faCopyright } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlayCircle,
+  faCopyright,
+  faEye,
+  faSearch,
+  faSort,
+  faInfo,
+} from '@fortawesome/free-solid-svg-icons';
 import mainLogo from '../../images/Logo.png';
 
 const About = () => {
@@ -43,22 +50,22 @@ const About = () => {
       </div>
       <div className='feature-list'>
         <Feature
-          icon={<i class='far fa-eye'></i>}
+          icon={<FontAwesomeIcon icon={faEye} />}
           title='Browse'
           description='Your entire library in one place'
         />
         <Feature
-          icon={<i class='fas fa-search'></i>}
+          icon={<FontAwesomeIcon icon={faSearch} />}
           title='Search'
           description='Quickly find that record with physical location indexing'
         />
         <Feature
-          icon={<i class='fas fa-sort'></i>}
+          icon={<FontAwesomeIcon icon={faSort} />}
           title='Sort'
           description='Sort your library step-by-step in any order you like'
         />
         <Feature
-          icon={<i class='fas fa-info'></i>}
+          icon={<FontAwesomeIcon icon={faInfo} />}
           title='Stats'
           description='Get statistics on your library to reveal information you never knew'
         />
