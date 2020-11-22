@@ -7,13 +7,14 @@ import AlertContext from '../../context/alert/AlertContext';
 import bubbleSort from '../../sortingAlgos/bubble';
 import insertionSort from '../../sortingAlgos/insertion';
 import mergeSortHandler from '../../sortingAlgos/merge';
-import quickSort from '../../sortingAlgos/quick';
+import quickSortHandler from '../../sortingAlgos/quick';
 
 const Sort = () => {
   const [sortBy, setSortBy] = useState(['']);
   const [orderBy, setOrderBy] = useState(['']);
   const [sortItems, setSortItems] = useState(['']);
   const [sortingAlgorithm, setSortingAlgorithm] = useState(['']);
+  const [collectionType, setCollectionType] = useState(['']);
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
@@ -159,6 +160,21 @@ const Sort = () => {
     },
   ];
 
+  const collectionTypes = [
+    {
+      id: 1,
+      value: 'Digital',
+    },
+    {
+      id: 2,
+      value: 'Physical',
+    },
+    {
+      id: 3,
+      value: 'Both',
+    },
+  ];
+
   return (
     <div>
       <form onSubmit={sortCollection} className='form'>
@@ -187,6 +203,12 @@ const Sort = () => {
           selection={sortingAlgorithm}
           setSelection={setSortingAlgorithm}
         />
+        <Dropdown
+          title='Collection Type:'
+          items={collectionTypes}
+          selection={collectionType}
+          setSelection={setCollectionType}
+        />
         <Button buttonStyle='btn--success--solid'>Sort</Button>
       </form>
       <div>
@@ -211,7 +233,7 @@ const Sort = () => {
         </Button>
         <Button
           buttonStyle='btn--success--solid'
-          onClick={() => quickSort('artist')}
+          onClick={() => quickSortHandler('artist')}
         >
           quick O(nlogn)
         </Button>
