@@ -4,12 +4,16 @@ import Dropdown from '../dropdown/Dropdown';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 import AlertContext from '../../context/alert/AlertContext';
+import bubble from '../../sortingAlgos/bubble';
+import insertion from '../../sortingAlgos/insertion';
+import merge from '../../sortingAlgos/merge';
+import quick from '../../sortingAlgos/quick';
 
 const Sort = () => {
   const [sortBy, setSortBy] = useState(['']);
   const [orderBy, setOrderBy] = useState(['']);
   const [sortItems, setSortItems] = useState(['']);
-
+  const [sortingAlgorithm, setSortingAlgorithm] = useState(['']);
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
@@ -19,6 +23,7 @@ const Sort = () => {
 
   useEffect(() => {
     authContext.loadUser();
+
     // eslint-disable-next-line
   }, []);
 
@@ -32,6 +37,7 @@ const Sort = () => {
 
   const sortCollection = (e) => {
     e.preventDefault();
+    console.log(records);
     //check for null values
     if (sortBy[0].length || orderBy[0].length <= 0) {
       setAlert('You must select Something to sort by and an order ', 'danger');
@@ -41,10 +47,11 @@ const Sort = () => {
       const sortArray = records.map(function (item) {
         //selectedSort takes the value from sortBy state and converts it to camelcase
         const selectedSort = camelize(sortBy[0].value);
-        //const picked =
+
         const picked = [item[selectedSort], item._id];
         return picked;
       });
+      console.log('sortArray = ' + sortArray);
       const sorted = [...sortArray].sort(function (a, b) {
         if (a < b) {
           return -1;
@@ -133,6 +140,24 @@ const Sort = () => {
       value: 'Descending',
     },
   ];
+  const sortingAlgorithms = [
+    {
+      id: 1,
+      value: 'Bubble Sort',
+    },
+    {
+      id: 2,
+      value: 'Insertion Sort',
+    },
+    {
+      id: 3,
+      value: 'Merge Sort',
+    },
+    {
+      id: 4,
+      value: 'Quick Sort',
+    },
+  ];
 
   return (
     <div>
@@ -156,8 +181,41 @@ const Sort = () => {
           selection={orderBy}
           setSelection={setOrderBy}
         />
+        <Dropdown
+          title='Sorting Algorithm:'
+          items={sortingAlgorithms}
+          selection={sortingAlgorithm}
+          setSelection={setSortingAlgorithm}
+        />
         <Button buttonStyle='btn--success--solid'>Sort</Button>
       </form>
+      <div>
+        <Button
+          buttonStyle='btn--success--solid'
+          onClick={() => bubble('artist')}
+        >
+          bubble
+        </Button>
+
+        <Button
+          buttonStyle='btn--success--solid'
+          onClick={() => insertion('artist')}
+        >
+          insertion O(n2)
+        </Button>
+        <Button
+          buttonStyle='btn--success--solid'
+          onClick={() => merge('artist')}
+        >
+          merge O(nlogn)
+        </Button>
+        <Button
+          buttonStyle='btn--success--solid'
+          onClick={() => quick('artist')}
+        >
+          quick O(nlogn)
+        </Button>
+      </div>
     </div>
   );
 };
