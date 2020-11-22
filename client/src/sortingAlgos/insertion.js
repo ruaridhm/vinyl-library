@@ -1,11 +1,11 @@
 import records from './temprecords';
 
-const insertion = (sortByVariable) => {
-  let inputArr = records;
-  const movesArr = [];
-  let n = inputArr.length;
+const insertionSort = (sortByVariable) => {
+  const inputArr = records,
+    movesArr = [],
+    n = inputArr.length;
   for (let i = 1; i < n; i++) {
-    let current = inputArr[i];
+    const current = inputArr[i];
     let j = i - 1;
     while (j > -1 && current[sortByVariable] < inputArr[j][sortByVariable]) {
       inputArr[j + 1] = inputArr[j];
@@ -19,8 +19,8 @@ const insertion = (sortByVariable) => {
   }
 
   const shrinkMovesArr = (movesArr) => {
-    let i = 0;
-    let j = i + 1;
+    let i = 0,
+      j = i + 1;
     while (i < movesArr.length && j < movesArr.length) {
       if (
         movesArr[i].from[sortByVariable] === movesArr[j].from[sortByVariable]
@@ -38,4 +38,4 @@ const insertion = (sortByVariable) => {
   return movesArr;
 };
 
-export default insertion;
+export default insertionSort;
