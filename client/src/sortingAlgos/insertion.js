@@ -1,7 +1,5 @@
-import records from './temprecords';
-
-const insertionSort = (sortByVariable) => {
-  const inputArr = records,
+const insertionSort = (arr, sortByVariable) => {
+  const inputArr = arr,
     movesArr = [],
     n = inputArr.length;
   for (let i = 1; i < n; i++) {
@@ -35,7 +33,8 @@ const insertionSort = (sortByVariable) => {
   };
   shrinkMovesArr(movesArr);
   console.log(movesArr);
-  return movesArr;
+  console.log(inputArr);
+  return inputArr;
 };
 
 export default insertionSort;

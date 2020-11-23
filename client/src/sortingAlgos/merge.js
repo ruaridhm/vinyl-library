@@ -1,8 +1,5 @@
-import records from './temprecords';
-
-const mergeSortHandler = (sortByVariable) => {
-  const movesArr = [];
-  const arr = records;
+const mergeSortHandler = (arr, sortByVariable) => {
+  // const movesArr = [];
 
   const mergeSort = (arr) => {
     const len = arr.length;
@@ -30,6 +27,7 @@ const mergeSortHandler = (sortByVariable) => {
     return result.concat(left.slice(l)).concat(right.slice(r));
   };
   console.log(mergeSort(arr));
+  return mergeSort(arr);
 };
 
 export default mergeSortHandler;

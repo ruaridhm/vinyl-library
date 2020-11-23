@@ -1,8 +1,4 @@
-import records from './temprecords';
-
-const quickSortHandler = (sortByVariable) => {
-  const arr = records;
-
+const quickSortHandler = (arr, sortByVariable) => {
   const quickSort = (arr, left, right) => {
     const partition = (arr, pivot, left, right) => {
       const swap = (arr, i, j) => {
@@ -34,6 +30,7 @@ const quickSortHandler = (sortByVariable) => {
   };
 
   console.log(quickSort(arr, 0, arr.length - 1));
+  return quickSort(arr, 0, arr.length - 1);
 };
 
 export default quickSortHandler;

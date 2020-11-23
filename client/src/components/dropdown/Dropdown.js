@@ -49,7 +49,7 @@ function Dropdown({
         >
           <div className='dropdown-header-title'>
             <p className='dropdown-header-title--bold'>
-              {title} {selection.length > 0 ? selection[0].value : ''}
+              {title} {selection.length > 0 ? selection[0].title : ''}
             </p>
           </div>
           <div className='dropdown-header-action'>
@@ -61,7 +61,7 @@ function Dropdown({
             {items.map((item) => (
               <li className='dropdown-list-item' key={item.id}>
                 <button type='button' onClick={() => handleOnClick(item)}>
-                  <span>{item.value}</span>
+                  <span>{item.title}</span>
                   <span>{isItemInSelection(item) && 'Selected'}</span>
                 </button>
               </li>
