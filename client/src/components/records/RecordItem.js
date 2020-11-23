@@ -5,6 +5,8 @@ import Button from '../button/Button';
 import Modal from '../modal/Modal';
 import ImageSlider from '../imageSlider/ImageSlider';
 import './RecordItem.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
   const [showModal, setShowModal] = useState(false);
@@ -129,7 +131,7 @@ const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
           buttonSize='btn--small'
           onClick={editRecord}
         >
-          Edit
+          <FontAwesomeIcon icon={faEdit} /> Edit
         </Button>
 
         <div>{showModal ? <div onClick={closeModalHandler}></div> : null}</div>
@@ -139,7 +141,7 @@ const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
           buttonSize='btn--small'
           onClick={() => setShowModal(true)}
         >
-          Delete
+          <FontAwesomeIcon icon={faTrashAlt} /> Delete
         </Button>
       </div>
     </div>

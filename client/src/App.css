@@ -15,6 +15,28 @@
   box-sizing: border-box;
 }
 
+/* FONTS */
+
+@font-face {
+  font-family: 'GoogleSans';
+  src: local('GoogleSans'), url(./fonts/GoogleSans.woff2) format('truetype');
+}
+
+@font-face {
+  font-family: 'GoogleSansMedium';
+  src: local('GoogleSansMedium'),
+    url(./fonts/GoogleSansMedium.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'GoogleSansBold';
+  src: local('GoogleSansBold'),
+    url(./fonts/GoogleSansBold.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(./fonts/Roboto.woff2) format('truetype');
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -22,6 +44,7 @@ html {
 body {
   margin: 0;
   background-color: var(--background-light);
+  font-family: 'GoogleSans';
 }
 
 .navbar {
@@ -48,6 +71,7 @@ body {
 .main-title {
   margin: 0;
   white-space: nowrap;
+  color: var(--light-color);
 }
 
 .nav-links li h1 {

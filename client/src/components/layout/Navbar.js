@@ -5,6 +5,8 @@ import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 import mainLogo from '../../images/Logo.png';
 import Button from '../button/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
   const authContext = useContext(AuthContext);
@@ -31,7 +33,7 @@ const Navbar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
           buttonSize='btn--small'
           buttonStyle='btn--success--solid'
         >
-          Add Record <i className='fas fa-plus'></i>
+          Add Record <FontAwesomeIcon icon={faPlus} />
         </Button>
       </li>
       <li>
@@ -66,7 +68,7 @@ const Navbar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
       </li>
       <li>
         <a onClick={onLogout} href='#!'>
-          <i className='fas fa-sign-out-alt'></i>{' '}
+          <FontAwesomeIcon icon={faSignOutAlt} />
           <span className=''>Logout</span>
         </a>
       </li>

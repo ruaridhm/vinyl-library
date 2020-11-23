@@ -1,0 +1,28 @@
+.feature-details {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5em;
+}
+
+.feature-details-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.feature-details-title {
+  font-size: 2.5rem;
+  color: var(--dark-color);
+}
+
+.feature-details-body {
+  text-align: center;
+  width: 50%;
+}
+
+.feature-details-image {
+  border: 1px solid transparent;
+  border-radius: 1rem;
+}

@@ -1,0 +1,552 @@
+[
+  {
+    "_id": {
+      "$oid": "5f73031a32170637986a26db"
+    },
+    "title": "Black Sabbath",
+    "artist": "Black Sabath",
+    "label": "Vertigo",
+    "catalogNumber": "WS 1871",
+    "releaseDate": "1970",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "NM",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "1",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T09:49:14.396Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f7303b932170637986a26dc"
+    },
+    "title": "Paranoid",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "6360 011",
+    "releaseDate": "1970",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "M",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "3",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T09:51:53.676Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73042532170637986a26dd"
+    },
+    "title": "Master Of Reality",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "7138033",
+    "releaseDate": "1971",
+    "country": "UK",
+    "coverFront": "https://img.discogs.com/nhJPyD9od74d_He0ZnEP6pFiLHo=/fit-in/378x581/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-11892926-1576825538-5234.jpeg.jpg",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "P",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "2",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T09:53:41.560Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73049a32170637986a26de"
+    },
+    "title": "Vol. 4",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "6360 071",
+    "releaseDate": "1972",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "nm",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "5",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T09:55:38.065Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73052c32170637986a26df"
+    },
+    "title": "Sabbath Bloody Sabbath",
+    "artist": "Black Sabbath",
+    "label": " WWA Records ",
+    "catalogNumber": "WWA 005",
+    "releaseDate": "1973",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "VG",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "4",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T09:58:04.194Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73058232170637986a26e0"
+    },
+    "title": "Sabotage",
+    "artist": "Black Sabbath",
+    "label": "NEMS",
+    "catalogNumber": "\t9119 001",
+    "releaseDate": "1975",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "7",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T09:59:30.092Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f7305c432170637986a26e1"
+    },
+    "title": "Technical Ecstasy",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "9102 750",
+    "releaseDate": "1976",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "M",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "6",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:00:36.936Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73061c32170637986a26e2"
+    },
+    "title": "Never Say Die!",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "9102 751",
+    "releaseDate": "1978",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "G",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "9",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:02:04.628Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73065c32170637986a26e3"
+    },
+    "title": "Heaven and Hell",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "9102 752",
+    "releaseDate": "1980",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "M",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "10",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:03:08.720Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73069c32170637986a26e4"
+    },
+    "title": "Mob Rules",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "6302 119",
+    "releaseDate": "1981",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "VG",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "8",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:04:12.440Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f7306e532170637986a26e5"
+    },
+    "title": "Born Again",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "VERL 8",
+    "releaseDate": "1983",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "P",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "13",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:05:25.065Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73071a32170637986a26e6"
+    },
+    "title": "Seventh Star",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "VERH 29",
+    "releaseDate": "1986",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "VG",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "12",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:06:18.705Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73075932170637986a26e7"
+    },
+    "title": "The Eternal Idol",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "VERH 51",
+    "releaseDate": "1987",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "G",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "14",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:07:21.372Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73079b32170637986a26e8"
+    },
+    "title": "Headless Cross",
+    "artist": "Black Sabbath",
+    "label": "I.R.S Records",
+    "catalogNumber": "EIRSA 1002",
+    "releaseDate": "1989",
+    "country": "UK",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "G",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "11",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:08:27.096Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73081832170637986a26e9"
+    },
+    "title": "Tyr",
+    "artist": "Black Sabbath",
+    "label": "I.R.S. Records",
+    "catalogNumber": "1C 064-24 1070",
+    "releaseDate": "1990",
+    "country": "EU",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "M",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "17",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:10:32.166Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73082a32170637986a26ea"
+    },
+    "title": "Dehumanizer",
+    "artist": "Black Sabbath",
+    "label": "I.R.S Records",
+    "catalogNumber": "713155 1",
+    "releaseDate": "1992",
+    "country": "EU",
+    "coverFront": "",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "VG+",
+    "barcode": "",
+    "locationPrimary": "a",
+    "locationSecondary": "18",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:10:50.135Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f7308f932170637986a26eb"
+    },
+    "title": "Cross Purposes",
+    "artist": "Black Sabbath",
+    "label": "I.R.S. Records",
+    "catalogNumber": "0777 7 13222 1 1",
+    "releaseDate": "1994",
+    "country": "UK",
+    "coverFront": "https://img.discogs.com/pwLQZ0dle5oEgozQgz5b0pHVlaM=/fit-in/600x601/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2668563-1495375677-5658.jpeg.jpg",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "VG+",
+    "barcode": "077771322211",
+    "locationPrimary": "a",
+    "locationSecondary": "15",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:14:17.791Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f73094932170637986a26ec"
+    },
+    "title": "Forbidden",
+    "artist": "Black Sabbath ",
+    "label": "I.R.S. Records",
+    "catalogNumber": "7243 8 30620 2 7",
+    "releaseDate": "1995",
+    "country": "UK",
+    "coverFront": "https://img.discogs.com/r2g-o3qjAYTX_tNYiBAF5viNxLc=/fit-in/600x593/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2710580-1491910544-2229.jpeg.jpg",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "G",
+    "barcode": "7 24383 06202 7",
+    "locationPrimary": "a",
+    "locationSecondary": "16",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:15:37.518Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f7309bd32170637986a26ed"
+    },
+    "title": "13",
+    "artist": "Black Sabbath",
+    "label": "Vertigo",
+    "catalogNumber": "3735426",
+    "releaseDate": "2013",
+    "country": "Europe",
+    "coverFront": "https://img.discogs.com/UwNZ1GcKuaocFHH1DuYHmMsbZfM=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-4637469-1420979659-2043.jpeg.jpg",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "M",
+    "barcode": "602537354269",
+    "locationPrimary": "a",
+    "locationSecondary": "19",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-09-29T10:17:33.557Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f7f0c6632a22405e8c2b5ed"
+    },
+    "title": "Nevermind",
+    "artist": "Nirvana",
+    "label": "Eagle Vision",
+    "catalogNumber": "EV 426200",
+    "releaseDate": "1991",
+    "country": "US",
+    "coverFront": "https://img.discogs.com/UIjBvohjQmLgEbqO4I5c56R9Jsc=/fit-in/424x603/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1852962-1417605212-2999.jpeg.jpg",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "",
+    "barcode": "",
+    "locationPrimary": "b",
+    "locationSecondary": "2",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-10-08T12:56:06.316Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5f7f0c6f32a22405e8c2b5ee"
+    },
+    "title": "Nevermind",
+    "artist": "Nirvana",
+    "label": "Eagle Vision",
+    "catalogNumber": "EV 426200",
+    "releaseDate": "2005",
+    "country": "France",
+    "coverFront": "https://img.discogs.com/UIjBvohjQmLgEbqO4I5c56R9Jsc=/fit-in/424x603/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1852962-1417605212-2999.jpeg.jpg",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "",
+    "barcode": "",
+    "locationPrimary": "b",
+    "locationSecondary": "13",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-10-08T12:56:15.284Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "5fb30cb1a7629f2f584cd610"
+    },
+    "title": "Shout",
+    "artist": "Tears For Fears",
+    "label": "Viva",
+    "catalogNumber": "CD 7530",
+    "releaseDate": "s",
+    "country": "Ireland",
+    "coverFront": "https://img.discogs.com/Nb-0j8TEd-XuVdpcqM5cBLq0jeE=/fit-in/589x521/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-6884489-1428733291-6260.jpeg.jpg",
+    "coverBack": "",
+    "coverLp": "",
+    "condition": "",
+    "barcode": "004883075300",
+    "locationPrimary": "",
+    "locationSecondary": "",
+    "user": {
+      "$oid": "5f63110ca33ecc16f4483871"
+    },
+    "date": {
+      "$date": "2020-11-16T23:35:13.572Z"
+    },
+    "__v": 0
+  }
+]
