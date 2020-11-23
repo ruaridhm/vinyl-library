@@ -18,7 +18,13 @@ const Sort = () => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
-  const { getRecords, records } = recordContext;
+  const {
+    getRecords,
+    records,
+    updateRecord,
+    setCurrent,
+    current,
+  } = recordContext;
   const { setAlert } = alertContext;
 
   useEffect(() => {
@@ -29,7 +35,7 @@ const Sort = () => {
 
   const sortCollection = (e) => {
     e.preventDefault();
-    //check for null values
+    //check for null values in Sort by form
     if (
       !sortItems.length ||
       !sortBy.length ||
@@ -41,15 +47,14 @@ const Sort = () => {
     } else {
       var sorted;
       //make a new array of records containing the _id and the selected sortBy from the sortBy useState
-      let selectedOptions = [
-        sortItems[0].value,
-        sortBy[0].value,
-        orderBy[0].value,
-        sortingAlgorithm[0].value,
-        collectionType[0].value,
-      ];
-      console.log(selectedOptions);
-      console.log(sortBy[0].value);
+      // let selectedOptions = [
+      //   sortItems[0].value,
+      //   sortBy[0].value,
+      //   orderBy[0].value,
+      //   sortingAlgorithm[0].value,
+      //   collectionType[0].value,
+      // ];
+      // console.log(selectedOptions);
 
       let selectedBoxes;
       if (sortItems[0].value === 'all') {
@@ -99,12 +104,32 @@ const Sort = () => {
             'danger'
           );
       }
-      console.log({ sorted });
 
       if (orderBy[0].value === 'descending') {
         sorted.reverse();
       }
     }
+    //physical check
+    if (collectionType[0].value === 'digital') {
+      sorted.map((sortedRecord, index) => {
+        sortedRecord.locationSecondary = index + 1;
+
+        const match = records.findIndex((r) => r._id === sortedRecord._id);
+        setCurrent(records.match);
+        console.log({ current });
+        updateRecord(sortedRecord);
+      });
+    }
+    console.log(records);
+
+    //   // box a,b,c,d, unsorted?
+    //   //match record with record in collection
+    //   //replace record with updateRecord
+    // } else if (collectionType[0].value === 'physical') {
+    //   console.log('physical');
+    // } else if (collectionType[0].value === 'both') {
+    //   console.log('both');
+    // }
 
     return sorted;
   };
