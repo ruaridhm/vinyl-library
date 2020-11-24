@@ -57,81 +57,73 @@ const Sort = () => {
       // console.log(selectedOptions);
 
       let selectedBoxes;
-      if (sortItems[0].value === 'all') {
-        selectedBoxes = records;
-      } else if (sortItems[0].value === 'a') {
-        selectedBoxes = records.filter(
-          (record) => record.locationPrimary === 'a'
-        );
-      } else if (sortItems[0].value === 'b') {
-        selectedBoxes = records.filter(
-          (record) => record.locationPrimary === 'b'
-        );
-      } else if (sortItems[0].value === 'c') {
-        selectedBoxes = records.filter(
-          (record) => record.locationPrimary === 'c'
-        );
-      } else if (sortItems[0].value === 'd') {
-        selectedBoxes = records.filter(
-          (record) => record.locationPrimary === 'd'
-        );
-      } else if (sortItems[0].value === '') {
-        selectedBoxes = records.filter(
-          (record) => record.locationPrimary === ''
-        );
-      }
+      sortItems[0].value === 'all'
+        ? (selectedBoxes = records)
+        : sortItems[0].value === 'a'
+        ? (selectedBoxes = records.filter(
+            (record) => record.locationPrimary === 'a'
+          ))
+        : sortItems[0].value === 'b'
+        ? (selectedBoxes = records.filter(
+            (record) => record.locationPrimary === 'b'
+          ))
+        : sortItems[0].value === 'c'
+        ? (selectedBoxes = records.filter(
+            (record) => record.locationPrimary === 'c'
+          ))
+        : sortItems[0].value === 'd'
+        ? (selectedBoxes = records.filter(
+            (record) => record.locationPrimary === 'd'
+          ))
+        : sortItems[0].value === ''
+        ? (selectedBoxes = records.filter(
+            (record) => record.locationPrimary === ''
+          ))
+        : console.alert('selected boxes hit default case');
 
-      switch (sortingAlgorithm[0].value) {
-        case 'bubble':
-          console.log('bubble selected');
-          sorted = bubbleSort(selectedBoxes, sortBy[0].value);
-          break;
-        case 'merge':
-          console.log('merge selected');
-          sorted = mergeSortHandler(selectedBoxes, sortBy[0].value);
-          break;
-        case 'insertion':
-          console.log('insertion selected');
-          sorted = insertionSort(selectedBoxes, sortBy[0].value);
-          break;
-        case 'quick':
-          console.log('quick selected');
-          sorted = quickSortHandler(selectedBoxes, sortBy[0].value);
-          break;
-        default:
-          setAlert(
-            'Default Case hit on sortingAlgorithm switch statement.... something went wrong',
-            'danger'
-          );
-      }
+      sortingAlgorithm[0].value = 'bubble'
+        ? (sorted = bubbleSort(selectedBoxes, sortBy[0].value))
+        : (sortingAlgorithm[0].value = 'merge'
+            ? (sorted = mergeSortHandler(selectedBoxes, sortBy[0].value))
+            : (sortingAlgorithm[0].value = 'insertion'
+                ? (sorted = insertionSort(selectedBoxes, sortBy[0].value))
+                : (sortingAlgorithm[0].value = 'quick'
+                    ? (sorted = quickSortHandler(
+                        selectedBoxes,
+                        sortBy[0].value
+                      ))
+                    : setAlert(
+                        'Default Case hit on sortingAlgorithm switch statement.... something went wrong',
+                        'danger'
+                      ))));
 
-      if (orderBy[0].value === 'descending') {
-        sorted.reverse();
+      //Checks for descending order and reverses array
+      orderBy[0].value === 'descending' && sorted.reverse();
+
+      //physical check
+      if (collectionType[0].value === 'digital') {
+        sorted.map((sortedRecord, index) => {
+          sortedRecord.locationSecondary = index + 1;
+
+          const match = records.findIndex((r) => r._id === sortedRecord._id);
+          setCurrent(records.match);
+          console.log({ current });
+          updateRecord(sortedRecord);
+        });
       }
+      console.log(records);
+
+      //   // box a,b,c,d, unsorted?
+      //   //match record with record in collection
+      //   //replace record with updateRecord
+      // } else if (collectionType[0].value === 'physical') {
+      //   console.log('physical');
+      // } else if (collectionType[0].value === 'both') {
+      //   console.log('both');
+      // }
+
+      return sorted;
     }
-    //physical check
-    if (collectionType[0].value === 'digital') {
-      sorted.map((sortedRecord, index) => {
-        sortedRecord.locationSecondary = index + 1;
-
-        const match = records.findIndex((r) => r._id === sortedRecord._id);
-        setCurrent(records.match);
-        console.log({ current });
-        updateRecord(sortedRecord);
-      });
-    }
-    console.log(records);
-
-    //   // box a,b,c,d, unsorted?
-    //   //match record with record in collection
-    //   //replace record with updateRecord
-    // } else if (collectionType[0].value === 'physical') {
-    //   console.log('physical');
-    // } else if (collectionType[0].value === 'both') {
-    //   console.log('both');
-    // }
-
-    return sorted;
   };
 
   const itemsToBeSorted = [
