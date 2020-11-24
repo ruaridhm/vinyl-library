@@ -36,7 +36,8 @@
 
 .record-image {
   display: flex;
-  align-items: center;
+  align-self: center;
+  height: 50%;
 }
 
 .button-container {
