@@ -1,14 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../button/Button';
 import AlertContext from '../../context/alert/AlertContext';
 import RecordContext from '../../context/record/recordContext';
+import Modal from '../modal/Modal';
+import ResultOption from '../resultOption/ResultOption.js';
 
 const DiscogsBtn2 = () => {
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
-  const { setCurrent, current } = recordContext;
+  const { setCurrent, current, updateRecord } = recordContext;
+  const [showModal, setShowModal] = useState(false);
+  const [jsonResult, setJsonResult] = useState([]);
+  const [record, setRecord] = useState({
+    title: '',
+    artist: '',
+    label: '',
+    catalogNumber: '',
+    releaseDate: '',
+    country: '',
+    coverFront: '',
+    coverBack: '',
+    coverLp: '',
+    condition: '',
+    barcode: '',
+    locationPrimary: '',
+    locationSecondary: '',
+  });
 
+  const closeModalHandler = () => setShowModal(false);
+
+  const setDiscogsResult = () => {
+    console.log('records set');
+    updateRecord(record);
+    closeModalHandler();
+  };
   const onClick = () => {
     getData();
   };
@@ -97,12 +123,13 @@ const DiscogsBtn2 = () => {
         alert('HTTP-Error: ' + response.status);
       }
       //json actions
-      console.log(json);
+
+      setJsonResult(json.results);
 
       if (json.results.length === 0) {
         setAlert('No results found', 'danger');
         return;
-      } else {
+      } else if (json.results.length === 1) {
         let titleArtistArr = json.results[0].title.split(' - ');
 
         let currentResult = {
@@ -127,14 +154,42 @@ const DiscogsBtn2 = () => {
           coverFront: currentResult.coverFront,
           barcode: currentResult.barcode,
         });
+      } else {
+        //show modal with results array
+        //allow user to select the correct result
+        //if desired result does not exist suggest amending search terms
+
+        setShowModal(true);
       }
     }
   };
 
   return (
-    <Button onClick={onClick} type='button' buttonStyle='btn--success--solid'>
-      Discogs
-    </Button>
+    <>
+      <Button onClick={onClick} type='button' buttonStyle='btn--success--solid'>
+        Discogs
+      </Button>
+      {jsonResult.length && (
+        <Modal
+          headerText='Select Result'
+          bodyHeaderText='Multiple results found, Please select desired record:'
+          bodyText={
+            <ResultOption
+              data={jsonResult}
+              record={record}
+              setRecord={setRecord}
+            />
+          }
+          show={showModal}
+          close={closeModalHandler}
+          closeColor='btn--danger--solid'
+          confirm={setDiscogsResult}
+          confirmText='Select'
+          confirmColor='btn--success--solid'
+        />
+      )}
+      ;
+    </>
   );
 };
 
