@@ -118,8 +118,11 @@ const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
           show={showModal}
           close={closeModalHandler}
           confirm={onDelete}
-          headerText={'Confirm Delete'}
-          bodyText={'Are you sure you want to delete this item?'}
+          headerText='Confirm Delete'
+          bodyText='Are you sure you want to delete this item?'
+          closeColor='btn--danger--solid'
+          confirmText='Select'
+          confirmColor='btn--success--solid'
         />
       </div>
 

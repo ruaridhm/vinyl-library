@@ -3,5 +3,8 @@
         "Discogs",
         "clientinstall",
         "postbuild"
+    ],
+    "cSpell.ignoreWords": [
+        "catno"
     ]
 }

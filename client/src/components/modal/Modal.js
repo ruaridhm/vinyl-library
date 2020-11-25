@@ -8,7 +8,10 @@ const Modal = ({
   bodyText,
   show,
   close,
+  closeColor,
   confirm,
+  confirmText,
+  confirmColor,
 }) => {
   return (
     <div
@@ -27,24 +30,24 @@ const Modal = ({
       <div className='modal-content'>
         <div className='modal-body'>
           <h4>{bodyHeaderText}</h4>
-          <p>{bodyText}</p>
+          {bodyText}
         </div>
         <div className='modal-footer'>
           <Button
             onClick={close}
-            buttonStyle='btn--primary--solid'
+            buttonStyle={closeColor}
             type='button'
-            buttonSize='btn--small'
+            buttonSize='btn--medium'
           >
             Cancel
           </Button>
           <Button
             onClick={confirm}
-            buttonStyle='btn--danger--solid'
+            buttonStyle={confirmColor}
             type='button'
-            buttonSize='btn--small'
+            buttonSize='btn--medium'
           >
-            Delete
+            {confirmText}
           </Button>
         </div>
       </div>
