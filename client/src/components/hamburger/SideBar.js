@@ -10,7 +10,7 @@ import Button from '../button/Button';
 
 import './sidebar.css';
 
-const SideBar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
+const SideBar = ({ setDisplayAddRecord, displayAddRecord }) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
 
@@ -28,9 +28,9 @@ const SideBar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
     console.log(displayAddRecord);
   };
 
-  const authLinks = (
-    <Fragment>
-      <li>
+  if (isAuthenticated) {
+    return (
+      <Menu isOpen={false} right>
         <Button
           onClick={openAddRecordModal}
           buttonSize='btn--small'
@@ -38,8 +38,7 @@ const SideBar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
         >
           Add Record <i className='fas fa-plus'></i>
         </Button>
-      </li>
-      <li>
+
         <Link
           to='/user'
           onClick={() => {
@@ -48,8 +47,7 @@ const SideBar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
         >
           Hello {user && user.name}
         </Link>
-      </li>
-      <li>
+
         <Link
           to='/library'
           onClick={() => {
@@ -58,8 +56,7 @@ const SideBar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
         >
           Library
         </Link>
-      </li>
-      <li>
+
         <Link
           to='/sort'
           onClick={() => {
@@ -68,46 +65,33 @@ const SideBar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
         >
           Sort Library
         </Link>
-      </li>
-      <li>
+
         <a onClick={onLogout} href='#!'>
           <i className='fas fa-sign-out-alt'></i>{' '}
           <span className=''>Logout</span>
         </a>
-      </li>
-    </Fragment>
-  );
+      </Menu>
+    );
+  } else {
+    return (
+      <Menu isOpen={false} right>
+        <Link
+          to='/'
+          onClick={() => {
+            setDisplayAddRecord(false);
+          }}
+        >
+          <img src={mainLogo} alt='Site Logo' className='main-logo-sidebar' />
+        </Link>
 
-  const guestLinks = (
-    <Fragment>
-      <li>
         <Link to='/about'>About</Link>
-      </li>
-      <li>
+
         <Link to='/register'>Register</Link>
-      </li>
-      <li>
+
         <Link to='/login'>Login</Link>
-      </li>
-    </Fragment>
-  );
-
-  return (
-    <Menu isOpen={false} right>
-      {/* <Link
-        to='/'
-        onClick={() => {
-          setDisplayAddRecord(false);
-        }}
-      >
-        <h1 className='main-title'>
-          <img src={mainLogo} alt='Site Logo' className='main-logo' /> {title}
-        </h1>
-      </Link> */}
-
-      <ul className='nav-links'>{isAuthenticated ? authLinks : guestLinks}</ul>
-    </Menu>
-  );
+      </Menu>
+    );
+  }
 };
 
 SideBar.propTypes = {
