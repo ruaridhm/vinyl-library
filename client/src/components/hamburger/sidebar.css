@@ -23,6 +23,7 @@
   height: 30px;
   right: 36px;
   top: 32px;
+  z-index: 999999;
 }
 
 /* Color/shape of burger icon bars */
@@ -42,6 +43,10 @@
 }
 
 /* General sidebar styles */
+.bm-menu-wrap {
+  top: 0;
+}
+
 .bm-menu {
   background: #373a47;
   padding: 2.5em 1.5em 0;
@@ -65,4 +70,10 @@
 
 .sidebar-button {
   margin-left: 0;
+}
+
+.main-logo-sidebar {
+  height: 5rem;
+  width: 6rem;
+  margin-left: 5rem;
 }
