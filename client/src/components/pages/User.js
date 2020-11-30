@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Spinner from '../layout/spinner';
-
+import './user.css';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 
@@ -90,17 +90,39 @@ const User = () => {
 
   if (!loading) {
     return (
-      <div>
+      <div className='user-stats-container'>
         <h1 className='user-title'>User Stats</h1>
-        <p className='user-stat'>User name: {user && user.name}</p>
-        <p className='user-stat'>Total records: {records && records.length}</p>
-        <p className='user-stat'>Estimated collection value: </p>
-        <p className='user-stat'>Average condition:</p>
-        <p className='user-stat'>Most popular artist: </p>
-        <p className='user-stat'>Number of doubles: </p>
-        <p className='user-stat'>Most wanted record: </p>
-        <p className='user-stat'>Most valuable record: </p>
-        <p className='user-stat'>Most played record: </p>
+        <div className='user-stats'>
+          <p className='user-stat'>
+            <strong>User name: </strong>
+            {user && user.name}
+          </p>
+          <p className='user-stat'>
+            <strong>Total records: </strong>
+            {records && records.length}
+          </p>
+          <p className='user-stat'>
+            <strong>Estimated collection value: </strong>
+          </p>
+          <p className='user-stat'>
+            <strong>Average condition: </strong>
+          </p>
+          <p className='user-stat'>
+            <strong>Most popular artist: </strong>
+          </p>
+          <p className='user-stat'>
+            <strong>Number of doubles: </strong>
+          </p>
+          <p className='user-stat'>
+            <strong>Most wanted record: </strong>
+          </p>
+          <p className='user-stat'>
+            <strong>Most valuable record: </strong>
+          </p>
+          <p className='user-stat'>
+            <strong>Most played record: </strong>
+          </p>
+        </div>
       </div>
     );
   } else {

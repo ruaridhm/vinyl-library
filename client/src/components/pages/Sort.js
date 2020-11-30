@@ -8,6 +8,9 @@ import bubbleSort from '../../sortingAlgos/bubble';
 import insertionSort from '../../sortingAlgos/insertion';
 import mergeSortHandler from '../../sortingAlgos/merge';
 import quickSortHandler from '../../sortingAlgos/quick';
+import RecordCollection from '../recordBox/RecordCollection';
+import SortOrders from '../sortOrders/SortOrders';
+import './sort.css';
 
 const Sort = () => {
   const [sortItems, setSortItems] = useState([]);
@@ -125,6 +128,7 @@ const Sort = () => {
       return sorted;
     }
   };
+  const sortCollection2 = () => {};
 
   const itemsToBeSorted = [
     {
@@ -254,7 +258,7 @@ const Sort = () => {
 
   return (
     <div>
-      <form onSubmit={sortCollection} className='form'>
+      <form onSubmit={sortCollection2} className='form'>
         <h1>Sort By:</h1>
         <Dropdown
           title='Sort Items:'
@@ -288,6 +292,29 @@ const Sort = () => {
         />
         <Button buttonStyle='btn--success--solid'>Sort</Button>
       </form>
+      <div className='record-collection-container'>
+        {/* <SortOrders /> */}
+        <div className='moves-container'>
+          <Button buttonStyle='btn--primary--outline'>
+            <strong>{'<'}</strong>
+          </Button>
+          <div>
+            <p>
+              <strong>Move: </strong>
+            </p>
+            <p>
+              <strong>To: </strong>
+            </p>
+            <p>
+              <strong>Moves Remaining: </strong>
+            </p>
+          </div>
+          <Button buttonStyle='btn--primary--outline'>
+            <strong>{'>'}</strong>
+          </Button>
+        </div>
+        <RecordCollection />
+      </div>
     </div>
   );
 };
