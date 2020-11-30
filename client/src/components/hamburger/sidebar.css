@@ -4,9 +4,9 @@
 
   /* Our sidebar item styling */
   text-decoration: none;
-  margin-bottom: 10px;
-  color: #d1d1d1;
+  color: var(--background-light);
   transition: color 0.2s;
+  text-align: center;
 }
 
 /* Change color on hover */
@@ -23,7 +23,7 @@
   height: 30px;
   right: 36px;
   top: 32px;
-  z-index: 999999;
+  z-index: 2;
 }
 
 /* Color/shape of burger icon bars */
@@ -49,8 +49,8 @@
 
 .bm-menu {
   background: #373a47;
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
+  padding: 1em 1.5em 0;
+  font-size: 2.15em;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -61,6 +61,9 @@
 /* Wrapper for item list */
 .bm-item-list {
   color: #b8b7ad;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 /* Styling of overlay */
@@ -68,12 +71,6 @@
   background: rgba(0, 0, 0, 0.3);
 }
 
-.sidebar-button {
-  margin-left: 0;
-}
-
 .main-logo-sidebar {
-  height: 5rem;
-  width: 6rem;
-  margin-left: 5rem;
+  max-height: 5rem;
 }

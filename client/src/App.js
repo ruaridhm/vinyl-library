@@ -33,14 +33,13 @@ const App = () => {
         <AlertState>
           <Router>
             <Fragment>
-              <Navbar
-                setDisplayAddRecord={setDisplayAddRecord}
-                displayAddRecord={displayAddRecord}
-              />
-
               <SideBar
                 pageWrapId={'page-wrap'}
                 outerContainerId={'App'}
+                setDisplayAddRecord={setDisplayAddRecord}
+                displayAddRecord={displayAddRecord}
+              />
+              <Navbar
                 setDisplayAddRecord={setDisplayAddRecord}
                 displayAddRecord={displayAddRecord}
               />

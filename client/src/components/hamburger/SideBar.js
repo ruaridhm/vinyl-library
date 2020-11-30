@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
 import PropTypes from 'prop-types';
@@ -17,6 +17,8 @@ const SideBar = ({ setDisplayAddRecord, displayAddRecord }) => {
   const { isAuthenticated, logout, user } = authContext;
   const { clearRecords } = recordContext;
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const onLogout = () => {
     logout();
     clearRecords();
@@ -28,9 +30,21 @@ const SideBar = ({ setDisplayAddRecord, displayAddRecord }) => {
     console.log(displayAddRecord);
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   if (isAuthenticated) {
     return (
-      <Menu isOpen={false} right>
+      <Menu isOpen={menuOpen} onClick={toggleMenu} right>
+        <Link
+          to='/'
+          onClick={() => {
+            setDisplayAddRecord(false);
+          }}
+        >
+          <img src={mainLogo} alt='Site Logo' className='main-logo-sidebar' />
+        </Link>
         <Button
           onClick={openAddRecordModal}
           buttonSize='btn--small'
