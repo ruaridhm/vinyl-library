@@ -43,6 +43,7 @@
   width: 25%;
   border-radius: 0.5em;
   padding: 0.5em 1em;
+  box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 .record-collection {
@@ -51,8 +52,8 @@
   grid-template-rows: 50% 50%;
   border-radius: 1em;
   border: 1px solid transparent;
-  width: 50vw;
-  height: 45vw;
+  width: 33.22vw;
+  height: 30vw;
 }
 
 .record-collection-row {
