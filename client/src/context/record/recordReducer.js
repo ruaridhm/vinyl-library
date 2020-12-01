@@ -9,6 +9,7 @@ import {
   CLEAR_FILTER,
   RECORD_ERROR,
   CLEAR_RECORDS,
+  SET_MOVE_RECORD,
 } from '../types';
 
 export default (state, action) => {
@@ -48,11 +49,17 @@ export default (state, action) => {
         filtered: null,
         error: null,
         current: null,
+        moveRecord: null,
       };
     case SET_CURRENT:
       return {
         ...state,
         current: action.payload,
+      };
+    case SET_MOVE_RECORD:
+      return {
+        ...state,
+        moveRecord: action.payload,
       };
     case CLEAR_CURRENT:
       return {

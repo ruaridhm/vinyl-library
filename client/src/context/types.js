@@ -2,6 +2,7 @@ export const GET_RECORDS = 'GET_RECORDS';
 export const ADD_RECORD = 'ADD_RECORD';
 export const DELETE_RECORD = 'DELETE_RECORD';
 export const SET_CURRENT = 'SET_CURRENT';
+export const SET_MOVE_RECORD = 'SET_MOVE_RECORD';
 export const CLEAR_CURRENT = 'CLEAR_CURRENT';
 export const UPDATE_RECORD = 'UPDATE_RECORD';
 export const FILTER_RECORDS = 'FILTER_RECORDS';

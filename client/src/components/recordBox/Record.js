@@ -3,7 +3,7 @@ import RecordContext from '../../context/record/recordContext';
 
 const Record = ({ recordInfo }) => {
   const recordContext = useContext(RecordContext);
-  const { current, setCurrent } = recordContext;
+  const { current, setCurrent, moveRecord, setMoveRecord } = recordContext;
 
   const onClickHandler = () => {
     setCurrent(recordInfo);
@@ -13,6 +13,10 @@ const Record = ({ recordInfo }) => {
 
   if (current !== null && current._id === recordInfo._id) {
     recordClasses += ' record-highlighted';
+  }
+
+  if (moveRecord !== null && moveRecord._id === recordInfo._id) {
+    recordClasses += ' record-move-highlighted';
   }
 
   return <div className={recordClasses} onClick={onClickHandler}></div>;
