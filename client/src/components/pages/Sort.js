@@ -4,13 +4,33 @@ import Dropdown from '../dropdown/Dropdown';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 import AlertContext from '../../context/alert/AlertContext';
-import bubbleSort from '../../sortingAlgos/bubble';
 import insertionSort from '../../sortingAlgos/insertion';
 import mergeSortHandler from '../../sortingAlgos/merge';
 import quickSortHandler from '../../sortingAlgos/quick';
-import RecordCollection from '../recordBox/RecordCollection';
 import SortOrders from '../sortOrders/SortOrders';
 import './sort.css';
+
+const bubbleSort = (arr, sortByVariable, setMovesArr) => {
+  if (arr.length < 2) {
+    console.log(arr);
+    return arr;
+  }
+
+  const movesArr = [],
+    length = arr.length;
+  for (let i = length - 1; i >= 0; i--) {
+    for (let j = 1; j <= i; j++) {
+      if (arr[j - 1][sortByVariable] > arr[j][sortByVariable]) {
+        let temp = arr[j - 1];
+        movesArr.push({ from: temp, to: arr[j] });
+        arr[j - 1] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  setMovesArr(movesArr);
+  return arr;
+};
 
 const Sort = () => {
   const [sortItems, setSortItems] = useState([]);
@@ -18,16 +38,11 @@ const Sort = () => {
   const [orderBy, setOrderBy] = useState([]);
   const [sortingAlgorithm, setSortingAlgorithm] = useState([]);
   const [collectionType, setCollectionType] = useState([]);
+  const [movesArr, setMovesArr] = useState([]);
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
-  const {
-    getRecords,
-    records,
-    updateRecord,
-    setCurrent,
-    current,
-  } = recordContext;
+  const { getRecords, records, updateRecord } = recordContext;
   const { setAlert } = alertContext;
 
   useEffect(() => {
@@ -85,7 +100,7 @@ const Sort = () => {
         : console.alert('selected boxes hit default case');
 
       sortingAlgorithm[0].value = 'bubble'
-        ? (sorted = bubbleSort(selectedBoxes, sortBy[0].value))
+        ? (sorted = bubbleSort(selectedBoxes, sortBy[0].value, setMovesArr))
         : (sortingAlgorithm[0].value = 'merge'
             ? (sorted = mergeSortHandler(selectedBoxes, sortBy[0].value))
             : (sortingAlgorithm[0].value = 'insertion'
@@ -108,9 +123,9 @@ const Sort = () => {
         sorted.map((sortedRecord, index) => {
           sortedRecord.locationSecondary = index + 1;
 
-          const match = records.findIndex((r) => r._id === sortedRecord._id);
-          setCurrent(records.match);
-          console.log({ current });
+          // const match = records.findIndex((r) => r._id === sortedRecord._id);
+          // setCurrent(match);
+          // console.log(current);
           updateRecord(sortedRecord);
         });
       }
@@ -258,7 +273,7 @@ const Sort = () => {
 
   return (
     <div>
-      <form onSubmit={sortCollection2} className='form'>
+      <form onSubmit={sortCollection} className='form'>
         <h1>Sort By:</h1>
         <Dropdown
           title='Sort Items:'
@@ -292,29 +307,7 @@ const Sort = () => {
         />
         <Button buttonStyle='btn--success--solid'>Sort</Button>
       </form>
-      <div className='record-collection-container'>
-        {/* <SortOrders /> */}
-        <div className='moves-container'>
-          <Button buttonStyle='btn--primary--outline'>
-            <strong>{'<'}</strong>
-          </Button>
-          <div>
-            <p>
-              <strong>Move: </strong>
-            </p>
-            <p>
-              <strong>To: </strong>
-            </p>
-            <p>
-              <strong>Moves Remaining: </strong>
-            </p>
-          </div>
-          <Button buttonStyle='btn--primary--outline'>
-            <strong>{'>'}</strong>
-          </Button>
-        </div>
-        <RecordCollection />
-      </div>
+      <SortOrders movesArr={movesArr} />
     </div>
   );
 };

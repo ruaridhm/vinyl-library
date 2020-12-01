@@ -49,7 +49,8 @@ function Dropdown({
         >
           <div className='dropdown-header-title'>
             <p className='dropdown-header-title--bold'>
-              {title} {selection.length > 0 ? selection[0].title : ''}
+              <strong>{title}</strong>{' '}
+              {selection.length > 0 ? selection[0].title : ''}
             </p>
           </div>
           <div className='dropdown-header-action'>
