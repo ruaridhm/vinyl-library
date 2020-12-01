@@ -1,4 +1,4 @@
-const bubbleSort = (arr, sortByVariable) => {
+const bubbleSort = (arr, sortByVariable, setMovesArr) => {
   if (arr.length < 2) {
     console.log(arr);
     return arr;
@@ -16,7 +16,7 @@ const bubbleSort = (arr, sortByVariable) => {
       }
     }
   }
-  console.log(movesArr);
+  setMovesArr(movesArr);
   return arr;
 };
 

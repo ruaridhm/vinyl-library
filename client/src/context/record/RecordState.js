@@ -7,6 +7,7 @@ import {
   ADD_RECORD,
   DELETE_RECORD,
   SET_CURRENT,
+  SET_MOVE_RECORD,
   CLEAR_CURRENT,
   UPDATE_RECORD,
   FILTER_RECORDS,
@@ -19,6 +20,7 @@ const RecordState = (props) => {
   const initialState = {
     records: null,
     current: null,
+    moveRecord: null,
     filtered: null,
     error: null,
   };
@@ -99,6 +101,10 @@ const RecordState = (props) => {
   const setCurrent = (record) => {
     dispatch({ type: SET_CURRENT, payload: record });
   };
+  //Set Move Record
+  const setMoveRecord = (record) => {
+    dispatch({ type: SET_MOVE_RECORD, payload: record });
+  };
   //Clear Current Record
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
@@ -117,11 +123,13 @@ const RecordState = (props) => {
       value={{
         records: state.records,
         current: state.current,
+        moveRecord: state.moveRecord,
         filtered: state.filtered,
         error: state.error,
         addRecord,
         deleteRecord,
         setCurrent,
+        setMoveRecord,
         clearCurrent,
         updateRecord,
         filterRecords,

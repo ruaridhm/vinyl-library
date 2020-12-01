@@ -84,3 +84,7 @@
 .record-highlighted {
   background-color: red;
 }
+
+.record-move-highlighted {
+  background-color: green;
+}

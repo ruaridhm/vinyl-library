@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import RecordCollection from '../recordBox/RecordCollection';
 import Button from '../button/Button';
+import RecordContext from '../../context/record/recordContext';
 
 const SortOrders = ({ movesArr }) => {
   const [counter, setCounter] = useState(1);
+  const recordContext = useContext(RecordContext);
+  const { current, setCurrent, moveRecord, setMoveRecord } = recordContext;
 
   const prevRecord = () => {
     counter > 1 && setCounter(counter - 1);
@@ -12,6 +15,8 @@ const SortOrders = ({ movesArr }) => {
   const nextRecord = () => {
     console.log(movesArr.length);
     counter <= movesArr.length && setCounter(counter + 1);
+    setCurrent(movesArr[counter].from);
+    setMoveRecord(movesArr[counter].to);
   };
   return (
     <div className='record-collection-container'>
