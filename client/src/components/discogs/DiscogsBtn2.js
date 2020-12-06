@@ -2,16 +2,12 @@ import React, { useContext, useState } from 'react';
 import Button from '../button/Button';
 import AlertContext from '../../context/alert/AlertContext';
 import RecordContext from '../../context/record/recordContext';
-import Modal from '../modal/Modal';
-import ResultOption from '../resultOption/ResultOption.js';
 
-const DiscogsBtn2 = () => {
+const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
   const { setCurrent, current, updateRecord } = recordContext;
-  const [showModal, setShowModal] = useState(false);
-  const [jsonResult, setJsonResult] = useState([]);
   const [record, setRecord] = useState({
     title: '',
     artist: '',
@@ -28,12 +24,8 @@ const DiscogsBtn2 = () => {
     locationSecondary: '',
   });
 
-  const closeModalHandler = () => setShowModal(false);
-
-  const setDiscogsResult = () => {
-    console.log('records set');
+  const setDiscogsResultFcn = () => {
     updateRecord(record);
-    closeModalHandler();
   };
   const onClick = () => {
     getData();
@@ -82,8 +74,6 @@ const DiscogsBtn2 = () => {
 
       let discogsGetURL = `${discogsURLStart}`;
 
-      console.log({ titleSearchParam });
-
       if (titleSearchParam !== '') {
         discogsGetURL += titleSearchParam;
       }
@@ -108,10 +98,8 @@ const DiscogsBtn2 = () => {
 
       discogsGetURL += discogsURLEND;
 
-      console.log({ discogsGetURL });
-
       let discogsGetURL2 = `https://api.discogs.com/database/search?release_title=nevermind&artist=nirvana&key=${appkey}&secret=${appsecret}`;
-      console.log({ discogsGetURL2 });
+
       let response = await fetch(discogsGetURL);
       let json;
 
@@ -124,7 +112,7 @@ const DiscogsBtn2 = () => {
       }
       //json actions
 
-      setJsonResult(json.results);
+      setDiscogsResult(json.results);
 
       if (json.results.length === 0) {
         setAlert('No results found', 'danger');
@@ -154,12 +142,6 @@ const DiscogsBtn2 = () => {
           coverFront: currentResult.coverFront,
           barcode: currentResult.barcode,
         });
-      } else {
-        //show modal with results array
-        //allow user to select the correct result
-        //if desired result does not exist suggest amending search terms
-
-        setShowModal(true);
       }
     }
   };
@@ -169,26 +151,6 @@ const DiscogsBtn2 = () => {
       <Button onClick={onClick} type='button' buttonStyle='btn--success--solid'>
         Discogs
       </Button>
-      {jsonResult.length && (
-        <Modal
-          headerText='Select Result'
-          bodyHeaderText='Multiple results found, Please select desired record:'
-          bodyText={
-            <ResultOption
-              data={jsonResult}
-              record={record}
-              setRecord={setRecord}
-            />
-          }
-          show={showModal}
-          close={closeModalHandler}
-          closeColor='btn--danger--solid'
-          confirm={setDiscogsResult}
-          confirmText='Select'
-          confirmColor='btn--success--solid'
-        />
-      )}
-      ;
     </>
   );
 };

@@ -18,6 +18,7 @@ const Sort = () => {
   const [sortingAlgorithm, setSortingAlgorithm] = useState([]);
   const [collectionType, setCollectionType] = useState([]);
   const [movesArr, setMovesArr] = useState([]);
+  const [showSortForm, setShowSortForm] = useState(true);
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
@@ -108,7 +109,6 @@ const Sort = () => {
           updateRecord(sortedRecord);
         });
       }
-      console.log(records);
 
       //   // box a,b,c,d, unsorted?
       //   //match record with record in collection
@@ -118,7 +118,7 @@ const Sort = () => {
       // } else if (collectionType[0].value === 'both') {
       //   console.log('both');
       // }
-
+      setShowSortForm(false);
       return sorted;
     }
   };
@@ -252,41 +252,43 @@ const Sort = () => {
 
   return (
     <div>
-      <form onSubmit={sortCollection} className='form'>
-        <h1>Sort By:</h1>
-        <Dropdown
-          title='Sort Items:'
-          items={itemsToBeSorted}
-          selection={sortItems}
-          setSelection={setSortItems}
-        />
-        <Dropdown
-          title='Sort By:'
-          items={sortByItems}
-          selection={sortBy}
-          setSelection={setSortBy}
-        />
-        <Dropdown
-          title='Order:'
-          items={orderByItems}
-          selection={orderBy}
-          setSelection={setOrderBy}
-        />
-        <Dropdown
-          title='Sorting Algorithm:'
-          items={sortingAlgorithms}
-          selection={sortingAlgorithm}
-          setSelection={setSortingAlgorithm}
-        />
-        <Dropdown
-          title='Collection Type:'
-          items={collectionTypes}
-          selection={collectionType}
-          setSelection={setCollectionType}
-        />
-        <Button buttonStyle='btn--success--solid'>Sort</Button>
-      </form>
-      <SortOrders movesArr={movesArr} />
+      {showSortForm && (
+        <form onSubmit={sortCollection} className='form'>
+          <h1>Sort By:</h1>
+          <Dropdown
+            title='Sort Items:'
+            items={itemsToBeSorted}
+            selection={sortItems}
+            setSelection={setSortItems}
+          />
+          <Dropdown
+            title='Sort By:'
+            items={sortByItems}
+            selection={sortBy}
+            setSelection={setSortBy}
+          />
+          <Dropdown
+            title='Order:'
+            items={orderByItems}
+            selection={orderBy}
+            setSelection={setOrderBy}
+          />
+          <Dropdown
+            title='Sorting Algorithm:'
+            items={sortingAlgorithms}
+            selection={sortingAlgorithm}
+            setSelection={setSortingAlgorithm}
+          />
+          <Dropdown
+            title='Collection Type:'
+            items={collectionTypes}
+            selection={collectionType}
+            setSelection={setCollectionType}
+          />
+          <Button buttonStyle='btn--success--solid'>Sort</Button>
+        </form>
+      )}
+      {!showSortForm && <SortOrders movesArr={movesArr} />}
     </div>
   );
 };

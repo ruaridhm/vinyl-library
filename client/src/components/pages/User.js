@@ -84,7 +84,6 @@ const User = () => {
       let winningGenre = Object.keys(mostPopular).reduce((a, b) =>
         mostPopular[a] > mostPopular[b] ? a : b
       );
-      console.log(winningGenre);
     }
   };
 

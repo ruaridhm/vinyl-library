@@ -3,7 +3,7 @@ import RecordContext from '../../context/record/recordContext';
 
 const Record = ({ recordInfo }) => {
   const recordContext = useContext(RecordContext);
-  const { current, setCurrent, moveRecord, setMoveRecord } = recordContext;
+  const { current, setCurrent, moveRecord } = recordContext;
 
   const onClickHandler = () => {
     setCurrent(recordInfo);

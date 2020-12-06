@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import ImageSlider from '../imageSlider/ImageSlider';
 import RecordContext from '../../context/record/recordContext';
 
@@ -14,101 +14,106 @@ const Library = () => {
 
   const { getRecords, records, loading, current, setCurrent } = recordContext;
 
+  const [boxesLoaded, setBoxesLoaded] = useState(null);
+
+  const boxes = {
+    a: [],
+    b: [],
+    c: [],
+    d: [],
+    unboxed: [],
+  };
+
   useEffect(() => {
     authContext.loadUser();
     getRecords();
     // eslint-disable-next-line
   }, []);
 
-  if (loading) {
-    return (
-      <div className='spinner-container'>
-        <Spinner />
-      </div>
-    );
-  } else {
-    const onClickChangeCurrentBtn = (direction) => {
-      const findFirst = (records) => {
-        return (
-          records.locationPrimary === 'a' && records.locationSecondary === '1'
-        );
-      };
-      let firstRecord = records.find(findFirst);
-
-      const findNext = (records) => {
-        const currentBox = current.locationPrimary;
-
-        return (
-          records.locationPrimary === currentBox &&
-          parseInt(records.locationSecondary) ===
-            parseInt(current.locationSecondary) + 1
-        );
-      };
-      const findPrev = (records) => {
-        const currentBox = current.locationPrimary;
-        return (
-          records.locationPrimary === currentBox &&
-          parseInt(records.locationSecondary) ===
-            parseInt(current.locationSecondary) - 1
-        );
-      };
-
-      if (current === null) {
-        setCurrent(firstRecord);
-      } else if (direction === 'next') {
-        if (records.find(findNext) === undefined) {
-          console.log('reached end');
+  useEffect(() => {
+    //Loop through each record and assign it a box depending on its primaryLocation ( box letter)
+    if (records !== null && !loading) {
+      records.forEach((element) => {
+        if (!boxes.hasOwnProperty(element.locationPrimary)) {
+          boxes.unboxed.push(element);
         } else {
-          setCurrent(records.find(findNext));
+          boxes[element.locationPrimary].push(element);
         }
-      } else if (direction === 'prev') {
-        if (records.find(findPrev) === undefined) {
-          console.log('reached start');
-        } else {
-          setCurrent(records.find(findPrev));
-        }
+      });
+      //Sort boxes created above by secondaryPosition
+      for (let key in boxes) {
+        boxes[key].sort((a, b) => a.locationSecondary - b.locationSecondary);
       }
-    };
+      setBoxesLoaded(boxes);
 
-    return (
-      <div className='library-container'>
-        <div className='image-slider'>
-          <ImageSlider
-            coverFront={current === null ? '' : current.coverFront}
-            coverBack={current === null ? '' : current.coverBack}
-            coverLp={current === null ? '' : current.coverLp}
-          />
-        </div>
-        <div className='current-record-details-container'>
-          <Button
-            onClick={() => {
-              onClickChangeCurrentBtn('prev');
-            }}
-          >
-            Prev
-          </Button>
-          <div className='current-record-details'>
-            <p>{current === null ? 'Title: ' : current.title}</p>
-            <p>{current === null ? 'Artist: ' : current.artist}</p>
-            <p>
-              {current === null
-                ? 'Location: '
-                : `Box: ${current.locationPrimary},
-              Index: ${current.locationSecondary}`}
-            </p>
-          </div>
-          <Button
-            onClick={() => {
-              onClickChangeCurrentBtn('next');
-            }}
-          >
-            Next
-          </Button>
-        </div>
-        <RecordCollection />
-      </div>
+      if (boxes.a.length > 0) {
+        setCurrent(boxes.a[0]);
+      } else if (boxes.b.length > 0) {
+        setCurrent(boxes.b[0]);
+      } else if (boxes.c.length > 0) {
+        setCurrent(boxes.c[0]);
+      } else if (boxes.d.length > 0) {
+        setCurrent(boxes.d[0]);
+      } else if (boxes.unboxed.length > 0) {
+        setCurrent(boxes.unboxed[0]);
+      } else {
+        return;
+      }
+      //
+    }
+    // eslint-disable-next-line
+  }, [records, loading]);
+
+  const findNextRecord = () => {
+    const currentIndex = boxesLoaded[`${current.locationPrimary}`].findIndex(
+      (element) => element._id === current._id
     );
-  }
+    if (boxesLoaded[`${current.locationPrimary}`][currentIndex + 1]) {
+      setCurrent(boxesLoaded[`${current.locationPrimary}`][currentIndex + 1]);
+    }
+  };
+
+  //Get the previous record before current and assign it to current
+  const findPreviousRecord = () => {
+    const currentIndex = boxesLoaded[`${current.locationPrimary}`].findIndex(
+      (element) => element._id === current._id
+    );
+    if (boxesLoaded[`${current.locationPrimary}`][currentIndex - 1]) {
+      setCurrent(boxesLoaded[`${current.locationPrimary}`][currentIndex - 1]);
+    }
+  };
+
+  return loading ? (
+    <div className='spinner-container'>
+      <Spinner />
+    </div>
+  ) : (
+    <div className='library-container'>
+      <div className='image-slider'>
+        <ImageSlider
+          coverFront={current === null ? '' : current.coverFront}
+          coverBack={current === null ? '' : current.coverBack}
+          coverLp={current === null ? '' : current.coverLp}
+        />
+      </div>
+      <div className='current-record-details-container'>
+        <Button onClick={findPreviousRecord}>Prev</Button>
+        <div className='current-record-details'>
+          <p>{current === null ? 'Title: ' : current.title}</p>
+          <p>{current === null ? 'Artist: ' : current.artist}</p>
+          <p>
+            {current === null
+              ? 'Location: '
+              : `Box: ${current.locationPrimary},
+              Index: ${current.locationSecondary}`}
+          </p>
+        </div>
+        <Button onClick={findNextRecord}>Next</Button>
+      </div>
+      {/* if the line below is passed in the unpopulated prop of boxes it returns an error. */}
+      {boxesLoaded && <RecordCollection boxes={boxesLoaded} />}
+    </div>
+  );
 };
 
 export default Library;

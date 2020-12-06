@@ -9,7 +9,6 @@ function Dropdown({
   setSelection,
 }) {
   const [open, setOpen] = useState(false);
-  //const [selection, setSelection] = useState([]);
 
   const toggle = () => setOpen(!open);
 
@@ -44,8 +43,8 @@ function Dropdown({
           tabIndex={0}
           className='dropdown-header'
           role='button'
-          onKeyPress={() => toggle(!open)}
-          onClick={() => toggle(!open)}
+          onKeyPress={() => toggle()}
+          onClick={() => toggle()}
         >
           <div className='dropdown-header-title'>
             <p className='dropdown-header-title--bold'>
