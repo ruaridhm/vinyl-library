@@ -32,8 +32,6 @@ const insertionSort = (arr, sortByVariable) => {
     return movesArr;
   };
   shrinkMovesArr(movesArr);
-  console.log(movesArr);
-  console.log(inputArr);
   return inputArr;
 };
 

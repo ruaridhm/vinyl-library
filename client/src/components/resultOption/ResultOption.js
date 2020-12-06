@@ -2,29 +2,25 @@ import React, { useState } from 'react';
 import './resultoption.css';
 import Button from '../button/Button';
 
-const ResultOption = ({ data, record, setRecord }) => {
+const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
   const [iterator, setIterator] = useState(0);
 
-  // setRecord({
-  //   title: data[iterator].title,
-  //   artist: data[iterator].artist,
-  //   label: data[iterator].label,
-  //   catalogNumber: data[iterator].catno,
-  //   releaseDate: data[iterator].year,
-  //   country: data[iterator].country,
-  //   coverFront: data[iterator].coverImage,
-  //   barcode: data[iterator].barcode,
-  // });
-
   const next = () => {
-    if (iterator <= data.length - 1) {
-      setIterator(iterator + 1);
+    if (iterator < data.length) {
+      setIterator((c) => c + 1);
+      console.log(data[iterator]);
       setRecord(data[iterator]);
     }
   };
   const prev = () => {
-    iterator > -1 && setIterator(iterator - 1);
-    setRecord(data[iterator]);
+    if (iterator > 0) {
+      setIterator((c) => c - 1);
+      console.log(data[iterator]);
+      // setRecord(data[iterator]);
+    } else {
+      console.log('else');
+      console.log(data[iterator]);
+    }
   };
 
   return (
@@ -53,9 +49,22 @@ const ResultOption = ({ data, record, setRecord }) => {
             <strong>Barcode:</strong> {record.barcode[0]}
           </p>
         </div>
-        <img src={record.cover_image} alt={''} className='resultOptionImage' />
+        <img
+          src={record.cover_image}
+          alt={`${record.title} cover`}
+          className='resultOptionImage'
+        />
       </div>
       <div className='button-container'>
+        <Button
+          children='Cancel'
+          onClick={() => {
+            setDiscogsResult([]);
+          }}
+          type=''
+          buttonSize={'btn--medium'}
+          buttonStyle={'btn--danger--solid'}
+        ></Button>
         <Button
           children='Prev'
           onClick={prev}
@@ -70,6 +79,16 @@ const ResultOption = ({ data, record, setRecord }) => {
           buttonSize={'btn--small'}
           buttonStyle={'btn--primary--solid'}
         />
+        <Button
+          children='Select'
+          onClick={() => {
+            setRecord(record);
+            setDiscogsResult([]);
+          }}
+          type=''
+          buttonSize={'btn--medium'}
+          buttonStyle={'btn--success--solid'}
+        ></Button>
       </div>
     </div>
   );

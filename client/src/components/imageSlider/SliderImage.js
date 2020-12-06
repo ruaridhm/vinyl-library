@@ -6,6 +6,7 @@ import Placeholder from '../../images/Placeholder.png';
 const SliderImage = ({ src, alt }) => {
   if (src === '') {
     src = Placeholder;
+    alt = 'No image available';
   }
 
   return <img className='slider-image' src={src} alt={alt}></img>;

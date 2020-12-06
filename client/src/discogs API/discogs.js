@@ -15,7 +15,6 @@ const getData = async () => {
     // if HTTP-status is 200-299
     // get the response body (the method explained below)
     json = await response.json();
-    console.log(json);
   } else {
     alert('HTTP-Error: ' + response.status);
   }

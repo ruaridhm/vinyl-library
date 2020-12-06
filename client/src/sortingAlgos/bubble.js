@@ -1,6 +1,5 @@
 const bubbleSort = (arr, sortByVariable, setMovesArr) => {
   if (arr.length < 2) {
-    console.log(arr);
     return arr;
   }
 

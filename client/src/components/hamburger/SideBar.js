@@ -27,7 +27,6 @@ const SideBar = ({ setDisplayAddRecord, displayAddRecord }) => {
 
   const openAddRecordModal = () => {
     setDisplayAddRecord(!displayAddRecord);
-    console.log(displayAddRecord);
   };
 
   const toggleMenu = () => {
