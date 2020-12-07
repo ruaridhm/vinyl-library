@@ -137,8 +137,6 @@ const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
           <FontAwesomeIcon icon={faEdit} /> Edit
         </Button>
 
-        <div>{showModal ? <div onClick={closeModalHandler}></div> : null}</div>
-
         <Button
           buttonStyle='btn--danger--solid'
           buttonSize='btn--small'

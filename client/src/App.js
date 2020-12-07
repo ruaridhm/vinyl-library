@@ -52,14 +52,14 @@ const App = () => {
                 />
               ) : null}
               <Switch>
-                <PrivateRoute exact path='/'>
+                {/* <PrivateRoute exact path='/'>
                   <Home
                     displayAddRecord={displayAddRecord}
                     setDisplayAddRecord={setDisplayAddRecord}
                   />
-                </PrivateRoute>
+                </PrivateRoute> */}
 
-                {/* <PrivateRoute exact path='/' component={Home} /> */}
+                <PrivateRoute exact path='/' component={Home} />
 
                 <PrivateRoute exact path='/user' component={User} />
                 <PrivateRoute exact path='/library' component={Library} />
