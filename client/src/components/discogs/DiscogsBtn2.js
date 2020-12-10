@@ -33,7 +33,10 @@ const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
 
   const getData = async () => {
     if (current === null) {
-      setAlert('Please select a record to edit to search discogs', 'danger');
+      setAlert(
+        'Please select a  saved record to edit to search discogs',
+        'danger'
+      );
       return;
     } else {
       let appkey = 'NDojcxfzXQKCDcJbMYiA';
@@ -149,7 +152,7 @@ const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
   return (
     <>
       <Button onClick={onClick} type='button' buttonStyle='btn--success--solid'>
-        Discogs
+        Fetch from Discogs
       </Button>
     </>
   );

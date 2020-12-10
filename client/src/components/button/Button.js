@@ -10,20 +10,29 @@ const STYLES = [
   'btn--primary--outline',
   'btn--primary--outline',
   'btn--primary--outline',
-  'btn--primary--round',
+  'btn--primary--success--circle',
 ];
 
 const SIZES = ['btn--small', 'btn--medium', 'btn--large'];
 
-const Button = ({ children, onClick, type, buttonSize, buttonStyle }) => {
+const Button = ({
+  children,
+  onClick,
+  type,
+  buttonSize,
+  buttonStyle,
+  className,
+  label,
+}) => {
   const checkStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
   const checkSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[1];
 
   return (
     <button
-      className={`btn ${checkStyle} ${checkSize}`}
+      className={`btn ${checkStyle} ${checkSize} ${className}`}
       onClick={onClick}
       type={type}
+      aria-label={label}
     >
       {children}
     </button>

@@ -32,13 +32,21 @@ const ImageSlider = ({ coverFront = Placeholder, coverBack, coverLp }) => {
       })}
 
       {sliderArr.length > 1 && (
-        <button className='slider-btn slider-left' onClick={goLeft}>
-          <i className='fas fa-chevron-left' />
+        <button
+          className='slider-btn slider-left'
+          onClick={goLeft}
+          aria-label='Previous Image'
+        >
+          <i className='fas fa-chevron-left' aria-hidden='true' />
         </button>
       )}
       {sliderArr.length > 1 && (
-        <button className='slider-btn slider-right' onClick={goRight}>
-          <i className='fas fa-chevron-right' />
+        <button
+          className='slider-btn slider-right'
+          onClick={goRight}
+          aria-label='Next Image'
+        >
+          <i className='fas fa-chevron-right' aria-hidden='true' />
         </button>
       )}
     </div>
