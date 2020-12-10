@@ -6,11 +6,10 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 import mainLogo from '../../images/Logo.png';
-import Button from '../button/Button';
 
 import './sidebar.css';
 
-const SideBar = ({ setDisplayAddRecord, displayAddRecord }) => {
+const SideBar = () => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
 
@@ -22,11 +21,6 @@ const SideBar = ({ setDisplayAddRecord, displayAddRecord }) => {
   const onLogout = () => {
     logout();
     clearRecords();
-    setDisplayAddRecord(false);
-  };
-
-  const openAddRecordModal = () => {
-    setDisplayAddRecord(!displayAddRecord);
   };
 
   const toggleMenu = () => {
@@ -36,48 +30,15 @@ const SideBar = ({ setDisplayAddRecord, displayAddRecord }) => {
   if (isAuthenticated) {
     return (
       <Menu isOpen={menuOpen} onClick={toggleMenu} right>
-        <Link
-          to='/'
-          onClick={() => {
-            setDisplayAddRecord(false);
-          }}
-        >
+        <Link to='/'>
           <img src={mainLogo} alt='Site Logo' className='main-logo-sidebar' />
         </Link>
-        <Button
-          onClick={openAddRecordModal}
-          buttonSize='btn--small'
-          className='sidebar-button'
-        >
-          Add Record <i className='fas fa-plus'></i>
-        </Button>
 
-        <Link
-          to='/user'
-          onClick={() => {
-            setDisplayAddRecord(false);
-          }}
-        >
-          Hello {user && user.name}
-        </Link>
+        <Link to='/user'>Hello {user && user.name}</Link>
 
-        <Link
-          to='/library'
-          onClick={() => {
-            setDisplayAddRecord(false);
-          }}
-        >
-          Library
-        </Link>
+        <Link to='/library'>Library</Link>
 
-        <Link
-          to='/sort'
-          onClick={() => {
-            setDisplayAddRecord(false);
-          }}
-        >
-          Sort Library
-        </Link>
+        <Link to='/sort'>Sort Library</Link>
 
         <a onClick={onLogout} href='#!'>
           <i className='fas fa-sign-out-alt'></i>{' '}
@@ -88,12 +49,7 @@ const SideBar = ({ setDisplayAddRecord, displayAddRecord }) => {
   } else {
     return (
       <Menu isOpen={false} right>
-        <Link
-          to='/'
-          onClick={() => {
-            setDisplayAddRecord(false);
-          }}
-        >
+        <Link to='/'>
           <img src={mainLogo} alt='Site Logo' className='main-logo-sidebar' />
         </Link>
 

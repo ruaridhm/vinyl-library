@@ -53,6 +53,18 @@ const RecordSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  want: {
+    type: Number,
+  },
+  have: {
+    type: Number,
+  },
+  genre: {
+    type: Array,
+  },
+  style: {
+    type: Array,
+  },
 });
 
 module.exports = mongoose.model('record', RecordSchema);

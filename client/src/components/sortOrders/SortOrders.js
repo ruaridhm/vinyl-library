@@ -22,7 +22,11 @@ const SortOrders = ({ movesArr }) => {
     <div className='record-collection-container'>
       {/* <SortOrders /> */}
       <div className='moves-container'>
-        <Button buttonStyle='btn--primary--outline' onClick={prevRecord}>
+        <Button
+          buttonStyle='btn--primary--outline'
+          onClick={prevRecord}
+          label='Previous Record'
+        >
           <strong>{'<'}</strong>
         </Button>
         <div>
@@ -44,7 +48,11 @@ const SortOrders = ({ movesArr }) => {
             <strong>Moves Remaining: {movesArr.length - counter + 1}</strong>
           </p>
         </div>
-        <Button buttonStyle='btn--primary--outline' onClick={nextRecord}>
+        <Button
+          buttonStyle='btn--primary--outline'
+          onClick={nextRecord}
+          label='Next Record'
+        >
           <strong>{'>'}</strong>
         </Button>
       </div>

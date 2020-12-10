@@ -97,7 +97,9 @@ const Library = () => {
         />
       </div>
       <div className='current-record-details-container'>
-        <Button onClick={findPreviousRecord}>Prev</Button>
+        <Button onClick={findPreviousRecord} label='Previous Record'>
+          Prev
+        </Button>
         <div className='current-record-details'>
           <p>{current === null ? 'Title: ' : current.title}</p>
           <p>{current === null ? 'Artist: ' : current.artist}</p>
@@ -108,7 +110,9 @@ const Library = () => {
               Index: ${current.locationSecondary}`}
           </p>
         </div>
-        <Button onClick={findNextRecord}>Next</Button>
+        <Button onClick={findNextRecord} label='Next Record'>
+          Next
+        </Button>
       </div>
       {/* if the line below is passed in the unpopulated prop of boxes it returns an error. */}
       {boxesLoaded && <RecordCollection boxes={boxesLoaded} />}

@@ -1,26 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './resultoption.css';
 import Button from '../button/Button';
+import RecordContext from '../../context/record/recordContext';
 
 const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
+  const recordContext = useContext(RecordContext);
+  const { updateRecord } = recordContext;
   const [iterator, setIterator] = useState(0);
+  const record_id = record._id;
+  console.log(record_id);
 
   const next = () => {
-    if (iterator < data.length) {
+    console.log({ data });
+    if (iterator < data.length - 1) {
       setIterator((c) => c + 1);
-      console.log(data[iterator]);
-      setRecord(data[iterator]);
+
+      const artist = data[iterator].title.split(' - ')[0];
+      const title = data[iterator].title.split(' - ')[1];
+
+      setRecord({
+        ...record,
+        title: title,
+        artist: artist,
+        label: data[iterator].label[0],
+        catalogNumber: data[iterator].catno,
+        releaseDate: data[iterator].year,
+        country: data[iterator].country,
+        coverFront: data[iterator].cover_image,
+        barcode: data[iterator].barcode[0],
+        want: data[iterator].community.want,
+        have: data[iterator].community.have,
+        genre: data[iterator].genre,
+        style: data[iterator].style,
+      });
     }
   };
   const prev = () => {
     if (iterator > 0) {
       setIterator((c) => c - 1);
-      console.log(data[iterator]);
-      // setRecord(data[iterator]);
-    } else {
-      console.log('else');
-      console.log(data[iterator]);
+
+      const artist = data[iterator].title.split(' - ')[0];
+      const title = data[iterator].title.split(' - ')[1];
+
+      setRecord({
+        ...record,
+        title: title,
+        artist: artist,
+        label: data[iterator].label[0],
+        catalogNumber: data[iterator].catno,
+        releaseDate: data[iterator].year,
+        country: data[iterator].country,
+        coverFront: data[iterator].cover_image,
+        barcode: data[iterator].barcode[0],
+        want: data[iterator].community.want,
+        have: data[iterator].community.have,
+        genre: data[iterator].genre,
+        style: data[iterator].style,
+      });
     }
+  };
+
+  const UpdateRecord = () => {
+    updateRecord(record);
   };
 
   return (
@@ -28,30 +69,30 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
       <div className='results'>
         <div className='textResults'>
           <p>
-            <strong>Title:</strong> {record.title}
+            <strong>Title:</strong> {data[iterator].title}
           </p>
           <p>
             <strong>Artist:</strong> {record.artist}
           </p>
           <p>
-            <strong>Label:</strong> {record.label[0]}
+            <strong>Label:</strong> {data[iterator].label[0]}
           </p>
           <p>
-            <strong>Release date:</strong> {record.year}
+            <strong>Release date:</strong> {data[iterator].year}
           </p>
           <p>
-            <strong>Country:</strong> {record.country}
+            <strong>Country:</strong> {data[iterator].country}
           </p>
           <p>
-            <strong>Catalog Number:</strong> {record.catno}
+            <strong>Catalog Number:</strong> {data[iterator].catno}
           </p>
           <p>
-            <strong>Barcode:</strong> {record.barcode[0]}
+            <strong>Barcode:</strong> {data[iterator].barcode[0]}
           </p>
         </div>
         <img
-          src={record.cover_image}
-          alt={`${record.title} cover`}
+          src={data[iterator].cover_image}
+          alt={`${data[iterator].title} cover`}
           className='resultOptionImage'
         />
       </div>
@@ -82,7 +123,8 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
         <Button
           children='Select'
           onClick={() => {
-            setRecord(record);
+            //need to attach _id to line below
+
             setDiscogsResult([]);
           }}
           type=''

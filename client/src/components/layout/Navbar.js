@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 import mainLogo from '../../images/Logo.png';
-import Button from '../button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-const Navbar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
+const Navbar = ({ title }) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
 
@@ -18,53 +17,18 @@ const Navbar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
   const onLogout = () => {
     logout();
     clearRecords();
-    setDisplayAddRecord(false);
-  };
-
-  const openAddRecordModal = () => {
-    setDisplayAddRecord(!displayAddRecord);
   };
 
   const authLinks = (
     <Fragment>
       <li>
-        <Button
-          onClick={openAddRecordModal}
-          buttonSize='btn--small'
-          buttonStyle='btn--success--solid'
-        >
-          Add Record <FontAwesomeIcon icon={faPlus} />
-        </Button>
+        <Link to='/user'>Hello {user && user.name}</Link>
       </li>
       <li>
-        <Link
-          to='/user'
-          onClick={() => {
-            setDisplayAddRecord(false);
-          }}
-        >
-          Hello {user && user.name}
-        </Link>
+        <Link to='/library'>Library</Link>
       </li>
       <li>
-        <Link
-          to='/library'
-          onClick={() => {
-            setDisplayAddRecord(false);
-          }}
-        >
-          Library
-        </Link>
-      </li>
-      <li>
-        <Link
-          to='/sort'
-          onClick={() => {
-            setDisplayAddRecord(false);
-          }}
-        >
-          Sort Library
-        </Link>
+        <Link to='/sort'>Sort Library</Link>
       </li>
       <li>
         <a onClick={onLogout} href='#!'>
@@ -92,12 +56,7 @@ const Navbar = ({ title, setDisplayAddRecord, displayAddRecord }) => {
     <div className='navbar'>
       <ul className='nav-links'>
         <li>
-          <Link
-            to='/'
-            onClick={() => {
-              setDisplayAddRecord(false);
-            }}
-          >
+          <Link to='/'>
             <h1 className='main-title'>
               <img src={mainLogo} alt='Site Logo' className='main-logo' />{' '}
               {title}

@@ -102,8 +102,8 @@ const Step3 = ({
   catalogNumber,
   barcode,
   coverFront,
-  coverBack,
-  coverLp,
+  genre,
+  style,
   onChange,
 }) => {
   return (
@@ -139,19 +139,19 @@ const Step3 = ({
       <TextField
         textFieldSize='textField--medium'
         textFieldStyle='textField--outline'
-        type='url'
-        placeholder='Cover Back'
-        name='coverBack'
-        value={coverBack}
+        type='text'
+        placeholder='Genre'
+        name='genre'
+        value={genre}
         onChange={onChange}
       />
       <TextField
         textFieldSize='textField--medium'
         textFieldStyle='textField--outline'
-        type='url'
-        placeholder='Cover Lp'
-        name='coverLp'
-        value={coverLp}
+        type='text'
+        placeholder='Style'
+        name='style'
+        value={style}
         onChange={onChange}
       />
     </>
@@ -181,6 +181,10 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
         barcode: '',
         locationPrimary: '',
         locationSecondary: '',
+        want: '',
+        have: '',
+        genre: '',
+        style: '',
       });
     }
   }, [recordContext, current]);
@@ -199,6 +203,10 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
     barcode: '',
     locationPrimary: '',
     locationSecondary: '',
+    want: '',
+    have: '',
+    genre: '',
+    style: '',
   });
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -217,6 +225,10 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
     barcode,
     locationPrimary,
     locationSecondary,
+    want,
+    have,
+    genre,
+    style,
   } = record;
 
   const onChange = (e) => {
@@ -236,18 +248,6 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
 
   const clearAll = () => {
     clearCurrent();
-  };
-
-  const nextStep = () => {
-    if (currentStep <= 2) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep >= 2) {
-      setCurrentStep(currentStep - 1);
-    }
   };
 
   return (
@@ -285,28 +285,37 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
               catalogNumber={catalogNumber}
               barcode={barcode}
               coverFront={coverFront}
-              coverBack={coverBack}
-              coverLp={coverLp}
+              genre={genre}
+              style={style}
               onChange={onChange}
             />
           ) : null}
-          <div className='form-button-container'>
-            <Button
+
+          <div className='form-step-slide-container'>
+            <button
+              className='form-step-button'
+              onClick={() => {
+                setCurrentStep(1);
+              }}
               type='button'
-              buttonSize='btn--small'
-              buttonStyle='btn--primary--solid'
-              onClick={prevStep}
-            >
-              Previous
-            </Button>
-            <Button
+              aria-label='Form Step 1'
+            ></button>
+            <button
+              className='form-step-button'
+              onClick={() => {
+                setCurrentStep(2);
+              }}
               type='button'
-              buttonSize='btn--small'
-              buttonStyle='btn--primary--solid'
-              onClick={nextStep}
-            >
-              Next
-            </Button>
+              aria-label='Form Step 2'
+            ></button>
+            <button
+              className='form-step-button'
+              onClick={() => {
+                setCurrentStep(3);
+              }}
+              type='button'
+              aria-label='Form Step 3'
+            ></button>
           </div>
           <div className='form-button-container'>
             <DiscogsBtn2

@@ -48,6 +48,10 @@ router.post(
       barcode,
       locationPrimary,
       locationSecondary,
+      want,
+      have,
+      genre,
+      style,
     } = req.body;
 
     try {
@@ -67,6 +71,10 @@ router.post(
         locationPrimary,
         locationSecondary,
         user: req.user.id,
+        want,
+        have,
+        genre,
+        style,
       });
 
       const record = await newRecord.save();
@@ -98,6 +106,11 @@ router.put('/:id', auth, async (req, res) => {
     barcode,
     locationPrimary,
     locationSecondary,
+    test,
+    want,
+    have,
+    genre,
+    style,
   } = req.body;
 
   //Build record object
@@ -116,6 +129,10 @@ router.put('/:id', auth, async (req, res) => {
   if (barcode) recordFields.barcode = barcode;
   if (locationPrimary) recordFields.locationPrimary = locationPrimary;
   if (locationSecondary) recordFields.locationSecondary = locationSecondary;
+  if (want) recordFields.want = want;
+  if (have) recordFields.have = have;
+  if (genre) recordFields.genre = genre;
+  if (style) recordFields.style = style;
 
   try {
     let record = await Record.findById(req.params.id);

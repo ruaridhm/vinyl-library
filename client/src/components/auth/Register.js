@@ -101,6 +101,7 @@ const Register = (props) => {
           type='submit'
           buttonSize='btn--medium'
           buttonStyle='btn--success--solid'
+          label='Register'
         >
           Register
         </Button>
