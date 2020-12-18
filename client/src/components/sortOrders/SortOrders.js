@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import RecordCollection from '../recordBox/RecordCollection';
 import Button from '../button/Button';
 import RecordContext from '../../context/record/recordContext';
@@ -6,7 +7,7 @@ import RecordContext from '../../context/record/recordContext';
 const SortOrders = ({ movesArr }) => {
   const [counter, setCounter] = useState(1);
   const recordContext = useContext(RecordContext);
-  const { current, setCurrent, moveRecord, setMoveRecord } = recordContext;
+  const { setCurrent, setMoveRecord } = recordContext;
 
   const prevRecord = () => {
     counter > 1 && setCounter(counter - 1);
@@ -18,17 +19,36 @@ const SortOrders = ({ movesArr }) => {
     setCurrent(movesArr[counter].from);
     setMoveRecord(movesArr[counter].to);
   };
+
+  const RecordCollectionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `;
+  const MovesContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid ${(props) => props.theme.black};
+    border-radius: 0.5rem;
+    width: 50%;
+    min-width: 17rem;
+    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);
+    background-color: ${(props) => props.theme.white};
+    margin: 1rem 0;
+  `;
+
   return (
-    <div className='record-collection-container'>
+    <RecordCollectionContainer>
       {/* <SortOrders /> */}
-      <div className='moves-container'>
+      <MovesContainer>
         <Button
-          buttonStyle='btn--primary--outline'
+          outlinePrimary
           onClick={prevRecord}
           label='Previous Record'
-        >
-          <strong>{'<'}</strong>
-        </Button>
+          children={<strong>{'<'}</strong>}
+          medium
+        />
         <div>
           <p>
             <strong>
@@ -49,15 +69,14 @@ const SortOrders = ({ movesArr }) => {
           </p>
         </div>
         <Button
-          buttonStyle='btn--primary--outline'
+          outlinePrimary
           onClick={nextRecord}
           label='Next Record'
-        >
-          <strong>{'>'}</strong>
-        </Button>
-      </div>
+          children={<strong>{'>'}</strong>}
+        />
+      </MovesContainer>
       <RecordCollection />
-    </div>
+    </RecordCollectionContainer>
   );
 };
 

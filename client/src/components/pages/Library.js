@@ -1,12 +1,43 @@
 import React, { useEffect, useContext, useState } from 'react';
+import styled from 'styled-components';
 import ImageSlider from '../imageSlider/ImageSlider';
 import RecordContext from '../../context/record/recordContext';
-
 import AuthContext from '../../context/auth/AuthContext';
 import Button from '../button/Button';
-import './library.css';
 import RecordCollection from '../recordBox/RecordCollection';
 import Spinner from '../layout/spinner';
+
+const SpinnerContainer = styled.div`
+  height: 80vh;
+  display: flex;
+  align-content: center;
+`;
+const LibraryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const ImageContainer = styled.div`
+  max-width: 25%;
+  height: 25vw;
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+`;
+const CurrentRecordDetailsContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 1em;
+`;
+
+const CurrentRecordDetails = styled.div`
+  background-color: ${(props) => props.theme.white};
+  width: 25%;
+  border-radius: 0.5em;
+  padding: 0.5em 1em;
+  box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.5);
+`;
 
 const Library = () => {
   const recordContext = useContext(RecordContext);
@@ -84,23 +115,28 @@ const Library = () => {
   };
 
   return loading ? (
-    <div className='spinner-container'>
+    <SpinnerContainer>
       <Spinner />
-    </div>
+    </SpinnerContainer>
   ) : (
-    <div className='library-container'>
-      <div className='image-slider'>
+    <LibraryContainer>
+      <ImageContainer>
         <ImageSlider
           coverFront={current === null ? '' : current.coverFront}
           coverBack={current === null ? '' : current.coverBack}
           coverLp={current === null ? '' : current.coverLp}
         />
-      </div>
-      <div className='current-record-details-container'>
-        <Button onClick={findPreviousRecord} label='Previous Record'>
-          Prev
-        </Button>
-        <div className='current-record-details'>
+      </ImageContainer>
+      <CurrentRecordDetailsContainer>
+        <Button
+          onClick={findPreviousRecord}
+          label='Previous Record'
+          children='Prev'
+          solidSuccess
+          medium
+        />
+
+        <CurrentRecordDetails>
           <p>{current === null ? 'Title: ' : current.title}</p>
           <p>{current === null ? 'Artist: ' : current.artist}</p>
           <p>
@@ -109,14 +145,18 @@ const Library = () => {
               : `Box: ${current.locationPrimary},
               Index: ${current.locationSecondary}`}
           </p>
-        </div>
-        <Button onClick={findNextRecord} label='Next Record'>
-          Next
-        </Button>
-      </div>
+        </CurrentRecordDetails>
+        <Button
+          onClick={findNextRecord}
+          label='Next Record'
+          children='Next'
+          solidSuccess
+          medium
+        />
+      </CurrentRecordDetailsContainer>
       {/* if the line below is passed in the unpopulated prop of boxes it returns an error. */}
       {boxesLoaded && <RecordCollection boxes={boxesLoaded} />}
-    </div>
+    </LibraryContainer>
   );
 };
 

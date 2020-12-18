@@ -1,8 +1,42 @@
 import React, { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import Spinner from '../layout/spinner';
-import './user.css';
+import Img from '../../images//4263202864_237c768087_o.jpg';
+
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
+
+const UserStatsContainer = styled.div`
+  padding-left: 1rem;
+  height: 100vh;
+  z-index: 2;
+  position: relative;
+  opacity: 1;
+  &:before {
+    content: ' ';
+    display: block;
+    background-image: url(${Img});
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.2;
+  }
+`;
+const UserTitle = styled.h1`
+  margin: 0;
+  z-index: 2;
+  opacity: 1;
+`;
+const UserStats = styled.div`
+  margin-left: 14rem;
+  z-index: 2;
+`;
+const UserStat = styled.p``;
 
 const User = () => {
   const authContext = useContext(AuthContext);
@@ -100,46 +134,45 @@ const User = () => {
     setMostPopularArtist(calculateMostPopular('artist'));
     setMostPopularLabel(calculateMostPopular('label'));
   }, [records]);
-
   if (!loading) {
     return (
-      <div className='user-stats-container'>
-        <h1 className='user-title'>User Stats</h1>
-        <div className='user-stats'>
-          <p className='user-stat'>
+      <UserStatsContainer>
+        <UserTitle>User Stats</UserTitle>
+        <UserStats>
+          <UserStat>
             <strong>User name: </strong>
             {user && user.name}
-          </p>
-          <p className='user-stat'>
+          </UserStat>
+          <UserStat>
             <strong>Total records: </strong>
             {records && records.length}
-          </p>
-          <p className='user-stat'>
+          </UserStat>
+          <UserStat>
             <strong>Estimated collection value: </strong>
-          </p>
-          <p className='user-stat'>
+          </UserStat>
+          <UserStat>
             <strong>Average condition: </strong>
             {averageCondition && averageCondition}
-          </p>
-          <p className='user-stat'>
+          </UserStat>
+          <UserStat>
             <strong>Most popular artist: </strong>
             {mostPopularArtist && mostPopularArtist}
-          </p>
-          <p className='user-stat'>
+          </UserStat>
+          <UserStat>
             <strong>Most popular label: </strong>
             {mostPopularLabel && mostPopularLabel}
-          </p>
-          <p className='user-stat'>
+          </UserStat>
+          <UserStat>
             <strong>Number of doubles: </strong>
-          </p>
-          <p className='user-stat'>
+          </UserStat>
+          <UserStat>
             <strong>Most wanted record: </strong>
-          </p>
-          <p className='user-stat'>
+          </UserStat>
+          <UserStat>
             <strong>Most valuable record: </strong>
-          </p>
-        </div>
-      </div>
+          </UserStat>
+        </UserStats>
+      </UserStatsContainer>
     );
   } else {
     return <Spinner />;

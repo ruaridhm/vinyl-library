@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './imageslider.css';
 import Placeholder from '../../images/Placeholder.png';
+import styled from 'styled-components';
+
+const StyledSliderImage = styled.img`
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+`;
 
 const SliderImage = ({ src, alt }) => {
   if (src === '') {
@@ -9,7 +15,7 @@ const SliderImage = ({ src, alt }) => {
     alt = 'No image available';
   }
 
-  return <img className='slider-image' src={src} alt={alt}></img>;
+  return <StyledSliderImage src={src} alt={alt}></StyledSliderImage>;
 };
 
 SliderImage.propTypes = {

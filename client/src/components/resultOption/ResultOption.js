@@ -1,17 +1,32 @@
 import React, { useState, useContext } from 'react';
-import './resultoption.css';
+import styled from 'styled-components';
 import Button from '../button/Button';
 import RecordContext from '../../context/record/recordContext';
+
+const Results = styled.div`
+  display: flex;
+`;
+
+const TextResults = styled.div`
+  width: 50%;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const ResultImage = styled.img`
+  max-width: 50%;
+  max-height: 50%;
+`;
 
 const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
   const recordContext = useContext(RecordContext);
   const { updateRecord } = recordContext;
   const [iterator, setIterator] = useState(0);
-  const record_id = record._id;
-  console.log(record_id);
 
   const next = () => {
-    console.log({ data });
     if (iterator < data.length - 1) {
       setIterator((c) => c + 1);
 
@@ -59,15 +74,10 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
       });
     }
   };
-
-  const UpdateRecord = () => {
-    updateRecord(record);
-  };
-
   return (
-    <div>
-      <div className='results'>
-        <div className='textResults'>
+    <>
+      <Results>
+        <TextResults>
           <p>
             <strong>Title:</strong> {data[iterator].title}
           </p>
@@ -89,50 +99,47 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
           <p>
             <strong>Barcode:</strong> {data[iterator].barcode[0]}
           </p>
-        </div>
-        <img
+        </TextResults>
+        <ResultImage
           src={data[iterator].cover_image}
           alt={`${data[iterator].title} cover`}
-          className='resultOptionImage'
         />
-      </div>
-      <div className='button-container'>
+      </Results>
+      <ButtonContainer>
         <Button
           children='Cancel'
           onClick={() => {
             setDiscogsResult([]);
           }}
-          type=''
-          buttonSize={'btn--medium'}
-          buttonStyle={'btn--danger--solid'}
-        ></Button>
+          type='button'
+          medium
+          solidDanger
+        />
         <Button
           children='Prev'
           onClick={prev}
-          type=''
-          buttonSize={'btn--small'}
-          buttonStyle={'btn--primary--solid'}
+          type='button'
+          small
+          solidPrimary
         />
         <Button
           children='Next'
           onClick={next}
-          type=''
-          buttonSize={'btn--small'}
-          buttonStyle={'btn--primary--solid'}
+          type='button'
+          small
+          solidPrimary
         />
         <Button
           children='Select'
           onClick={() => {
-            //need to attach _id to line below
-
             setDiscogsResult([]);
           }}
-          type=''
-          buttonSize={'btn--medium'}
-          buttonStyle={'btn--success--solid'}
-        ></Button>
-      </div>
-    </div>
+          type='button'
+          medium
+          solidSuccess
+        />
+      </ButtonContainer>
+    </>
   );
 };
 

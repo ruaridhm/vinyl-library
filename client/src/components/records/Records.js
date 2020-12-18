@@ -1,8 +1,15 @@
 import React, { useContext, useEffect } from 'react';
+import styled from 'styled-components';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import RecordContext from '../../context/record/recordContext';
 import RecordItem from './RecordItem';
 import Spinner from '../layout/spinner';
+
+const StyledTransitionGroup = styled(TransitionGroup)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 const Records = ({ displayAddRecord, setDisplayAddRecord }) => {
   const recordContext = useContext(RecordContext);
@@ -21,7 +28,7 @@ const Records = ({ displayAddRecord, setDisplayAddRecord }) => {
   return (
     <div>
       {records !== null && !loading ? (
-        <TransitionGroup className='recordItem-container'>
+        <StyledTransitionGroup>
           {filtered !== null
             ? filtered.map((record) => (
                 <CSSTransition key={record._id} timeout={500} classNames='item'>
@@ -41,7 +48,7 @@ const Records = ({ displayAddRecord, setDisplayAddRecord }) => {
                   />
                 </CSSTransition>
               ))}
-        </TransitionGroup>
+        </StyledTransitionGroup>
       ) : (
         <Spinner />
       )}

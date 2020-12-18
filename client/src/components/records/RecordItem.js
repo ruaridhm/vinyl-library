@@ -1,14 +1,49 @@
 import React, { useContext, useState } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import RecordContext from '../../context/record/recordContext';
 import Button from '../button/Button';
 import Modal from '../modal/Modal';
 import ImageSlider from '../imageSlider/ImageSlider';
-import './RecordItem.css';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
+const Card = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background-color: $white;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  margin: 0.5em;
+  width: 22rem;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);
+`;
+const CardDetails = styled.div``;
+const CardTitle = styled.h2`
+  margin: 0;
+`;
+const RecordDetailsListContainer = styled.div`
+  display: flex;
+`;
+const RecordDetailsList = styled.ul`
+  list-style: none;
+  padding: 0;
+  line-height: 2em;
+`;
+const RecordImage = styled.div`
+  display: flex;
+  align-self: center;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  grid-column-start: 1;
+  grid-column-end: 3;
+`;
+
+const RecordItem = ({ record, setDisplayAddRecord }) => {
   const [showModal, setShowModal] = useState(false);
   const recordContext = useContext(RecordContext);
   const { deleteRecord, setCurrent, clearCurrent } = recordContext;
@@ -61,12 +96,12 @@ const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
   };
 
   return (
-    <div className='card'>
-      <div className='card-details'>
-        <h2 className='title'>{title}</h2>
+    <Card>
+      <CardDetails>
+        <CardTitle>{title}</CardTitle>
         <h3>{artist}</h3>
-        <div className='record-details-list-container'>
-          <ul className='record-details-list'>
+        <RecordDetailsListContainer>
+          <RecordDetailsList>
             {label && (
               <li>
                 <strong>Label:</strong> {label}
@@ -112,40 +147,44 @@ const RecordItem = ({ record, displayAddRecord, setDisplayAddRecord }) => {
                 </li>
               ))
             }
-          </ul>
-        </div>
+          </RecordDetailsList>
+        </RecordDetailsListContainer>
         <Modal
           show={showModal}
           close={closeModalHandler}
           confirm={onDelete}
           headerText='Confirm Delete'
           bodyText='Are you sure you want to delete this item?'
-          closeColor='btn--danger--solid'
           confirmText='Select'
-          confirmColor='btn--success--solid'
         />
-      </div>
+      </CardDetails>
 
-      <div className='record-image'>{renderImageSlider()}</div>
+      <RecordImage>{renderImageSlider()}</RecordImage>
 
-      <div className='button-container'>
+      <ButtonContainer>
         <Button
-          buttonStyle='btn--primary--solid'
-          buttonSize='btn--small'
+          solidPrimary
+          small
           onClick={editRecord}
-        >
-          <FontAwesomeIcon icon={faEdit} /> Edit
-        </Button>
+          children={
+            <>
+              <FontAwesomeIcon icon={faEdit} /> Edit
+            </>
+          }
+        />
 
         <Button
-          buttonStyle='btn--danger--solid'
-          buttonSize='btn--small'
+          solidDanger
+          small
           onClick={() => setShowModal(true)}
-        >
-          <FontAwesomeIcon icon={faTrashAlt} /> Delete
-        </Button>
-      </div>
-    </div>
+          children={
+            <>
+              <FontAwesomeIcon icon={faTrashAlt} /> Delete
+            </>
+          }
+        />
+      </ButtonContainer>
+    </Card>
   );
 };
 

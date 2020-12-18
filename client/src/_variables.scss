@@ -1,0 +1,32 @@
+$primary-color: #0b00d6;
+$secondary-color: #1838d8;
+$background-light: #d7d8da;
+$light-color: #f7f3b5;
+$dark-color: #0a1e47;
+$danger-color: #db302d;
+$success-color: #14a837;
+$warning-color: #ffd028;
+$white: #fff;
+$black: #000;
+$dark-grey: #333;
+$grey: #a4a5a7;
+
+@font-face {
+  font-family: 'GoogleSans';
+  src: local('GoogleSans'), url(./fonts/GoogleSans.woff2) format('truetype');
+}
+
+@font-face {
+  font-family: 'GoogleSansMedium';
+  src: local('GoogleSansMedium'),
+    url(./fonts/GoogleSansMedium.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'GoogleSansBold';
+  src: local('GoogleSansBold'),
+    url(./fonts/GoogleSansBold.woff2) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(./fonts/Roboto.woff2) format('truetype');
+}

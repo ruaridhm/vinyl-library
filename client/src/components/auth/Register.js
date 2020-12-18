@@ -1,15 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/AlertContext';
 import AuthContext from '../../context/auth/AuthContext';
-import Button from '../button/Button';
 import TextField from '../text field/TextField';
+import Form, { FormGroup } from '../form/Form';
 
 const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
-
   const { setAlert } = alertContext;
-
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
@@ -36,6 +34,7 @@ const Register = (props) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
+    console.log('onSubmit called');
     e.preventDefault();
     if (name === '' || email === '' || password === '' || password2 === '') {
       setAlert('Please enter all fields', 'danger');
@@ -49,13 +48,11 @@ const Register = (props) => {
       });
     }
   };
-  return (
-    <div className='form-container'>
-      <h1>
-        Account <span className='text-primary'>Register</span>
-      </h1>
-      <form onSubmit={onSubmit} className='form'>
-        <div className='form-group'>
+
+  const RegisterInputs = () => {
+    return (
+      <>
+        <FormGroup>
           <TextField
             placeholder='Name'
             type='text'
@@ -63,9 +60,11 @@ const Register = (props) => {
             value={name}
             onChange={onChange}
             required
+            standard
+            medium
           />
-        </div>
-        <div className='form-group'>
+        </FormGroup>
+        <FormGroup>
           <TextField
             placeholder='Email'
             type='email'
@@ -73,9 +72,11 @@ const Register = (props) => {
             value={email}
             onChange={onChange}
             required
+            standard
+            medium
           />
-        </div>
-        <div className='form-group'>
+        </FormGroup>
+        <FormGroup>
           <TextField
             placeholder='Password'
             type='password'
@@ -84,9 +85,11 @@ const Register = (props) => {
             onChange={onChange}
             required
             minLength='6'
+            standard
+            medium
           />
-        </div>
-        <div className='form-group'>
+        </FormGroup>
+        <FormGroup>
           <TextField
             placeholder='Confirm Password'
             type='password'
@@ -95,18 +98,16 @@ const Register = (props) => {
             onChange={onChange}
             required
             minLength='6'
+            standard
+            medium
           />
-        </div>
-        <Button
-          type='submit'
-          buttonSize='btn--medium'
-          buttonStyle='btn--success--solid'
-          label='Register'
-        >
-          Register
-        </Button>
-      </form>
-    </div>
+        </FormGroup>
+      </>
+    );
+  };
+
+  return (
+    <Form title='Register' onSubmit={onSubmit} formInputs={RegisterInputs} />
   );
 };
 

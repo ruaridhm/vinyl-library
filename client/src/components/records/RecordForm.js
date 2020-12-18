@@ -1,17 +1,78 @@
+import styled from 'styled-components';
 import React, { useState, useContext, useEffect } from 'react';
 import RecordContext from '../../context/record/recordContext';
 import Button from '../button/Button';
 import DiscogsBtn2 from '../discogs/DiscogsBtn2';
 import TextField from '../text field/TextField';
 import ResultOption from '../resultOption/ResultOption.js';
-import './RecordForm.css';
+
+const RecordFormContainer = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 100%;
+`;
+
+const RecordFormForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid ${(props) => props.theme.black};
+  border-radius: 0.5rem;
+  width: 22rem;
+  background-color: ${(props) => props.theme.white};
+  padding-bottom: 1em;
+  height: fit-content;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);
+  margin: 1.5em auto 1em auto;
+`;
+const RecordFormCloseButton = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+`;
+const RecordFormButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`;
+const RecordFormCloseButtonIcon = styled.i`
+  padding: 0.5em;
+  cursor: pointer;
+  &:hover {
+    transform: rotateX(180deg);
+    transition: 1s;
+  }
+`;
+
+const RecordFormStepButtonContainer = styled.div``;
+
+const RecordFormStepButton = styled.button`
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  border: none;
+  margin: 1rem;
+  background-color: ${(props) => props.theme.backgroundLight};
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+  &:active {
+    background-color: ${(props) => props.theme.darkGrey};
+  }
+`;
+
+const DiscogsMultiResult = styled(RecordFormForm)`
+  width: fit-content;
+  padding: 1rem;
+`;
 
 const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
   return (
     <>
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Title'
         name='title'
@@ -19,8 +80,8 @@ const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Artist'
         name='artist'
@@ -28,8 +89,8 @@ const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Label'
         name='label'
@@ -37,8 +98,8 @@ const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Release Date'
         name='releaseDate'
@@ -59,8 +120,8 @@ const Step2 = ({
   return (
     <>
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Condition'
         name='condition'
@@ -68,8 +129,8 @@ const Step2 = ({
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Country'
         name='country'
@@ -77,8 +138,8 @@ const Step2 = ({
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Location Primary'
         name='locationPrimary'
@@ -86,8 +147,8 @@ const Step2 = ({
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Location Secondary'
         name='locationSecondary'
@@ -109,8 +170,8 @@ const Step3 = ({
   return (
     <>
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Catalog Number'
         name='catalogNumber'
@@ -119,8 +180,8 @@ const Step3 = ({
       />
 
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Barcode'
         name='barcode'
@@ -128,8 +189,8 @@ const Step3 = ({
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='url'
         placeholder='Cover Front'
         name='coverFront'
@@ -137,8 +198,8 @@ const Step3 = ({
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Genre'
         name='genre'
@@ -146,8 +207,8 @@ const Step3 = ({
         onChange={onChange}
       />
       <TextField
-        textFieldSize='textField--medium'
-        textFieldStyle='textField--outline'
+        medium
+        outline
         type='text'
         placeholder='Style'
         name='style'
@@ -251,19 +312,17 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
   };
 
   return (
-    <div className='record-form-modal-container'>
+    <RecordFormContainer>
       {discogsResult.length <= 1 && (
-        <form onSubmit={onSubmit} className='form'>
-          <div
-            className='record-form-modal-close-btn'
+        <RecordFormForm onSubmit={onSubmit}>
+          <RecordFormCloseButton
             onClick={() => {
               setDisplayAddRecord(!displayAddRecord);
             }}
           >
-            <i className='fas fa-times record-form-modal-close-btn-icon'></i>
-          </div>
+            <RecordFormCloseButtonIcon className='fas fa-times'></RecordFormCloseButtonIcon>
+          </RecordFormCloseButton>
           <h2>{current ? 'Edit Record' : 'Add Record'}</h2>
-
           {currentStep === 1 ? (
             <Step1
               title={title}
@@ -290,62 +349,56 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
               onChange={onChange}
             />
           ) : null}
-
-          <div className='form-step-slide-container'>
-            <button
-              className='form-step-button'
+          <RecordFormStepButtonContainer>
+            <RecordFormStepButton
               onClick={() => {
                 setCurrentStep(1);
               }}
               type='button'
               aria-label='Form Step 1'
-            ></button>
-            <button
-              className='form-step-button'
+            />
+            <RecordFormStepButton
               onClick={() => {
                 setCurrentStep(2);
               }}
               type='button'
               aria-label='Form Step 2'
-            ></button>
-            <button
-              className='form-step-button'
+            />
+            <RecordFormStepButton
               onClick={() => {
                 setCurrentStep(3);
               }}
               type='button'
               aria-label='Form Step 3'
-            ></button>
-          </div>
-          <div className='form-button-container'>
+            />
+          </RecordFormStepButtonContainer>
+          <RecordFormButtonContainer>
             <DiscogsBtn2
               discogsResult={discogsResult}
               setDiscogsResult={setDiscogsResult}
             />
             <Button
               type='submit'
-              buttonSize='btn--medium'
-              buttonStyle='btn--success--solid'
-            >
-              {current ? 'Update Record' : 'Add Record'}
-            </Button>
-          </div>
+              small
+              solidSuccess
+              children={current ? 'Update Record' : 'Add Record'}
+            />
+          </RecordFormButtonContainer>
           {current && (
             <div>
               <Button
-                buttonSize='btn--medium'
-                buttonStyle='btn--success--solid'
+                medium
+                solidSuccess
                 type='button'
                 onClick={clearAll}
-              >
-                Clear
-              </Button>
+                children='Clear'
+              />
             </div>
           )}
-        </form>
+        </RecordFormForm>
       )}
       {discogsResult.length > 1 && (
-        <div className='discogs-result-select form'>
+        <DiscogsMultiResult>
           <h2>Multiple results found</h2>
           <h3>Please select desired result</h3>
           <ResultOption
@@ -354,9 +407,9 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
             setRecord={setRecord}
             setDiscogsResult={setDiscogsResult}
           />
-        </div>
+        </DiscogsMultiResult>
       )}
-    </div>
+    </RecordFormContainer>
   );
 };
 
