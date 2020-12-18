@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/AuthContext';
 import AlertContext from '../../context/alert/AlertContext';
-import Button from '../button/Button';
 import TextField from '../text field/TextField';
+import Form, { FormGroup } from '../form/Form';
 
 const Login = (props) => {
   const alertContext = useContext(AlertContext);
@@ -42,13 +42,11 @@ const Login = (props) => {
       });
     }
   };
-  return (
-    <div className='form-container'>
-      <h1>
-        Account <span className='text-primary'>Login</span>
-      </h1>
-      <form onSubmit={onSubmit} className='form'>
-        <div className='form-group'>
+
+  const LoginInputs = () => {
+    return (
+      <>
+        <FormGroup>
           <TextField
             type='email'
             name='email'
@@ -56,8 +54,10 @@ const Login = (props) => {
             value={email}
             onChange={onChange}
             required
+            standard
+            medium
           />
-        </div>
+        </FormGroup>
         <div className='form-group'>
           <TextField
             type='password'
@@ -66,19 +66,14 @@ const Login = (props) => {
             placeholder='Password'
             onChange={onChange}
             required
+            standard
+            medium
           />
         </div>
-        <Button
-          type='submit'
-          buttonSize='btn--medium'
-          buttonStyle='btn--success--solid'
-          label='Login'
-        >
-          Login
-        </Button>
-      </form>
-    </div>
-  );
+      </>
+    );
+  };
+  return <Form title='Login' onSubmit={onSubmit} formInputs={LoginInputs} />;
 };
 
 export default Login;

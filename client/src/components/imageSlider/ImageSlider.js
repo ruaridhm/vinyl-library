@@ -1,7 +1,52 @@
 import React, { useState } from 'react';
-import './imageslider.css';
 import SliderImage from './SliderImage';
 import Placeholder from '../../images/Placeholder.png';
+import styled from 'styled-components';
+
+const Slider = styled.div`
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: transparent;
+`;
+
+const Slide = styled.div`
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+`;
+
+const SliderButton = styled.button`
+  position: absolute;
+  top: 50%;
+  background: none;
+  transform: translateY(-50%);
+  width: 10%;
+  height: 80%;
+  border: none;
+  outline: none;
+  transition: 0.5s;
+  &:hover {
+    background: rgba(0, 0, 0, 0.355);
+    cursor: pointer;
+    color: ${(props) => props.theme.white};
+  }
+`;
+
+const SliderButtonLeft = styled(SliderButton)`
+  left: 0;
+`;
+
+const SliderButtonRight = styled(SliderButton)`
+  right: 0;
+`;
 
 const ImageSlider = ({ coverFront = Placeholder, coverBack, coverLp }) => {
   const sliderArr = [<SliderImage src={coverFront} alt='Front Cover' />];
@@ -18,38 +63,27 @@ const ImageSlider = ({ coverFront = Placeholder, coverBack, coverLp }) => {
   };
 
   return (
-    <div className='slider'>
+    <Slider>
       {sliderArr.map((item, index) => {
         return (
-          <div
+          <Slide
             key={index}
-            className='slide'
+            children={item}
             style={{ transform: `translateX(${x}%)` }}
-          >
-            {item}
-          </div>
+          />
         );
       })}
-
       {sliderArr.length > 1 && (
-        <button
-          className='slider-btn slider-left'
-          onClick={goLeft}
-          aria-label='Previous Image'
-        >
+        <SliderButtonLeft onClick={goLeft} aria-label='Previous Image'>
           <i className='fas fa-chevron-left' aria-hidden='true' />
-        </button>
+        </SliderButtonLeft>
       )}
       {sliderArr.length > 1 && (
-        <button
-          className='slider-btn slider-right'
-          onClick={goRight}
-          aria-label='Next Image'
-        >
+        <SliderButtonRight onClick={goRight} aria-label='Next Image'>
           <i className='fas fa-chevron-right' aria-hidden='true' />
-        </button>
+        </SliderButtonRight>
       )}
-    </div>
+    </Slider>
   );
 };
 

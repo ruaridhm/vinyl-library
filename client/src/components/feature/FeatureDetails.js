@@ -1,33 +1,67 @@
 import React from 'react';
-import './featureDetails.css';
+import styled from 'styled-components';
+
+const FeatureDetailsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5em;
+`;
+
+const FeatureDetailsDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+`;
+
+const FeatureDetailsTitle = styled.h2`
+  font-size: 2.5rem;
+  color: ${(props) => props.theme.darkColor};
+`;
+
+const FeatureDetailsBody = styled.p`
+  text-align: center;
+  width: 50%;
+`;
+
+const FeatureDetailsImage = styled.img`
+  border: 1px solid transparent;
+  border-radius: 1rem;
+`;
 
 const FeatureDetails = ({ left, right, image, title, description }) => {
   return (
-    <div className='feature-details'>
+    <FeatureDetailsWrapper>
       {left && (
         <>
-          <div className='feature-details-description'>
-            <h2 className='feature-details-title'>{title}</h2>
-            <p className='feature-details-body'>{description}</p>
-          </div>
-          <div className='feature-details-image-container'>
-            <img src={image} alt={title} className='feature-details-image' />
-          </div>
+          <FeatureDetailsDescription>
+            <FeatureDetailsTitle>{title}</FeatureDetailsTitle>
+            <FeatureDetailsBody>{description}</FeatureDetailsBody>
+          </FeatureDetailsDescription>
+          <FeatureDetailsImage
+            src={image}
+            alt={title}
+            className='feature-details-image'
+          />
         </>
       )}
 
       {right && (
         <>
-          <div className='feature-details-image-container'>
-            <img src={image} alt={title} className='feature-details-image' />
-          </div>
-          <div className='feature-details-description'>
-            <h2 className='feature-details-title'>{title}</h2>
-            <p className='feature-details-body'>{description}</p>
-          </div>
+          <FeatureDetailsImage
+            src={image}
+            alt={title}
+            className='feature-details-image'
+          />
+
+          <FeatureDetailsDescription>
+            <FeatureDetailsTitle>{title}</FeatureDetailsTitle>
+            <FeatureDetailsBody>{description}</FeatureDetailsBody>
+          </FeatureDetailsDescription>
         </>
       )}
-    </div>
+    </FeatureDetailsWrapper>
   );
 };
 

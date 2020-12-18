@@ -9,7 +9,7 @@ import insertionSort from '../../sortingAlgos/insertion';
 import mergeSortHandler from '../../sortingAlgos/merge';
 import quickSortHandler from '../../sortingAlgos/quick';
 import SortOrders from '../sortOrders/SortOrders';
-import './sort.css';
+import Form from '../form/Form';
 
 const Sort = () => {
   const [sortItems, setSortItems] = useState([]);
@@ -122,7 +122,6 @@ const Sort = () => {
       return sorted;
     }
   };
-  const sortCollection2 = () => {};
 
   const itemsToBeSorted = [
     {
@@ -250,46 +249,50 @@ const Sort = () => {
     },
   ];
 
+  const SortInputs = () => {
+    return (
+      <>
+        <Dropdown
+          title='Sort Items:'
+          items={itemsToBeSorted}
+          selection={sortItems}
+          setSelection={setSortItems}
+        />
+        <Dropdown
+          title='Sort By:'
+          items={sortByItems}
+          selection={sortBy}
+          setSelection={setSortBy}
+        />
+        <Dropdown
+          title='Order:'
+          items={orderByItems}
+          selection={orderBy}
+          setSelection={setOrderBy}
+        />
+        <Dropdown
+          title='Sorting Algorithm:'
+          items={sortingAlgorithms}
+          selection={sortingAlgorithm}
+          setSelection={setSortingAlgorithm}
+        />
+        <Dropdown
+          title='Collection Type:'
+          items={collectionTypes}
+          selection={collectionType}
+          setSelection={setCollectionType}
+        />
+      </>
+    );
+  };
+
   return (
-    <div>
+    <>
       {showSortForm && (
-        <form onSubmit={sortCollection} className='form'>
-          <h1>Sort By:</h1>
-          <Dropdown
-            title='Sort Items:'
-            items={itemsToBeSorted}
-            selection={sortItems}
-            setSelection={setSortItems}
-          />
-          <Dropdown
-            title='Sort By:'
-            items={sortByItems}
-            selection={sortBy}
-            setSelection={setSortBy}
-          />
-          <Dropdown
-            title='Order:'
-            items={orderByItems}
-            selection={orderBy}
-            setSelection={setOrderBy}
-          />
-          <Dropdown
-            title='Sorting Algorithm:'
-            items={sortingAlgorithms}
-            selection={sortingAlgorithm}
-            setSelection={setSortingAlgorithm}
-          />
-          <Dropdown
-            title='Collection Type:'
-            items={collectionTypes}
-            selection={collectionType}
-            setSelection={setCollectionType}
-          />
-          <Button buttonStyle='btn--success--solid'>Sort</Button>
-        </form>
+        <Form title='Sort' onSubmit={sortCollection} formInputs={SortInputs} />
       )}
       {!showSortForm && <SortOrders movesArr={movesArr} />}
-    </div>
+    </>
   );
 };
 

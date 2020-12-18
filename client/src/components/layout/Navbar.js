@@ -1,4 +1,5 @@
 import React, { Fragment, useContext } from 'react';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
@@ -6,6 +7,55 @@ import RecordContext from '../../context/record/recordContext';
 import mainLogo from '../../images/Logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
+const NavbarContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: ${(props) => props.theme.secondaryColor};
+  padding-left: 1em;
+`;
+
+const NavLogo = styled.img`
+  height: 1.2em;
+  margin-right: 0.25em;
+`;
+
+const NavLinkList = styled.ul`
+  display: flex;
+  list-style: none;
+  font-weight: bold;
+  color: ${(props) => props.theme.backgroundLight};
+  margin: 0;
+`;
+
+const NavLinkListRight = styled(NavLinkList)`
+  @media (max-width: 981px) {
+    display: none;
+  }
+`;
+
+const NavListItem = styled.li`
+  margin: 1em;
+  color: ${(props) => props.theme.backgroundLight};
+  display: flex;
+  align-items: center;
+  a {
+    color: ${(props) => props.theme.backgroundLight};
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      color: ${(props) => props.theme.lightColor};
+    }
+  }
+`;
+
+const NavTitle = styled.h1`
+  display: flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+  color: ${(props) => props.theme.lightColor};
+`;
 
 const Navbar = ({ title }) => {
   const authContext = useContext(AuthContext);
@@ -21,54 +71,54 @@ const Navbar = ({ title }) => {
 
   const authLinks = (
     <Fragment>
-      <li>
+      <NavListItem>
         <Link to='/user'>Hello {user && user.name}</Link>
-      </li>
-      <li>
+      </NavListItem>
+      <NavListItem>
         <Link to='/library'>Library</Link>
-      </li>
-      <li>
+      </NavListItem>
+      <NavListItem>
         <Link to='/sort'>Sort Library</Link>
-      </li>
-      <li>
+      </NavListItem>
+      <NavListItem>
         <a onClick={onLogout} href='#!'>
           <FontAwesomeIcon icon={faSignOutAlt} />
           <span className=''>Logout</span>
         </a>
-      </li>
+      </NavListItem>
     </Fragment>
   );
 
   const guestLinks = (
     <Fragment>
-      <li>
+      <NavListItem>
         <Link to='/about'>About</Link>
-      </li>
-      <li>
+      </NavListItem>
+      <NavListItem>
         <Link to='/register'>Register</Link>
-      </li>
-      <li>
+      </NavListItem>
+      <NavListItem>
         <Link to='/login'>Login</Link>
-      </li>
+      </NavListItem>
     </Fragment>
   );
-  return (
-    <div className='navbar'>
-      <ul className='nav-links'>
-        <li>
-          <Link to='/'>
-            <h1 className='main-title'>
-              <img src={mainLogo} alt='Site Logo' className='main-logo' />{' '}
-              {title}
-            </h1>
-          </Link>
-        </li>
-      </ul>
 
-      <ul className='nav-links nav-links-right'>
+  return (
+    <NavbarContainer>
+      <NavLinkList>
+        <NavListItem>
+          <Link to='/'>
+            <NavTitle>
+              <NavLogo src={mainLogo} alt='Site Logo' className='main-logo' />
+              {title}
+            </NavTitle>
+          </Link>
+        </NavListItem>
+      </NavLinkList>
+      <NavLinkListRight>
         {isAuthenticated ? authLinks : guestLinks}
-      </ul>
-    </div>
+      </NavLinkListRight>
+    </NavbarContainer>
   );
 };
 

@@ -17,7 +17,10 @@ import setAuthToken from './utils/setAuthToken';
 
 import SideBar from './components/hamburger/SideBar';
 
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { ColorVariables } from './variables.ts';
+
+import './App.scss';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -28,31 +31,24 @@ const App = () => {
     <AuthState>
       <RecordState>
         <AlertState>
-          <Router>
-            <Fragment>
-              <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
-              <Navbar />
-
-              <Alerts />
-              <Switch>
-                {/* <PrivateRoute exact path='/'>
-                  <Home
-                    displayAddRecord={displayAddRecord}
-                    setDisplayAddRecord={setDisplayAddRecord}
-                  />
-                </PrivateRoute> */}
-
-                <PrivateRoute exact path='/' component={Home} />
-
-                <PrivateRoute exact path='/user' component={User} />
-                <PrivateRoute exact path='/library' component={Library} />
-                <PrivateRoute exact path='/sort' component={Sort} />
-                <Route exact path='/about' component={About} />
-                <Route exact path='/register' component={Register} />
-                <Route exact path='/login' component={Login} />
-              </Switch>
-            </Fragment>
-          </Router>
+          <ThemeProvider theme={ColorVariables}>
+            <Router>
+              <Fragment>
+                <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
+                <Navbar />
+                <Alerts />
+                <Switch>
+                  <PrivateRoute exact path='/' component={Home} />
+                  <PrivateRoute exact path='/user' component={User} />
+                  <PrivateRoute exact path='/library' component={Library} />
+                  <PrivateRoute exact path='/sort' component={Sort} />
+                  <Route exact path='/about' component={About} />
+                  <Route exact path='/register' component={Register} />
+                  <Route exact path='/login' component={Login} />
+                </Switch>
+              </Fragment>
+            </Router>
+          </ThemeProvider>
         </AlertState>
       </RecordState>
     </AuthState>

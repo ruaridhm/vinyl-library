@@ -150,11 +150,13 @@ const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
   };
 
   return (
-    <>
-      <Button onClick={onClick} type='button' buttonStyle='btn--success--solid'>
-        Fetch from Discogs
-      </Button>
-    </>
+    <Button
+      onClick={onClick}
+      type='button'
+      solidSuccess
+      children='Fetch from Discogs'
+      small
+    />
   );
 };
 
