@@ -1,46 +1,109 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import RecordCollection from '../recordBox/RecordCollection';
 import Button from '../button/Button';
 import RecordContext from '../../context/record/recordContext';
+import useKey from '../../hooks/useKey';
+
+const RecordCollectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const MovesContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid ${(props) => props.theme.black};
+  border-radius: 0.5rem;
+  width: 50%;
+  min-width: 17rem;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.white};
+  margin: 1rem 0;
+`;
 
 const SortOrders = ({ movesArr }) => {
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(0);
   const recordContext = useContext(RecordContext);
-  const { setCurrent, setMoveRecord } = recordContext;
+  const {
+    records,
+    loading,
+    getRecords,
+    setCurrent,
+    setMoveRecord,
+  } = recordContext;
+  const [boxesLoaded, setBoxesLoaded] = useState(null);
+
+  const boxes = {
+    a: [],
+    b: [],
+    c: [],
+    d: [],
+    unboxed: [],
+  };
+
+  useEffect(() => {
+    getRecords();
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    //Loop through each record and assign it a box depending on its primaryLocation ( box letter)
+    if (records !== null && !loading) {
+      records.forEach((element) => {
+        if (!boxes.hasOwnProperty(element.locationPrimary)) {
+          boxes.unboxed.push(element);
+        } else {
+          boxes[element.locationPrimary].push(element);
+        }
+      });
+      //Sort boxes created above by secondaryPosition
+      for (let key in boxes) {
+        boxes[key].sort((a, b) => a.locationSecondary - b.locationSecondary);
+      }
+      setBoxesLoaded(boxes);
+
+      if (boxes.a.length > 0) {
+        setCurrent(boxes.a[0]);
+      } else if (boxes.b.length > 0) {
+        setCurrent(boxes.b[0]);
+      } else if (boxes.c.length > 0) {
+        setCurrent(boxes.c[0]);
+      } else if (boxes.d.length > 0) {
+        setCurrent(boxes.d[0]);
+      } else if (boxes.unboxed.length > 0) {
+        setCurrent(boxes.unboxed[0]);
+      } else {
+        return;
+      }
+
+      setCurrent(movesArr[counter].from);
+      setMoveRecord(movesArr[counter].to);
+    }
+    // eslint-disable-next-line
+  }, [records, loading]);
 
   const prevRecord = () => {
-    counter > 1 && setCounter(counter - 1);
+    counter >= 1 && setCounter(counter - 1);
   };
 
   const nextRecord = () => {
-    console.log(movesArr.length);
-    counter <= movesArr.length && setCounter(counter + 1);
-    setCurrent(movesArr[counter].from);
-    setMoveRecord(movesArr[counter].to);
+    counter < movesArr.length - 1 && setCounter(counter + 1);
   };
 
-  const RecordCollectionContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `;
-  const MovesContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid ${(props) => props.theme.black};
-    border-radius: 0.5rem;
-    width: 50%;
-    min-width: 17rem;
-    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);
-    background-color: ${(props) => props.theme.white};
-    margin: 1rem 0;
-  `;
+  //Watches counter state and when it changes update current and moveRecord state to highlight records to move on current move
+  useEffect(() => {
+    setCurrent(movesArr[counter].from);
+    setMoveRecord(movesArr[counter].to);
+    // eslint-disable-next-line
+  }, [counter, movesArr]);
+
+  useKey('ArrowLeft', prevRecord);
+  useKey('ArrowRight', nextRecord);
 
   return (
     <RecordCollectionContainer>
-      {/* <SortOrders /> */}
       <MovesContainer>
         <Button
           outlinePrimary
@@ -65,7 +128,7 @@ const SortOrders = ({ movesArr }) => {
             </strong>
           </p>
           <p>
-            <strong>Moves Remaining: {movesArr.length - counter + 1}</strong>
+            <strong>Moves Remaining: {movesArr.length - counter - 1}</strong>
           </p>
         </div>
         <Button
@@ -73,9 +136,10 @@ const SortOrders = ({ movesArr }) => {
           onClick={nextRecord}
           label='Next Record'
           children={<strong>{'>'}</strong>}
+          medium
         />
       </MovesContainer>
-      <RecordCollection />
+      {boxesLoaded && <RecordCollection boxes={boxesLoaded} />}
     </RecordCollectionContainer>
   );
 };

@@ -1,37 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Button from '../button/Button';
 import AlertContext from '../../context/alert/AlertContext';
 import RecordContext from '../../context/record/recordContext';
 
-const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
+const DiscogsBtn = ({ setDiscogsResult }) => {
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
-  const { setCurrent, current, updateRecord } = recordContext;
-  const [record, setRecord] = useState({
-    title: '',
-    artist: '',
-    label: '',
-    catalogNumber: '',
-    releaseDate: '',
-    country: '',
-    coverFront: '',
-    coverBack: '',
-    coverLp: '',
-    condition: '',
-    barcode: '',
-    locationPrimary: '',
-    locationSecondary: '',
-  });
-
-  const setDiscogsResultFcn = () => {
-    updateRecord(record);
-  };
-  const onClick = () => {
-    getData();
-  };
+  const { setCurrent, current } = recordContext;
 
   const getData = async () => {
+    console.log('current');
+    console.log(current);
     if (current === null) {
       setAlert(
         'Please select a  saved record to edit to search discogs',
@@ -59,7 +39,7 @@ const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
       if (current.label !== '') {
         labelSearchParam = `label=${current.label}&`;
       }
-      if (current.catNumb !== '') {
+      if (current.catalogNumber !== '') {
         catalogSearchParam = `catno=${current.catalogNumber}&`;
       }
       if (current.releaseDate !== '') {
@@ -86,9 +66,9 @@ const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
       if (labelSearchParam !== '') {
         discogsGetURL += labelSearchParam;
       }
-      // if (catalogSearchParam !== '') {
-      //   discogsGetURL += catalogSearchParam;
-      // }
+      if (catalogSearchParam !== '') {
+        discogsGetURL += catalogSearchParam;
+      }
       if (releaseSearchParam !== '') {
         discogsGetURL += releaseSearchParam;
       }
@@ -98,12 +78,21 @@ const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
       if (barcodeSearchParam !== '') {
         discogsGetURL += barcodeSearchParam;
       }
+      console.log('pre-check');
+      console.log(discogsGetURL);
+
+      if (discogsGetURL !== 'https://api.discogs.com/database/search?') {
+        discogsGetURL += 'type=release&';
+      } else if (discogsGetURL === 'https://api.discogs.com/database/search?') {
+        setAlert('No search parameters set', 'danger');
+        return;
+      }
 
       discogsGetURL += discogsURLEND;
 
-      let discogsGetURL2 = `https://api.discogs.com/database/search?release_title=nevermind&artist=nirvana&key=${appkey}&secret=${appsecret}`;
-
       let response = await fetch(discogsGetURL);
+      console.log('discogsGetURL');
+      console.log(discogsGetURL);
       let json;
 
       if (response.ok) {
@@ -151,7 +140,7 @@ const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
 
   return (
     <Button
-      onClick={onClick}
+      onClick={getData}
       type='button'
       solidSuccess
       children='Fetch from Discogs'
@@ -160,4 +149,4 @@ const DiscogsBtn2 = ({ discogsResult, setDiscogsResult }) => {
   );
 };
 
-export default DiscogsBtn2;
+export default DiscogsBtn;

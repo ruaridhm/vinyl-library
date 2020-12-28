@@ -1,6 +1,7 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 
-const Button = styled.button`
+const StyledButton = styled.button`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   border-radius: 10px;
@@ -82,12 +83,14 @@ const Button = styled.button`
     ${(props) =>
     props.circleSuccess &&
     css`
+      margin: 0;
+      padding: 0;
       border-radius: 50%;
-      width: 50%;
-      height: 50%;
+      width: 3rem;
+      height: 3rem;
       display: flex;
       justify-content: center;
-      align-content: center;
+      align-items: center;
       background-color: ${(props) => props.theme.successColor};
       border: 2px solid ${(props) => props.theme.successColor};
       color: ${(props) => props.theme.lightColor};
@@ -116,7 +119,11 @@ const Button = styled.button`
     `}
 `;
 
-Button.defaultProps = {
+const Button = (props) => {
+  return <StyledButton {...props} />;
+};
+
+StyledButton.defaultProps = {
   theme: {
     primaryColor: '#0b00d6',
     secondaryColor: '#1838d8',

@@ -30,7 +30,7 @@ const SideBar = () => {
 
   if (isAuthenticated) {
     return (
-      <Menu isOpen={menuOpen} onClick={toggleMenu} right>
+      <Menu isOpen={menuOpen} onClick={() => console.log('test')} right>
         <Link to='/'>
           <SideBarLogo src={mainLogo} alt='Vinyl Library Logo' />
         </Link>
@@ -48,7 +48,7 @@ const SideBar = () => {
     );
   } else {
     return (
-      <Menu isOpen={false} right>
+      <Menu isOpen={menuOpen} right>
         <Link to='/'>
           <SideBarLogo src={mainLogo} alt='Vinyl Library Logo' />
         </Link>

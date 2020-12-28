@@ -6,6 +6,7 @@ import AuthContext from '../../context/auth/AuthContext';
 import Button from '../button/Button';
 import RecordCollection from '../recordBox/RecordCollection';
 import Spinner from '../layout/spinner';
+import useKey from '../../hooks/useKey';
 
 const SpinnerContainer = styled.div`
   height: 80vh;
@@ -113,6 +114,9 @@ const Library = () => {
       setCurrent(boxesLoaded[`${current.locationPrimary}`][currentIndex - 1]);
     }
   };
+
+  useKey('ArrowRight', findNextRecord);
+  useKey('ArrowLeft', findPreviousRecord);
 
   return loading ? (
     <SpinnerContainer>

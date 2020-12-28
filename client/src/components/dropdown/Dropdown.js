@@ -27,7 +27,10 @@ const DropdownHeader = styled.div`
   padding: 0 1.2em;
 `;
 
-const DropdownHeaderTitle = styled.div``;
+const DropdownHeaderTitle = styled.div`
+  margin: auto 0;
+  display: flex;
+`;
 const DropdownHeaderTitleBold = styled.div`
   font-weight: bold;
 `;
@@ -119,7 +122,7 @@ const Dropdown = ({
           onClick={() => toggle()}
         >
           <DropdownHeaderTitle>
-            <DropdownHeaderTitleBold>{title} </DropdownHeaderTitleBold>
+            <DropdownHeaderTitleBold>{title}</DropdownHeaderTitleBold>
             {selection.length > 0 ? selection[0].title : ''}
           </DropdownHeaderTitle>
           <DropdownHeaderAction>

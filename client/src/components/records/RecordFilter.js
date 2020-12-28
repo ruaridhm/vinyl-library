@@ -16,9 +16,8 @@ const FilterFormContainer = styled.div`
   align-items: center;
   border: 1px solid #000;
   border-radius: 0.5rem;
-  width: 22rem;
   background-color: #fff;
-  padding-bottom: 1em;
+  padding: 0em 1em 1em 1em;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;

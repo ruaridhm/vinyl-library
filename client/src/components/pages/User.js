@@ -7,7 +7,7 @@ import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
 
 const UserStatsContainer = styled.div`
-  padding-left: 1rem;
+  padding-left: 4.5rem;
   height: 100vh;
   z-index: 2;
   position: relative;
@@ -21,19 +21,23 @@ const UserStatsContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     z-index: 1;
     opacity: 0.2;
+    @media (max-width: 300px) {
+      padding-left: 1rem;
+    }
   }
 `;
 const UserTitle = styled.h1`
   margin: 0;
+  padding-top: 1rem;
   z-index: 2;
   opacity: 1;
 `;
 const UserStats = styled.div`
-  margin-left: 14rem;
+  margin: 2rem 1rem 0 1rem;
   z-index: 2;
 `;
 const UserStat = styled.p``;
@@ -46,6 +50,7 @@ const User = () => {
   const [averageCondition, setAverageCondition] = useState('');
   const [mostPopularArtist, setMostPopularArtist] = useState('');
   const [mostPopularLabel, setMostPopularLabel] = useState('');
+  const [communityValues, setCommunityValues] = useState('');
 
   useEffect(() => {
     authContext.loadUser();
@@ -133,7 +138,34 @@ const User = () => {
     setAverageCondition(calculateAvgCondition);
     setMostPopularArtist(calculateMostPopular('artist'));
     setMostPopularLabel(calculateMostPopular('label'));
+
+    const calculateCommunityValues = () => {
+      let mostWanted = { title: '', artist: '', want: 0 };
+      let mostCommon = { title: '', artist: '', have: 0 };
+      records !== null &&
+        records.forEach((record) => {
+          if (record.want > mostWanted.want) {
+            mostWanted = {
+              title: record.title,
+              artist: record.artist,
+              want: record.want,
+            };
+          }
+
+          if (record.have > mostCommon.have) {
+            mostCommon = {
+              title: record.title,
+              artist: record.artist,
+              have: record.have,
+            };
+          }
+        });
+      return { mostWanted, mostCommon };
+    };
+
+    setCommunityValues(calculateCommunityValues);
   }, [records]);
+
   if (!loading) {
     return (
       <UserStatsContainer>
@@ -167,6 +199,19 @@ const User = () => {
           </UserStat>
           <UserStat>
             <strong>Most wanted record: </strong>
+            {communityValues &&
+              `
+            ${communityValues.mostWanted.title} by
+            ${communityValues.mostWanted.artist} is the most wanted record with
+            ${communityValues.mostWanted.want} people wanting this record.`}
+          </UserStat>
+          <UserStat>
+            <strong>Most common record: </strong>
+            {communityValues &&
+              `
+            ${communityValues.mostCommon.title} by
+            ${communityValues.mostCommon.artist} is the most common record with
+            ${communityValues.mostCommon.have} people owning this record.`}
           </UserStat>
           <UserStat>
             <strong>Most valuable record: </strong>
