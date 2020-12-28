@@ -8,8 +8,16 @@ const StyledRecordCollection = styled.div`
   grid-template-rows: 50% 50% 50%;
   border-radius: 1em;
   border: 1px solid transparent;
-  width: 33.22vw;
-  height: 30vw;
+  width: 50%;
+  height: 50vw;
+  @media (max-width: 700px) {
+    width: 80%;
+    height: 80vw;
+  }
+  @media (max-width: 300px) {
+    width: 90%;
+    height: 90vw;
+  }
 `;
 
 const RecordCollection = ({ boxes }) => {

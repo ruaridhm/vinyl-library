@@ -26,16 +26,6 @@ const Record = ({ recordInfo }) => {
     setCurrent(recordInfo);
   };
 
-  var recordClasses = 'record';
-
-  if (current !== null && current._id === recordInfo._id) {
-    recordClasses += ' record-highlighted';
-  }
-
-  if (moveRecord !== null && moveRecord._id === recordInfo._id) {
-    recordClasses += ' record-move-highlighted';
-  }
-
   if (current !== null && current._id === recordInfo._id) {
     return <RecordHighlighted onClick={onClickHandler} />;
   } else if (moveRecord !== null && moveRecord._id === recordInfo._id) {

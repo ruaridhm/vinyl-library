@@ -16,6 +16,7 @@ const bubbleSort = (arr, sortByVariable, setMovesArr) => {
     }
   }
   setMovesArr(movesArr);
+  console.log(movesArr);
   return arr;
 };
 

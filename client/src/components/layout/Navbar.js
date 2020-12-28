@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
@@ -13,6 +13,9 @@ const NavbarContainer = styled.div`
   justify-content: space-between;
   background-color: ${(props) => props.theme.secondaryColor};
   padding-left: 1em;
+  @media (max-width: 380px) {
+    padding-left: 0;
+  }
 `;
 
 const NavLogo = styled.img`
@@ -26,6 +29,9 @@ const NavLinkList = styled.ul`
   font-weight: bold;
   color: ${(props) => props.theme.backgroundLight};
   margin: 0;
+  @media (max-width: 380px) {
+    padding-left: 0;
+  }
 `;
 
 const NavLinkListRight = styled(NavLinkList)`

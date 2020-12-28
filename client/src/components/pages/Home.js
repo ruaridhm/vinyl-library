@@ -39,6 +39,10 @@ const AddRecordButtonContainer = styled.div`
   border: 1px solid $black;
   margin-top: 1.1em;
   height: fit-content;
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 
 const AddRecordButtonDescription = styled.p`

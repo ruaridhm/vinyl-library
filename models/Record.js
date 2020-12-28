@@ -7,11 +7,9 @@ const RecordSchema = mongoose.Schema({
   },
   title: {
     type: String,
-    required: true,
   },
   artist: {
     type: String,
-    required: true,
   },
   label: {
     type: String,

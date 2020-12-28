@@ -24,16 +24,35 @@ router.get('/', auth, async (req, res) => {
 // @route       POST api/records
 // @desc        Add new record
 // @access      Private
-router.post(
-  '/',
-  [auth, [check('title', 'Title is required').not().isEmpty()]],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+router.post('/', [auth], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
-    const {
+  const {
+    title,
+    artist,
+    label,
+    catalogNumber,
+    releaseDate,
+    format,
+    country,
+    coverFront,
+    coverBack,
+    coverLp,
+    condition,
+    barcode,
+    locationPrimary,
+    locationSecondary,
+    want,
+    have,
+    genre,
+    style,
+  } = req.body;
+
+  try {
+    const newRecord = new Record({
       title,
       artist,
       label,
@@ -48,44 +67,21 @@ router.post(
       barcode,
       locationPrimary,
       locationSecondary,
+      user: req.user.id,
       want,
       have,
       genre,
       style,
-    } = req.body;
+    });
 
-    try {
-      const newRecord = new Record({
-        title,
-        artist,
-        label,
-        catalogNumber,
-        releaseDate,
-        format,
-        country,
-        coverFront,
-        coverBack,
-        coverLp,
-        condition,
-        barcode,
-        locationPrimary,
-        locationSecondary,
-        user: req.user.id,
-        want,
-        have,
-        genre,
-        style,
-      });
+    const record = await newRecord.save();
 
-      const record = await newRecord.save();
-
-      res.json(record);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
+    res.json(record);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
-);
+});
 
 // @route       PUT api/records:id
 // @desc        Update record

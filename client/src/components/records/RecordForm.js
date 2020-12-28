@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import React, { useState, useContext, useEffect } from 'react';
 import RecordContext from '../../context/record/recordContext';
 import Button from '../button/Button';
-import DiscogsBtn2 from '../discogs/DiscogsBtn2';
+import DiscogsBtn from '../discogs/DiscogsBtn';
 import TextField from '../text field/TextField';
 import ResultOption from '../resultOption/ResultOption.js';
+import useKey from '../../hooks/useKey';
 
 const RecordFormContainer = styled.div`
   position: relative;
@@ -280,14 +281,12 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
     releaseDate,
     country,
     coverFront,
-    coverBack,
-    coverLp,
+    // coverBack,
+    // coverLp,
     condition,
     barcode,
     locationPrimary,
     locationSecondary,
-    want,
-    have,
     genre,
     style,
   } = record;
@@ -311,15 +310,17 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
     clearCurrent();
   };
 
+  const close = () => {
+    setDisplayAddRecord(!displayAddRecord);
+  };
+
+  useKey('Escape', close);
+
   return (
     <RecordFormContainer>
       {discogsResult.length <= 1 && (
         <RecordFormForm onSubmit={onSubmit}>
-          <RecordFormCloseButton
-            onClick={() => {
-              setDisplayAddRecord(!displayAddRecord);
-            }}
-          >
+          <RecordFormCloseButton onClick={close}>
             <RecordFormCloseButtonIcon className='fas fa-times'></RecordFormCloseButtonIcon>
           </RecordFormCloseButton>
           <h2>{current ? 'Edit Record' : 'Add Record'}</h2>
@@ -373,7 +374,7 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
             />
           </RecordFormStepButtonContainer>
           <RecordFormButtonContainer>
-            <DiscogsBtn2
+            <DiscogsBtn
               discogsResult={discogsResult}
               setDiscogsResult={setDiscogsResult}
             />
@@ -399,7 +400,7 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
       )}
       {discogsResult.length > 1 && (
         <DiscogsMultiResult>
-          <h2>Multiple results found</h2>
+          <h2> {discogsResult.length} results found</h2>
           <h3>Please select desired result</h3>
           <ResultOption
             data={discogsResult}

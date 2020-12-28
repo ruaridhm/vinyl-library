@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../button/Button';
-import RecordContext from '../../context/record/recordContext';
+import useKey from '../../hooks/useKey';
 
 const Results = styled.div`
   display: flex;
@@ -17,13 +17,11 @@ const ButtonContainer = styled.div`
 `;
 
 const ResultImage = styled.img`
-  max-width: 50%;
-  max-height: 50%;
+  width: 25vw;
+  height: 25vw;
 `;
 
 const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
-  const recordContext = useContext(RecordContext);
-  const { updateRecord } = recordContext;
   const [iterator, setIterator] = useState(0);
 
   const next = () => {
@@ -50,6 +48,7 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
       });
     }
   };
+
   const prev = () => {
     if (iterator > 0) {
       setIterator((c) => c - 1);
@@ -74,6 +73,20 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
       });
     }
   };
+
+  const select = () => {
+    setDiscogsResult([]);
+  };
+
+  const close = () => {
+    setDiscogsResult([]);
+  };
+
+  useKey('ArrowRight', next);
+  useKey('ArrowLeft', prev);
+  useKey('Escape', close);
+  useKey('Enter', select);
+
   return (
     <>
       <Results>
@@ -108,12 +121,11 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
       <ButtonContainer>
         <Button
           children='Cancel'
-          onClick={() => {
-            setDiscogsResult([]);
-          }}
+          onClick={close}
           type='button'
           medium
           solidDanger
+          keyCode='Escape'
         />
         <Button
           children='Prev'
@@ -121,6 +133,7 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
           type='button'
           small
           solidPrimary
+          keyPressNumber={37}
         />
         <Button
           children='Next'
@@ -128,12 +141,11 @@ const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
           type='button'
           small
           solidPrimary
+          keyPressNumber={39}
         />
         <Button
           children='Select'
-          onClick={() => {
-            setDiscogsResult([]);
-          }}
+          onClick={select}
           type='button'
           medium
           solidSuccess

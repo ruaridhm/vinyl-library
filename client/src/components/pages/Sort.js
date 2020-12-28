@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Button from '../button/Button';
 import Dropdown from '../dropdown/Dropdown';
 import AuthContext from '../../context/auth/AuthContext';
 import RecordContext from '../../context/record/recordContext';
@@ -100,6 +99,8 @@ const Sort = () => {
 
       //physical check
       if (collectionType[0].value === 'digital') {
+        console.log('sorted');
+        console.log(sorted);
         sorted.map((sortedRecord, index) => {
           sortedRecord.locationSecondary = index + 1;
 
@@ -108,17 +109,14 @@ const Sort = () => {
           // console.log(current);
           updateRecord(sortedRecord);
         });
+      } else if (collectionType[0].value === 'physical') {
+        console.log('physical');
+        setShowSortForm(false);
+      } else if (collectionType[0].value === 'both') {
+        console.log('both');
+        setShowSortForm(false);
       }
 
-      //   // box a,b,c,d, unsorted?
-      //   //match record with record in collection
-      //   //replace record with updateRecord
-      // } else if (collectionType[0].value === 'physical') {
-      //   console.log('physical');
-      // } else if (collectionType[0].value === 'both') {
-      //   console.log('both');
-      // }
-      setShowSortForm(false);
       return sorted;
     }
   };
