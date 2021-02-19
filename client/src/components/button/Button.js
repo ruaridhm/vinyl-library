@@ -11,68 +11,68 @@ const StyledButton = styled.button`
   position: relative;
   &:hover {
     filter: brightness(90%);
-    color: ${(props) => props.theme.white};
+    color: ${({ theme }) => theme.white};
   }
 
   ${(props) =>
     props.solidPrimary &&
     css`
-      background-color: ${(props) => props.theme.primaryColor};
-      color: ${(props) => props.theme.lightColor};
+      background-color: ${({ theme }) => theme.primaryColor};
+      color: ${({ theme }) => theme.lightColor};
       border: none;
     `}
 
   ${(props) =>
     props.solidWarning &&
     css`
-      background-color: ${(props) => props.theme.warningColor};
-      color: ${(props) => props.theme.darkColor};
+      background-color: ${({ theme }) => theme.warningColor};
+      color: ${({ theme }) => theme.darkColor};
       border: none;
     `}
     ${(props) =>
     props.solidDanger &&
     css`
-      background-color: ${(props) => props.theme.dangerColor};
-      color: ${(props) => props.theme.white};
+      background-color: ${({ theme }) => theme.dangerColor};
+      color: ${({ theme }) => theme.white};
       border: none;
     `}
     ${(props) =>
     props.solidSuccess &&
     css`
-      background-color: ${(props) => props.theme.successColor};
-      color: ${(props) => props.theme.lightColor};
+      background-color: ${({ theme }) => theme.successColor};
+      color: ${({ theme }) => theme.lightColor};
       border: none;
     `}
     ${(props) =>
     props.outlinePrimary &&
     css`
       background-color: transparent;
-      color: ${(props) => props.theme.primaryColor};
-      border: 2px solid ${(props) => props.theme.primaryColor};
+      color: ${({ theme }) => theme.primaryColor};
+      border: 2px solid ${({ theme }) => theme.primaryColor};
       &:hover {
-        color: ${(props) => props.theme.secondaryColor};
+        color: ${({ theme }) => theme.secondaryColor};
       }
     `}
     ${(props) =>
     props.outlineWarning &&
     css`
       background-color: transparent;
-      color: ${(props) => props.theme.warningColor};
-      border: 2px solid ${(props) => props.theme.warningColor};
+      color: ${({ theme }) => theme.warningColor};
+      border: 2px solid ${({ theme }) => theme.warningColor};
     `}
     ${(props) =>
     props.outlineDanger &&
     css`
       background-color: transparent;
-      color: ${(props) => props.theme.dangerColor};
-      border: 2px solid ${(props) => props.theme.dangerColor};
+      color: ${({ theme }) => theme.dangerColor};
+      border: 2px solid ${({ theme }) => theme.dangerColor};
     `}
     ${(props) =>
     props.outlineSuccess &&
     css`
       background-color: transparent;
-      color: ${(props) => props.theme.successColor};
-      border: 2px solid ${(props) => props.theme.successColor};
+      color: ${({ theme }) => theme.successColor};
+      border: 2px solid ${({ theme }) => theme.successColor};
     `}
 
     /* ${(props) => props.circlePrimary && css``}
@@ -91,9 +91,9 @@ const StyledButton = styled.button`
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: ${(props) => props.theme.successColor};
-      border: 2px solid ${(props) => props.theme.successColor};
-      color: ${(props) => props.theme.lightColor};
+      background-color: ${({ theme }) => theme.successColor};
+      border: 2px solid ${({ theme }) => theme.successColor};
+      color: ${({ theme }) => theme.lightColor};
     `}
 
 

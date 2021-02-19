@@ -3,19 +3,19 @@ import styled from 'styled-components';
 import RecordContext from '../../context/record/recordContext';
 
 const StyledRecord = styled.div`
-  background-color: ${(props) => props.theme.black};
+  background-color: ${({ theme }) => theme.black};
   width: 5px;
   &:hover {
-    background-color: ${(props) => props.theme.dangerColor};
+    background-color: ${({ theme }) => theme.dangerColor};
     cursor: pointer;
   }
 `;
 const RecordHighlighted = styled(StyledRecord)`
-  background-color: ${(props) => props.theme.dangerColor};
+  background-color: ${({ theme }) => theme.dangerColor};
 `;
 
 const RecordMoveHighlighted = styled(StyledRecord)`
-  background-color: ${(props) => props.theme.successColor};
+  background-color: ${({ theme }) => theme.successColor};
 `;
 
 const Record = ({ recordInfo }) => {

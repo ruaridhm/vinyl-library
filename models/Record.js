@@ -35,7 +35,10 @@ const RecordSchema = mongoose.Schema({
   coverLp: {
     type: String,
   },
-  condition: {
+  recordCondition: {
+    type: String,
+  },
+  sleeveCondition: {
     type: String,
   },
   barcode: {
@@ -62,6 +65,24 @@ const RecordSchema = mongoose.Schema({
   },
   style: {
     type: Array,
+  },
+  cover: {
+    type: Boolean,
+  },
+  innerSleeve: {
+    type: Boolean,
+  },
+  outerSleeve: {
+    type: Boolean,
+  },
+  wishList: {
+    type: Boolean,
+  },
+  rating: {
+    type: Number,
+  },
+  comment: {
+    type: String,
   },
 });
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '../button/Button';
 import useKey from '../../hooks/useKey';
@@ -24,53 +24,36 @@ const ResultImage = styled.img`
 const ResultOption = ({ data, record, setRecord, setDiscogsResult }) => {
   const [iterator, setIterator] = useState(0);
 
+  useEffect(() => {
+    const artist = data[iterator].title.split(' - ')[0];
+    const title = data[iterator].title.split(' - ')[1];
+
+    setRecord({
+      ...record,
+      title: title,
+      artist: artist,
+      label: data[iterator].label[0],
+      catalogNumber: data[iterator].catno,
+      releaseDate: data[iterator].year,
+      country: data[iterator].country,
+      coverFront: data[iterator].cover_image,
+      barcode: data[iterator].barcode[0],
+      want: data[iterator].community.want,
+      have: data[iterator].community.have,
+      genre: data[iterator].genre,
+      style: data[iterator].style,
+    });
+  }, [iterator]);
+
   const next = () => {
     if (iterator < data.length - 1) {
       setIterator((c) => c + 1);
-
-      const artist = data[iterator].title.split(' - ')[0];
-      const title = data[iterator].title.split(' - ')[1];
-
-      setRecord({
-        ...record,
-        title: title,
-        artist: artist,
-        label: data[iterator].label[0],
-        catalogNumber: data[iterator].catno,
-        releaseDate: data[iterator].year,
-        country: data[iterator].country,
-        coverFront: data[iterator].cover_image,
-        barcode: data[iterator].barcode[0],
-        want: data[iterator].community.want,
-        have: data[iterator].community.have,
-        genre: data[iterator].genre,
-        style: data[iterator].style,
-      });
     }
   };
 
   const prev = () => {
     if (iterator > 0) {
       setIterator((c) => c - 1);
-
-      const artist = data[iterator].title.split(' - ')[0];
-      const title = data[iterator].title.split(' - ')[1];
-
-      setRecord({
-        ...record,
-        title: title,
-        artist: artist,
-        label: data[iterator].label[0],
-        catalogNumber: data[iterator].catno,
-        releaseDate: data[iterator].year,
-        country: data[iterator].country,
-        coverFront: data[iterator].cover_image,
-        barcode: data[iterator].barcode[0],
-        want: data[iterator].community.want,
-        have: data[iterator].community.have,
-        genre: data[iterator].genre,
-        style: data[iterator].style,
-      });
     }
   };
 

@@ -13,43 +13,43 @@ const Alert = styled.div`
   ${(props) =>
     props.type === 'primary' &&
     css`
-      background: ${(props) => props.theme.primaryColor};
-      color: ${(props) => props.theme.white};
+      background: ${({theme}) => theme.primaryColor};
+      color: ${({theme}) => theme.white};
     `}
 
   ${(props) =>
     props.type === 'light' &&
     css`
-      background: ${(props) => props.theme.lightColor};
-      color: ${(props) => props.theme.darkGrey};
+      background: ${({theme}) => theme.lightColor};
+      color: ${({theme}) => theme.darkGrey};
     `}
 
     ${(props) =>
     props.type === 'dark' &&
     css`
-      background: ${(props) => props.theme.darkColor};
-      color: ${(props) => props.theme.white};
+      background: ${({theme}) => theme.darkColor};
+      color: ${({theme}) => theme.white};
     `}
 
     ${(props) =>
     props.type === 'danger' &&
     css`
-      background: ${(props) => props.theme.dangerColor};
-      color: ${(props) => props.theme.white};
+      background: ${({theme}) => theme.dangerColor};
+      color: ${({theme}) => theme.white};
     `}
 
     ${(props) =>
     props.type === 'success' &&
     css`
-      background: ${(props) => props.theme.successColor};
-      color: ${(props) => props.theme.white};
+      background: ${({theme}) => theme.successColor};
+      color: ${({theme}) => theme.white};
     `}
 
     ${(props) =>
     props.type === 'white' &&
-    css`  background: ${(props) => props.theme.white};
-  color: ${(props) => props.theme.darkGrey};
-  border: ${(props) => props.theme.white}; solid 1px;
+    css`  background: ${({theme}) => theme.white};
+  color: ${({theme}) => theme.darkGrey};
+  border: ${({theme}) => theme.white}; solid 1px;
     `}
 `;
 

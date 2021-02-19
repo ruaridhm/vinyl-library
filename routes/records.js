@@ -41,7 +41,8 @@ router.post('/', [auth], async (req, res) => {
     coverFront,
     coverBack,
     coverLp,
-    condition,
+    recordCondition,
+    sleeveCondition,
     barcode,
     locationPrimary,
     locationSecondary,
@@ -49,6 +50,12 @@ router.post('/', [auth], async (req, res) => {
     have,
     genre,
     style,
+    cover,
+    innerSleeve,
+    outerSleeve,
+    wishList,
+    rating,
+    comment,
   } = req.body;
 
   try {
@@ -63,7 +70,8 @@ router.post('/', [auth], async (req, res) => {
       coverFront,
       coverBack,
       coverLp,
-      condition,
+      recordCondition,
+      sleeveCondition,
       barcode,
       locationPrimary,
       locationSecondary,
@@ -72,6 +80,12 @@ router.post('/', [auth], async (req, res) => {
       have,
       genre,
       style,
+      cover,
+      innerSleeve,
+      outerSleeve,
+      rating,
+      comment,
+      wishList,
     });
 
     const record = await newRecord.save();
@@ -98,15 +112,21 @@ router.put('/:id', auth, async (req, res) => {
     coverFront,
     coverBack,
     coverLp,
-    condition,
+    recordCondition,
+    sleeveCondition,
     barcode,
     locationPrimary,
     locationSecondary,
-    test,
     want,
     have,
     genre,
     style,
+    cover,
+    innerSleeve,
+    outerSleeve,
+    wishList,
+    rating,
+    comment,
   } = req.body;
 
   //Build record object
@@ -121,7 +141,8 @@ router.put('/:id', auth, async (req, res) => {
   if (coverFront) recordFields.coverFront = coverFront;
   if (coverBack) recordFields.coverBack = coverBack;
   if (coverLp) recordFields.coverLp = coverLp;
-  if (condition) recordFields.condition = condition;
+  if (recordCondition) recordFields.recordCondition = recordCondition;
+  if (sleeveCondition) recordFields.sleeveCondition = sleeveCondition;
   if (barcode) recordFields.barcode = barcode;
   if (locationPrimary) recordFields.locationPrimary = locationPrimary;
   if (locationSecondary) recordFields.locationSecondary = locationSecondary;
@@ -129,6 +150,12 @@ router.put('/:id', auth, async (req, res) => {
   if (have) recordFields.have = have;
   if (genre) recordFields.genre = genre;
   if (style) recordFields.style = style;
+  if (cover) recordFields.cover = cover;
+  if (innerSleeve) recordFields.innerSleeve = innerSleeve;
+  if (outerSleeve) recordFields.outerSleeve = outerSleeve;
+  if (wishList) recordFields.wishList = wishList;
+  if (rating) recordFields.rating = rating;
+  if (comment) recordFields.comment = comment;
 
   try {
     let record = await Record.findById(req.params.id);

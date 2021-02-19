@@ -3,6 +3,19 @@ import AlertContext from '../../context/alert/AlertContext';
 import AuthContext from '../../context/auth/AuthContext';
 import TextField from '../text field/TextField';
 import Form, { FormGroup } from '../form/Form';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const AltAuthCTA = styled.span`
+  display: flex;
+  justify-content: center;
+`;
+
+const AuthCTALink = styled(Link)`
+  padding-left: 0.25rem;
+  text-decoration: none;
+  color: #0b00d6;
+`;
 
 const Register = (props) => {
   const alertContext = useContext(AlertContext);
@@ -34,12 +47,15 @@ const Register = (props) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
-    console.log('onSubmit called');
     e.preventDefault();
     if (name === '' || email === '' || password === '' || password2 === '') {
       setAlert('Please enter all fields', 'danger');
     } else if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
+    } else if (password.length < 6 || password2.length < 6) {
+      setAlert('Password must be at least 6 characters', 'danger');
+    } else if (name === password || name === password2) {
+      setAlert('Name and Password fields must not match', 'danger');
     } else {
       register({
         name,
@@ -54,7 +70,7 @@ const Register = (props) => {
       <>
         <FormGroup>
           <TextField
-            placeholder='Name'
+            title='Name'
             type='text'
             name='name'
             value={name}
@@ -66,7 +82,7 @@ const Register = (props) => {
         </FormGroup>
         <FormGroup>
           <TextField
-            placeholder='Email'
+            title='Email'
             type='email'
             name='email'
             value={email}
@@ -78,7 +94,7 @@ const Register = (props) => {
         </FormGroup>
         <FormGroup>
           <TextField
-            placeholder='Password'
+            title='Password'
             type='password'
             name='password'
             value={password}
@@ -91,7 +107,7 @@ const Register = (props) => {
         </FormGroup>
         <FormGroup>
           <TextField
-            placeholder='Confirm Password'
+            title='Confirm Password'
             type='password'
             name='password2'
             value={password2}
@@ -107,7 +123,13 @@ const Register = (props) => {
   };
 
   return (
-    <Form title='Register' onSubmit={onSubmit} formInputs={RegisterInputs} />
+    <>
+      <Form title='Register' onSubmit={onSubmit} formInputs={RegisterInputs} />
+      <AltAuthCTA>
+        Already have an Account?
+        <AuthCTALink to='/login'>Login Here</AuthCTALink>
+      </AltAuthCTA>
+    </>
   );
 };
 

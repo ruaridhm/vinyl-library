@@ -1,7 +1,8 @@
-const insertionSort = (arr, sortByVariable) => {
+const insertionSort = (arr, sortByVariable, setMovesArr) => {
   const inputArr = arr,
     movesArr = [],
     n = inputArr.length;
+
   for (let i = 1; i < n; i++) {
     const current = inputArr[i];
     let j = i - 1;
@@ -32,6 +33,7 @@ const insertionSort = (arr, sortByVariable) => {
     return movesArr;
   };
   shrinkMovesArr(movesArr);
+  setMovesArr(movesArr);
   return inputArr;
 };
 

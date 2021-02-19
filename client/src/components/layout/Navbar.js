@@ -11,7 +11,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${(props) => props.theme.secondaryColor};
+  background-color: ${({ theme }) => theme.secondaryColor};
   padding-left: 1em;
   @media (max-width: 380px) {
     padding-left: 0;
@@ -27,7 +27,7 @@ const NavLinkList = styled.ul`
   display: flex;
   list-style: none;
   font-weight: bold;
-  color: ${(props) => props.theme.backgroundLight};
+  color: ${({ theme }) => theme.backgroundLight};
   margin: 0;
   @media (max-width: 380px) {
     padding-left: 0;
@@ -42,15 +42,15 @@ const NavLinkListRight = styled(NavLinkList)`
 
 const NavListItem = styled.li`
   margin: 1em;
-  color: ${(props) => props.theme.backgroundLight};
+  color: ${({ theme }) => theme.backgroundLight};
   display: flex;
   align-items: center;
   a {
-    color: ${(props) => props.theme.backgroundLight};
+    color: ${({ theme }) => theme.backgroundLight};
     text-decoration: none;
     &:hover {
       text-decoration: underline;
-      color: ${(props) => props.theme.lightColor};
+      color: ${({ theme }) => theme.lightColor};
     }
   }
 `;
@@ -60,7 +60,7 @@ const NavTitle = styled.h1`
   align-items: center;
   margin: 0;
   white-space: nowrap;
-  color: ${(props) => props.theme.lightColor};
+  color: ${({ theme }) => theme.lightColor};
 `;
 
 const Navbar = ({ title }) => {

@@ -36,7 +36,7 @@ const SliderButton = styled.button`
   &:hover {
     background: rgba(0, 0, 0, 0.355);
     cursor: pointer;
-    color: ${(props) => props.theme.white};
+    color: ${({theme}) => theme.white};
   }
 `;
 

@@ -14,8 +14,8 @@ const DropdownWrapper = styled.div`
 `;
 
 const DropdownHeader = styled.div`
-  background-color: ${(props) => props.theme.white};
-  border-color: ${(props) => props.theme.backgroundLight};
+  background-color: ${({ theme }) => theme.white};
+  border-color: ${({ theme }) => theme.backgroundLight};
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
@@ -33,6 +33,7 @@ const DropdownHeaderTitle = styled.div`
 `;
 const DropdownHeaderTitleBold = styled.div`
   font-weight: bold;
+  margin-right: 0.25rem;
 `;
 
 const DropdownHeaderAction = styled.div``;
@@ -48,7 +49,7 @@ const DropdownList = styled.ul`
 const DropdownListItem = styled.li`
   list-style-type: none;
   :first-of-type > button {
-    border-top: 1px solid ${(props) => props.theme.backgroundLight};
+    border-top: 1px solid ${({ theme }) => theme.backgroundLight};
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
@@ -61,20 +62,20 @@ const DropdownListItem = styled.li`
 const DropdownListItemButton = styled.button`
   display: flex;
   justify-content: space-between;
-  background-color: ${(props) => props.theme.white};
+  background-color: ${({ theme }) => theme.white};
   font-size: 1rem;
   padding: 0.9em 1.2em 0.9em 1.2em;
   border: 0;
-  border-bottom: 1px solid ${(props) => props.theme.backgroundLight};
+  border-bottom: 1px solid ${({ theme }) => theme.backgroundLight};
   width: 100%;
   text-align: left;
-  border-left: 1px solid ${(props) => props.theme.backgroundLight};
-  border-right: 1px solid ${(props) => props.theme.backgroundLight};
+  border-left: 1px solid ${({ theme }) => theme.backgroundLight};
+  border-right: 1px solid ${({ theme }) => theme.backgroundLight};
   &:hover,
   &:focus {
     cursor: pointer;
     font-weight: bold;
-    background-color: ${(props) => props.theme.backgroundLight};
+    background-color: ${({ theme }) => theme.backgroundLight};
   }
 `;
 const Dropdown = ({
@@ -122,7 +123,7 @@ const Dropdown = ({
           onClick={() => toggle()}
         >
           <DropdownHeaderTitle>
-            <DropdownHeaderTitleBold>{title}</DropdownHeaderTitleBold>
+            <DropdownHeaderTitleBold>{title} </DropdownHeaderTitleBold>
             {selection.length > 0 ? selection[0].title : ''}
           </DropdownHeaderTitle>
           <DropdownHeaderAction>

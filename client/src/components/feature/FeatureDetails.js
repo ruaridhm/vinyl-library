@@ -17,7 +17,7 @@ const FeatureDetailsDescription = styled.div`
 
 const FeatureDetailsTitle = styled.h2`
   font-size: 2.5rem;
-  color: ${(props) => props.theme.darkColor};
+  color: ${({ theme }) => theme.darkColor};
 `;
 
 const FeatureDetailsBody = styled.p`

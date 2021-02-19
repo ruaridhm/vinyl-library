@@ -3,6 +3,19 @@ import AuthContext from '../../context/auth/AuthContext';
 import AlertContext from '../../context/alert/AlertContext';
 import TextField from '../text field/TextField';
 import Form, { FormGroup } from '../form/Form';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const AltAuthCTA = styled.span`
+  display: flex;
+  justify-content: center;
+`;
+
+const AuthCTALink = styled(Link)`
+  padding-left: 0.25rem;
+  text-decoration: none;
+  color: #0b00d6;
+`;
 
 const Login = (props) => {
   const alertContext = useContext(AlertContext);
@@ -50,7 +63,7 @@ const Login = (props) => {
           <TextField
             type='email'
             name='email'
-            placeholder='Email'
+            title='Email'
             value={email}
             onChange={onChange}
             required
@@ -58,22 +71,30 @@ const Login = (props) => {
             medium
           />
         </FormGroup>
-        <div className='form-group'>
+        <FormGroup>
           <TextField
             type='password'
             name='password'
             value={password}
-            placeholder='Password'
+            title='Password'
             onChange={onChange}
             required
             standard
             medium
           />
-        </div>
+        </FormGroup>
       </>
     );
   };
-  return <Form title='Login' onSubmit={onSubmit} formInputs={LoginInputs} />;
+  return (
+    <>
+      <Form title='Login' onSubmit={onSubmit} formInputs={LoginInputs} />
+      <AltAuthCTA>
+        Don't have an Account?
+        <AuthCTALink to='/register'>Register Here</AuthCTALink>
+      </AltAuthCTA>
+    </>
+  );
 };
 
 export default Login;

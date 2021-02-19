@@ -24,24 +24,47 @@ const LandingHero = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 92vh;
-  background: ${(props) => props.theme.secondaryColor};
+  height: 88.5vh;
+  background: ${({ theme }) => theme.secondaryColor};
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10vw), 0 100%);
   margin-bottom: -10vw;
-  color: ${(props) => props.theme.lightColor};
+  color: ${({ theme }) => theme.lightColor};
 `;
 const LandingHeroHeadline = styled.h1`
   margin-top: 2.5rem;
   font-size: 4.5em;
+  text-align: center;
+  @media (max-width: 1105px) {
+    margin-bottom: 0.25em;
+  }
+  @media (max-width: 700px) {
+    font-size: 3.5em;
+  }
+  @media (max-width: 55 0px) {
+    font-size: 2.5em;
+  }
 `;
 const LandingHeroBody = styled.p`
   text-align: center;
   width: 50%;
+  @media (max-width: 1105px) {
+    width: 70%;
+  }
+  @media (max-width: 700px) {
+    width: 80%;
+  }
+  @media (max-width: 550px) {
+    width: 90%;
+  }
 `;
 const LandingHeroCTAs = styled.div`
   padding-top: 4em;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1105px) {
+    padding-top: 1em;
+  }
 `;
 const LandingDemoCTA = styled.div`
   display: flex;
@@ -49,14 +72,28 @@ const LandingDemoCTA = styled.div`
   width: fit-content;
   padding-left: 0.25rem;
   cursor: pointer;
-  color: ${(props) => props.theme.lightColor};
+  color: ${({ theme }) => theme.lightColor};
 `;
 const FeatureList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 4rem;
-  background-color: ${(props) => props.theme.lightColor};
+  background-color: ${({ theme }) => theme.lightColor};
   padding: 15rem 10rem 5rem 10rem;
+
+  @media (max-width: 1105px) {
+    padding: 15rem 5rem 6rem 5rem;
+    column-gap: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    padding: 15rem 2.5rem 6rem 2.5rem;
+    column-gap: 1rem;
+  }
+  @media (max-width: 550px) {
+    padding: 15rem 1rem 6rem 1rem;
+    column-gap: 1rem;
+  }
 `;
 const FeatureDetailsList = styled.div`
   position: relative;
@@ -69,7 +106,7 @@ const FeatureDetailsList = styled.div`
     width: 100px;
     height: 100px;
     top: -82px;
-    background: ${(props) => props.theme.lightColor};
+    background: ${({ theme }) => theme.lightColor};
     z-index: 1;
   }
   &::before {
@@ -88,7 +125,7 @@ const FooterTop = styled.div`
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  background-color: ${(props) => props.theme.darkColor};
+  background-color: ${({ theme }) => theme.darkColor};
   svg {
     position: relative;
     display: block;
@@ -108,17 +145,17 @@ const FooterTop = styled.div`
 `;
 
 const StyledPath = styled.path`
-  fill: ${(props) => props.theme.white};
+  fill: ${({ theme }) => theme.white};
 `;
 const FooterBottom = styled.div`
   padding-top: 8rem;
-  background-color: ${(props) => props.theme.darkColor};
+  background-color: ${({ theme }) => theme.darkColor};
 `;
 
 const FooterTitle = styled.h1`
   margin: 0;
   white-space: nowrap;
-  color: ${(props) => props.theme.lightColor};
+  color: ${({ theme }) => theme.lightColor};
   padding-left: 2rem;
   padding-bottom: 1rem;
 `;
@@ -135,8 +172,8 @@ const FooterCTA = styled.div`
 
 const StyledFontAwesomeIconDemoCTA = styled(FontAwesomeIcon)`
   margin-right: 0.5rem;
-  color: ${(props) => props.theme.dangerColor};
-  fill: ${(props) => props.theme.lightColor};
+  color: ${({ theme }) => theme.dangerColor};
+  fill: ${({ theme }) => theme.lightColor};
   font-size: 2em;
 `;
 
@@ -148,7 +185,7 @@ const FooterCopyright = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  color: ${(props) => props.theme.lightColor};
+  color: ${({ theme }) => theme.lightColor};
 `;
 
 const About = () => {

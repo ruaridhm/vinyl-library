@@ -1,5 +1,5 @@
-const mergeSortHandler = (arr, sortByVariable) => {
-  // const movesArr = [];
+const mergeSortHandler = (arr, sortByVariable, setMovesArr) => {
+  const movesArr = [];
 
   const mergeSort = (arr) => {
     const len = arr.length;
@@ -27,6 +27,7 @@ const mergeSortHandler = (arr, sortByVariable) => {
     return result.concat(left.slice(l)).concat(right.slice(r));
   };
   console.log(mergeSort(arr));
+  setMovesArr(movesArr);
   return mergeSort(arr);
 };
 

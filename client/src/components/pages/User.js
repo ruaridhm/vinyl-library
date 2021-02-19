@@ -47,7 +47,8 @@ const User = () => {
   const recordContext = useContext(RecordContext);
   const { getRecords, records, loading } = recordContext;
   const { user } = authContext;
-  const [averageCondition, setAverageCondition] = useState('');
+  const [averageRecordCondition, setAverageRecordCondition] = useState('');
+  const [averageSleeveCondition, setAverageSleeveCondition] = useState('');
   const [mostPopularArtist, setMostPopularArtist] = useState('');
   const [mostPopularLabel, setMostPopularLabel] = useState('');
   const [communityValues, setCommunityValues] = useState('');
@@ -61,28 +62,55 @@ const User = () => {
 
   useEffect(() => {
     const calculateAvgCondition = () => {
-      const conditionArr = [];
+      const recordConditionArr = [];
+      const sleeveConditionArr = [];
 
       records !== null &&
         records.forEach((record) => {
-          switch (record.condition) {
+          switch (record.recordCondition) {
             case 'M':
-              conditionArr.push(6);
+              recordConditionArr.push(6);
               break;
             case 'NM' || 'M-':
-              conditionArr.push(5);
+              recordConditionArr.push(5);
               break;
             case 'VG+':
-              conditionArr.push(4);
+              recordConditionArr.push(4);
               break;
             case 'VG':
-              conditionArr.push(3);
+              recordConditionArr.push(3);
               break;
             case 'G' || 'G+':
-              conditionArr.push(2);
+              recordConditionArr.push(2);
               break;
             case 'P' || 'F':
-              conditionArr.push(1);
+              recordConditionArr.push(1);
+              break;
+            default:
+              console.log('invalid or missing condition');
+          }
+        });
+
+      records !== null &&
+        records.forEach((record) => {
+          switch (record.sleeveCondition) {
+            case 'M':
+              sleeveConditionArr.push(6);
+              break;
+            case 'NM' || 'M-':
+              sleeveConditionArr.push(5);
+              break;
+            case 'VG+':
+              sleeveConditionArr.push(4);
+              break;
+            case 'VG':
+              sleeveConditionArr.push(3);
+              break;
+            case 'G' || 'G+':
+              sleeveConditionArr.push(2);
+              break;
+            case 'P' || 'F':
+              sleeveConditionArr.push(1);
               break;
             default:
               console.log('invalid or missing condition');
@@ -135,7 +163,8 @@ const User = () => {
       return winningStat;
     };
 
-    setAverageCondition(calculateAvgCondition);
+    setAverageRecordCondition(calculateAvgCondition);
+    setAverageSleeveCondition(calculateAvgCondition);
     setMostPopularArtist(calculateMostPopular('artist'));
     setMostPopularLabel(calculateMostPopular('label'));
 
@@ -183,8 +212,10 @@ const User = () => {
             <strong>Estimated collection value: </strong>
           </UserStat>
           <UserStat>
-            <strong>Average condition: </strong>
-            {averageCondition && averageCondition}
+            <strong>Average Record condition: </strong>
+            {averageRecordCondition && averageRecordCondition}
+            <strong>Average Sleeve condition: </strong>
+            {averageSleeveCondition && averageSleeveCondition}
           </UserStat>
           <UserStat>
             <strong>Most popular artist: </strong>

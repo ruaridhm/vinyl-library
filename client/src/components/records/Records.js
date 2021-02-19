@@ -26,7 +26,7 @@ const Records = ({ displayAddRecord, setDisplayAddRecord }) => {
   }
 
   return (
-    <div>
+    <>
       {records !== null && !loading ? (
         <StyledTransitionGroup>
           {filtered !== null
@@ -52,7 +52,7 @@ const Records = ({ displayAddRecord, setDisplayAddRecord }) => {
       ) : (
         <Spinner />
       )}
-    </div>
+    </>
   );
 };
 

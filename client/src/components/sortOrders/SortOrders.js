@@ -115,21 +115,32 @@ const SortOrders = ({ movesArr }) => {
         <div>
           <p>
             <strong>
-              Move:
-              {movesArr.length > 1 &&
-                movesArr[counter].from.locationPrimary}{' '}
+              Move:{' '}
+              {movesArr.length > 1 && movesArr[counter].from.locationPrimary}{' '}
               {movesArr.length > 1 && movesArr[counter].from.locationSecondary}{' '}
             </strong>
+            <span>{movesArr[counter].from.title}</span>
           </p>
           <p>
             <strong>
               To: {movesArr.length > 1 && movesArr[counter].to.locationPrimary}{' '}
               {movesArr.length > 1 && movesArr[counter].to.locationSecondary}{' '}
             </strong>
+            <span>{movesArr[counter].to.title}</span>
           </p>
           <p>
             <strong>Moves Remaining: {movesArr.length - counter - 1}</strong>
           </p>
+          {movesArr.length - counter - 1 === 0 && (
+            <>
+              <Button solidSuccess medium>
+                Finish
+              </Button>
+              <Button solidPrimary medium>
+                Sort Digitally
+              </Button>
+            </>
+          )}
         </div>
         <Button
           outlinePrimary

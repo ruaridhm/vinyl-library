@@ -33,7 +33,7 @@ const CurrentRecordDetailsContainer = styled.div`
 `;
 
 const CurrentRecordDetails = styled.div`
-  background-color: ${(props) => props.theme.white};
+  background-color: ${({ theme }) => theme.white};
   width: 25%;
   border-radius: 0.5em;
   padding: 0.5em 1em;

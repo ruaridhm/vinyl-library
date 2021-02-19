@@ -17,9 +17,9 @@ const FeatureIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  -webkit-box-shadow: 5px 5px 15px 5px ${(props) => props.theme.grey};
-  box-shadow: 5px 5px 15px 5px ${(props) => props.theme.grey};
-  color: ${(props) => props.theme.primaryColor};
+  -webkit-box-shadow: 5px 5px 15px 5px ${({theme}) => .theme.grey};
+  box-shadow: 5px 5px 15px 5px ${({theme}) => theme.grey};
+  color: ${({theme}) => theme.primaryColor};
 `;
 
 const FeatureBody = styled.div`

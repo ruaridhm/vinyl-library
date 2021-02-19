@@ -4,8 +4,10 @@ import RecordContext from '../../context/record/recordContext';
 import Button from '../button/Button';
 import DiscogsBtn from '../discogs/DiscogsBtn';
 import TextField from '../text field/TextField';
+import CheckBox from '../checkbox/CheckBox';
 import ResultOption from '../resultOption/ResultOption.js';
 import useKey from '../../hooks/useKey';
+import Rating from '../rating/Rating.tsx';
 
 const RecordFormContainer = styled.div`
   position: relative;
@@ -13,23 +15,51 @@ const RecordFormContainer = styled.div`
   width: 100%;
 `;
 
+const FormHeader = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const IconContainer = styled.div`
+  height: 32px;
+  width: 32px;
+`;
+
+const FormHeaderText = styled.h2`
+  margin-bottom: 0px;
+`;
+
 const RecordFormForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid ${(props) => props.theme.black};
+  border: 1px solid ${({ theme }) => theme.black};
   border-radius: 0.5rem;
   width: 22rem;
-  background-color: ${(props) => props.theme.white};
+  background-color: ${({ theme }) => theme.white};
   padding-bottom: 1em;
   height: fit-content;
   box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.5);
   margin: 1.5em auto 1em auto;
 `;
+
+const ShowAllRecordFormForm = styled(RecordFormForm)`
+  width: 90%;
+`;
+
+const ShowAllRecordForm = styled.div`
+  width: 90%;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0 auto;
+`;
+
 const RecordFormCloseButton = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
+  margin-top: 1rem;
+  height: 32px;
+  width: 32px;
 `;
 const RecordFormButtonContainer = styled.div`
   width: 100%;
@@ -37,7 +67,6 @@ const RecordFormButtonContainer = styled.div`
   justify-content: space-evenly;
 `;
 const RecordFormCloseButtonIcon = styled.i`
-  padding: 0.5em;
   cursor: pointer;
   &:hover {
     transform: rotateX(180deg);
@@ -53,13 +82,19 @@ const RecordFormStepButton = styled.button`
   width: 1rem;
   border: none;
   margin: 1rem;
-  background-color: ${(props) => props.theme.backgroundLight};
+  background-color: ${({ theme }) => theme.backgroundLight};
   opacity: 0.5;
   &:hover {
     opacity: 1;
   }
   &:active {
-    background-color: ${(props) => props.theme.darkGrey};
+    background-color: ${({ theme }) => theme.darkGrey};
+  }
+`;
+
+const ShowAllRecordFormStepButton = styled(RecordFormStepButton)`
+  @media (max-width: 1100px) {
+    display: none;
   }
 `;
 
@@ -68,14 +103,30 @@ const DiscogsMultiResult = styled(RecordFormForm)`
   padding: 1rem;
 `;
 
-const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
+const StepContainer = styled.div`
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+`;
+
+const CheckboxStepContainer = styled(StepContainer)`
+  margin: 0 auto;
+`;
+
+const Step1 = ({
+  title,
+  artist,
+  label,
+  catalogNumber,
+  releaseDate,
+  onChange,
+}) => {
   return (
-    <>
+    <StepContainer>
       <TextField
         medium
         outline
         type='text'
-        placeholder='Title'
+        title='Title'
         name='title'
         value={title}
         onChange={onChange}
@@ -84,7 +135,7 @@ const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
         medium
         outline
         type='text'
-        placeholder='Artist'
+        title='Artist'
         name='artist'
         value={artist}
         onChange={onChange}
@@ -93,7 +144,7 @@ const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
         medium
         outline
         type='text'
-        placeholder='Label'
+        title='Label'
         name='label'
         value={label}
         onChange={onChange}
@@ -102,38 +153,57 @@ const Step1 = ({ title, artist, label, releaseDate, onChange }) => {
         medium
         outline
         type='text'
-        placeholder='Release Date'
+        title='Catalog Number'
+        name='catalogNumber'
+        value={catalogNumber}
+        onChange={onChange}
+      />
+      <TextField
+        medium
+        outline
+        type='text'
+        title='Release Date'
         name='releaseDate'
         value={releaseDate}
         onChange={onChange}
       />
-    </>
+    </StepContainer>
   );
 };
 
 const Step2 = ({
-  condition,
+  recordCondition,
+  sleeveCondition,
   country,
   locationPrimary,
   locationSecondary,
   onChange,
 }) => {
   return (
-    <>
+    <StepContainer>
       <TextField
         medium
         outline
         type='text'
-        placeholder='Condition'
-        name='condition'
-        value={condition}
+        title='Record Condition'
+        name='recordCondition'
+        value={recordCondition}
         onChange={onChange}
       />
       <TextField
         medium
         outline
         type='text'
-        placeholder='Country'
+        title='Sleeve Condition'
+        name='sleeveCondition'
+        value={sleeveCondition}
+        onChange={onChange}
+      />
+      <TextField
+        medium
+        outline
+        type='text'
+        title='Country'
         name='country'
         value={country}
         onChange={onChange}
@@ -142,7 +212,7 @@ const Step2 = ({
         medium
         outline
         type='text'
-        placeholder='Location Primary'
+        title='Location Primary'
         name='locationPrimary'
         value={locationPrimary}
         onChange={onChange}
@@ -151,40 +221,23 @@ const Step2 = ({
         medium
         outline
         type='text'
-        placeholder='Location Secondary'
+        title='Location Secondary'
         name='locationSecondary'
         value={locationSecondary}
         onChange={onChange}
       />
-    </>
+    </StepContainer>
   );
 };
 
-const Step3 = ({
-  catalogNumber,
-  barcode,
-  coverFront,
-  genre,
-  style,
-  onChange,
-}) => {
+const Step3 = ({ barcode, coverFront, genre, style, comment, onChange }) => {
   return (
-    <>
+    <StepContainer>
       <TextField
         medium
         outline
         type='text'
-        placeholder='Catalog Number'
-        name='catalogNumber'
-        value={catalogNumber}
-        onChange={onChange}
-      />
-
-      <TextField
-        medium
-        outline
-        type='text'
-        placeholder='Barcode'
+        title='Barcode'
         name='barcode'
         value={barcode}
         onChange={onChange}
@@ -193,7 +246,7 @@ const Step3 = ({
         medium
         outline
         type='url'
-        placeholder='Cover Front'
+        title='Cover Front'
         name='coverFront'
         value={coverFront}
         onChange={onChange}
@@ -202,7 +255,7 @@ const Step3 = ({
         medium
         outline
         type='text'
-        placeholder='Genre'
+        title='Genre'
         name='genre'
         value={genre}
         onChange={onChange}
@@ -211,19 +264,88 @@ const Step3 = ({
         medium
         outline
         type='text'
-        placeholder='Style'
+        title='Style'
         name='style'
         value={style}
         onChange={onChange}
       />
-    </>
+      <TextField
+        medium
+        outline
+        type='text'
+        title='Comment'
+        name='comment'
+        value={comment}
+        onChange={onChange}
+      />
+    </StepContainer>
+  );
+};
+
+const Step4 = ({
+  rating,
+  cover,
+  innerSleeve,
+  outerSleeve,
+  wishList,
+  handleChecked,
+  handleRating,
+}) => {
+  return (
+    <CheckboxStepContainer>
+      <Rating rating={rating} onChange={handleRating} label='Rating' />
+      <CheckBox
+        value={cover}
+        name='cover'
+        label='Cover'
+        handleChecked={handleChecked}
+      />
+      <CheckBox
+        value={innerSleeve}
+        label='Inner Sleeve'
+        name='innerSleeve'
+        handleChecked={handleChecked}
+      />
+      <CheckBox
+        value={outerSleeve}
+        label='Outer Sleeve'
+        name='outerSleeve'
+        handleChecked={handleChecked}
+      />
+      <CheckBox
+        value={wishList}
+        label='Wish List'
+        name='wishList'
+        handleChecked={handleChecked}
+      />
+    </CheckboxStepContainer>
   );
 };
 
 const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
   const recordContext = useContext(RecordContext);
   const [discogsResult, setDiscogsResult] = useState([]);
+  const [showAllSteps, setShowAllSteps] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { addRecord, current, clearCurrent, updateRecord } = recordContext;
+
+  const updateDimensions = () => {
+    console.log(windowWidth);
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, [window.innerWidth]);
+
+  useEffect(() => {
+    if (windowWidth < 1100) {
+      setShowAllSteps(false);
+      setCurrentStep(1);
+    }
+  }, [windowWidth]);
 
   useEffect(() => {
     if (current !== null) {
@@ -239,7 +361,8 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
         coverFront: '',
         coverBack: '',
         coverLp: '',
-        condition: '',
+        recordCondition: '',
+        sleeveCondition: '',
         barcode: '',
         locationPrimary: '',
         locationSecondary: '',
@@ -247,6 +370,12 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
         have: '',
         genre: '',
         style: '',
+        cover: null,
+        innerSleeve: null,
+        outerSleeve: null,
+        comment: '',
+        rating: '',
+        wishList: null,
       });
     }
   }, [recordContext, current]);
@@ -261,7 +390,8 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
     coverFront: '',
     coverBack: '',
     coverLp: '',
-    condition: '',
+    recordCondition: '',
+    sleeveCondition: '',
     barcode: '',
     locationPrimary: '',
     locationSecondary: '',
@@ -269,9 +399,13 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
     have: '',
     genre: '',
     style: '',
+    cover: null,
+    innerSleeve: null,
+    outerSleeve: null,
+    comment: '',
+    rating: '',
+    wishList: null,
   });
-
-  const [currentStep, setCurrentStep] = useState(1);
 
   const {
     title,
@@ -283,16 +417,38 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
     coverFront,
     // coverBack,
     // coverLp,
-    condition,
+    recordCondition,
+    sleeveCondition,
     barcode,
     locationPrimary,
     locationSecondary,
     genre,
     style,
+    cover,
+    innerSleeve,
+    outerSleeve,
+    comment,
+    rating,
+    wishList,
   } = record;
 
   const onChange = (e) => {
-    setRecord({ ...record, [e.target.name]: e.target.value });
+    if (e.target.type !== undefined && e.target.type === 'text') {
+      setRecord({ ...record, [e.target.name]: e.target.value });
+    }
+  };
+
+  const handleChecked = (e) => {
+    if (e.current.type === 'checkbox') {
+      console.log(e.current.checked);
+      e.current.checked = !e.current.checked;
+      console.log(e.current.checked);
+      setRecord({ ...record, [e.current.name]: e.current.checked });
+    }
+  };
+  const handleRating = (e) => {
+    console.log(e);
+    setRecord({ ...record, rating: e });
   };
 
   const onSubmit = (e) => {
@@ -315,103 +471,253 @@ const RecordForm = ({ displayAddRecord, setDisplayAddRecord }) => {
   };
 
   useKey('Escape', close);
+  // useKey('Digit1', () => {
+  //   setCurrentStep(1);
+  // });
+  // useKey('Digit2', () => {
+  //   setCurrentStep(2);
+  // });
+  // useKey('Digit3', () => {
+  //   setCurrentStep(3);
+  // });
+  // useKey('Digit4', () => {
+  //   setCurrentStep(4);
+  // });
+  // useKey('KeyA', () => {
+  //   setShowAllSteps(!showAllSteps);
+  // });
 
-  return (
-    <RecordFormContainer>
-      {discogsResult.length <= 1 && (
-        <RecordFormForm onSubmit={onSubmit}>
-          <RecordFormCloseButton onClick={close}>
-            <RecordFormCloseButtonIcon className='fas fa-times'></RecordFormCloseButtonIcon>
-          </RecordFormCloseButton>
-          <h2>{current ? 'Edit Record' : 'Add Record'}</h2>
-          {currentStep === 1 ? (
-            <Step1
-              title={title}
-              artist={artist}
-              label={label}
-              releaseDate={releaseDate}
-              onChange={onChange}
-            />
-          ) : currentStep === 2 ? (
-            <Step2
-              condition={condition}
-              country={country}
-              locationPrimary={locationPrimary}
-              locationSecondary={locationSecondary}
-              onChange={onChange}
-            />
-          ) : currentStep === 3 ? (
-            <Step3
-              catalogNumber={catalogNumber}
-              barcode={barcode}
-              coverFront={coverFront}
-              genre={genre}
-              style={style}
-              onChange={onChange}
-            />
-          ) : null}
-          <RecordFormStepButtonContainer>
-            <RecordFormStepButton
-              onClick={() => {
-                setCurrentStep(1);
-              }}
-              type='button'
-              aria-label='Form Step 1'
-            />
-            <RecordFormStepButton
-              onClick={() => {
-                setCurrentStep(2);
-              }}
-              type='button'
-              aria-label='Form Step 2'
-            />
-            <RecordFormStepButton
-              onClick={() => {
-                setCurrentStep(3);
-              }}
-              type='button'
-              aria-label='Form Step 3'
-            />
-          </RecordFormStepButtonContainer>
-          <RecordFormButtonContainer>
-            <DiscogsBtn
-              discogsResult={discogsResult}
+  if (showAllSteps === true) {
+    return (
+      <RecordFormContainer>
+        {discogsResult.length <= 1 && (
+          <ShowAllRecordFormForm onSubmit={onSubmit}>
+            <FormHeader>
+              <IconContainer></IconContainer>
+              <FormHeaderText>
+                {current ? 'Edit Record' : 'Add Record'}
+              </FormHeaderText>
+              <RecordFormCloseButton onClick={close}>
+                <RecordFormCloseButtonIcon className='fas fa-times'></RecordFormCloseButtonIcon>
+              </RecordFormCloseButton>
+            </FormHeader>
+            <ShowAllRecordForm>
+              <Step1
+                title={title}
+                artist={artist}
+                label={label}
+                catalogNumber={catalogNumber}
+                releaseDate={releaseDate}
+                onChange={onChange}
+              />
+
+              <Step2
+                recordCondition={recordCondition}
+                sleeveCondition={sleeveCondition}
+                country={country}
+                locationPrimary={locationPrimary}
+                locationSecondary={locationSecondary}
+                onChange={onChange}
+              />
+
+              <Step3
+                barcode={barcode}
+                coverFront={coverFront}
+                genre={genre}
+                style={style}
+                comment={comment}
+                onChange={onChange}
+              />
+
+              <Step4
+                rating={rating}
+                cover={cover}
+                innerSleeve={innerSleeve}
+                outerSleeve={outerSleeve}
+                wishList={wishList}
+                handleChecked={handleChecked}
+                handleRating={handleRating}
+              />
+            </ShowAllRecordForm>
+            <RecordFormStepButtonContainer>
+              <RecordFormStepButton
+                onClick={() => {
+                  setShowAllSteps(!showAllSteps);
+                  setCurrentStep(1);
+                }}
+                type='button'
+                aria-label='Show all steps'
+              >
+                Show All
+              </RecordFormStepButton>
+            </RecordFormStepButtonContainer>
+            <RecordFormButtonContainer>
+              <DiscogsBtn
+                discogsResult={discogsResult}
+                setDiscogsResult={setDiscogsResult}
+              />
+              <Button
+                type='submit'
+                small
+                solidSuccess
+                children={current ? 'Update Record' : 'Add Record'}
+              />
+
+              {current && (
+                <Button
+                  medium
+                  solidDanger
+                  type='button'
+                  onClick={clearAll}
+                  children='Clear'
+                />
+              )}
+            </RecordFormButtonContainer>
+          </ShowAllRecordFormForm>
+        )}
+      </RecordFormContainer>
+    );
+  } else if (showAllSteps === false) {
+    return (
+      <RecordFormContainer>
+        {discogsResult.length <= 1 && (
+          <RecordFormForm onSubmit={onSubmit}>
+            <FormHeader>
+              <IconContainer></IconContainer>
+              <FormHeaderText>
+                {current ? 'Edit Record' : 'Add Record'}
+              </FormHeaderText>
+              <RecordFormCloseButton onClick={close}>
+                <RecordFormCloseButtonIcon className='fas fa-times'></RecordFormCloseButtonIcon>
+              </RecordFormCloseButton>
+            </FormHeader>
+            {currentStep === 1 ? (
+              <Step1
+                title={title}
+                artist={artist}
+                label={label}
+                catalogNumber={catalogNumber}
+                releaseDate={releaseDate}
+                onChange={onChange}
+              />
+            ) : currentStep === 2 ? (
+              <Step2
+                recordCondition={recordCondition}
+                sleeveCondition={sleeveCondition}
+                country={country}
+                locationPrimary={locationPrimary}
+                locationSecondary={locationSecondary}
+                onChange={onChange}
+              />
+            ) : currentStep === 3 ? (
+              <Step3
+                barcode={barcode}
+                coverFront={coverFront}
+                genre={genre}
+                style={style}
+                comment={comment}
+                onChange={onChange}
+              />
+            ) : currentStep === 4 ? (
+              <Step4
+                rating={rating}
+                cover={cover}
+                innerSleeve={innerSleeve}
+                outerSleeve={outerSleeve}
+                wishList={wishList}
+                handleChecked={handleChecked}
+                handleRating={handleRating}
+              />
+            ) : null}
+
+            <RecordFormStepButtonContainer>
+              <RecordFormStepButton
+                onClick={() => {
+                  setCurrentStep(1);
+                }}
+                type='button'
+                aria-label='Form Step 1'
+              >
+                1
+              </RecordFormStepButton>
+              <RecordFormStepButton
+                onClick={() => {
+                  setCurrentStep(2);
+                }}
+                type='button'
+                aria-label='Form Step 2'
+              >
+                2
+              </RecordFormStepButton>
+              <RecordFormStepButton
+                onClick={() => {
+                  setCurrentStep(3);
+                }}
+                type='button'
+                aria-label='Form Step 3'
+              >
+                3
+              </RecordFormStepButton>
+              <RecordFormStepButton
+                onClick={() => {
+                  setCurrentStep(4);
+                }}
+                type='button'
+                aria-label='Form Step 4'
+              >
+                4
+              </RecordFormStepButton>
+
+              <ShowAllRecordFormStepButton
+                onClick={() => {
+                  setShowAllSteps(!showAllSteps);
+                  setCurrentStep(null);
+                }}
+                type='button'
+                aria-label='Show all steps'
+              >
+                Show All
+              </ShowAllRecordFormStepButton>
+            </RecordFormStepButtonContainer>
+            <RecordFormButtonContainer>
+              <DiscogsBtn
+                discogsResult={discogsResult}
+                setDiscogsResult={setDiscogsResult}
+              />
+              <Button
+                type='submit'
+                small
+                solidSuccess
+                children={current ? 'Update Record' : 'Add Record'}
+              />
+
+              {current && (
+                <Button
+                  medium
+                  solidDanger
+                  type='button'
+                  onClick={clearAll}
+                  children='Clear'
+                />
+              )}
+            </RecordFormButtonContainer>
+          </RecordFormForm>
+        )}
+        {discogsResult.length > 1 && (
+          <DiscogsMultiResult>
+            <h2> {discogsResult.length} results found</h2>
+            <h3>Please select desired result</h3>
+            <ResultOption
+              data={discogsResult}
+              record={record}
+              setRecord={setRecord}
               setDiscogsResult={setDiscogsResult}
             />
-            <Button
-              type='submit'
-              small
-              solidSuccess
-              children={current ? 'Update Record' : 'Add Record'}
-            />
-          </RecordFormButtonContainer>
-          {current && (
-            <div>
-              <Button
-                medium
-                solidSuccess
-                type='button'
-                onClick={clearAll}
-                children='Clear'
-              />
-            </div>
-          )}
-        </RecordFormForm>
-      )}
-      {discogsResult.length > 1 && (
-        <DiscogsMultiResult>
-          <h2> {discogsResult.length} results found</h2>
-          <h3>Please select desired result</h3>
-          <ResultOption
-            data={discogsResult}
-            record={record}
-            setRecord={setRecord}
-            setDiscogsResult={setDiscogsResult}
-          />
-        </DiscogsMultiResult>
-      )}
-    </RecordFormContainer>
-  );
+          </DiscogsMultiResult>
+        )}
+      </RecordFormContainer>
+    );
+  }
 };
 
 export default RecordForm;

@@ -5,7 +5,7 @@ const TextField = forwardRef((props, ref) => {
   return (
     <TextFieldInputGroup props={props}>
       <TextFieldLabel>
-        {props.placeholder}
+        {props.title}
         <TextFieldInputArea
           type={props.type}
           name={props.name}
@@ -123,7 +123,7 @@ const TextFieldInputArea = styled.input`
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
   &:focus {
-    color: ${(props) => props.theme.black};
+    color: ${({ theme }) => theme.black};
   }
 `;
 

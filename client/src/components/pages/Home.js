@@ -14,15 +14,58 @@ const HomeContainer = styled.div`
 `;
 
 const HomeGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  justify-items: center;
-  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const Spacer = styled.div`
+  width: 22rem;
+  padding: 0.5em;
+  margin: 0.5em;
+  @media (max-width: 1170px) {
+    display: none;
+  }
 `;
 
 const HomeFilterContainer = styled.div`
-  grid-column: 2/4;
+  width: 22rem;
+  padding: 0.5em;
+  margin: 0.5em;
+  @media (max-width: 785px) {
+    display: none;
+  }
 `;
+
+const MobileFilterContainer = styled(HomeFilterContainer)`
+  @media (max-width: 785px) {
+    display: block;
+  }
+`;
+
+const AddRecordButtonWrapper = styled.div`
+  width: 22rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  margin: 0.5em;
+  @media (max-width: 785px) {
+    display: none;
+  }
+`;
+
+const MobileControlsContainer = styled.div`
+  display: none;
+
+  @media (max-width: 785px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+`;
+
+const MobilRecordFilterContainer = styled.div``;
 
 const AddRecordButtonContainer = styled.div`
   width: 50%;
@@ -39,10 +82,6 @@ const AddRecordButtonContainer = styled.div`
   border: 1px solid $black;
   margin-top: 1.1em;
   height: fit-content;
-
-  @media (max-width: 500px) {
-    display: none;
-  }
 `;
 
 const AddRecordButtonDescription = styled.p`
@@ -68,20 +107,40 @@ const Home = () => {
         />
       ) : null}
       <HomeGrid>
+        {true && (
+          <MobileControlsContainer className='MobileControlsContainer'>
+            <MobileFilterContainer>
+              <MobilRecordFilterContainer>
+                <RecordFilter />
+              </MobilRecordFilterContainer>
+            </MobileFilterContainer>
+            <Button
+              medium
+              circleSuccess
+              onClick={() => setDisplayAddRecord(!displayAddRecord)}
+              children={<FontAwesomeIcon icon={faPlus} />}
+              type='button'
+              label='Add Record'
+            />
+          </MobileControlsContainer>
+        )}
+        <Spacer />
         <HomeFilterContainer>
           <RecordFilter />
         </HomeFilterContainer>
-        <AddRecordButtonContainer>
-          <Button
-            medium
-            circleSuccess
-            onClick={() => setDisplayAddRecord(!displayAddRecord)}
-            children={<FontAwesomeIcon icon={faPlus} />}
-            type='button'
-            label='Add Record'
-          />
-          <AddRecordButtonDescription>Add Record</AddRecordButtonDescription>
-        </AddRecordButtonContainer>
+        <AddRecordButtonWrapper>
+          <AddRecordButtonContainer>
+            <Button
+              medium
+              circleSuccess
+              onClick={() => setDisplayAddRecord(!displayAddRecord)}
+              children={<FontAwesomeIcon icon={faPlus} />}
+              type='button'
+              label='Add Record'
+            />
+            <AddRecordButtonDescription>Add Record</AddRecordButtonDescription>
+          </AddRecordButtonContainer>
+        </AddRecordButtonWrapper>
       </HomeGrid>
       <Records
         displayAddRecord={displayAddRecord}

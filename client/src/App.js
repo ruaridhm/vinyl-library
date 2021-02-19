@@ -28,10 +28,10 @@ if (localStorage.token) {
 
 const App = () => {
   return (
-    <AuthState>
-      <RecordState>
-        <AlertState>
-          <ThemeProvider theme={ColorVariables}>
+    <ThemeProvider theme={ColorVariables}>
+      <AuthState>
+        <RecordState>
+          <AlertState>
             <Router>
               <Fragment>
                 <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
@@ -48,10 +48,10 @@ const App = () => {
                 </Switch>
               </Fragment>
             </Router>
-          </ThemeProvider>
-        </AlertState>
-      </RecordState>
-    </AuthState>
+          </AlertState>
+        </RecordState>
+      </AuthState>
+    </ThemeProvider>
   );
 };
 

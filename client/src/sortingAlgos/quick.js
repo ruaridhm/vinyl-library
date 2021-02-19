@@ -1,7 +1,12 @@
-const quickSortHandler = (arr, sortByVariable) => {
+const quickSortHandler = (arr, sortByVariable, setMovesArr) => {
+  const movesArr = [];
+
   const quickSort = (arr, left, right) => {
     const partition = (arr, pivot, left, right) => {
       const swap = (arr, i, j) => {
+        if (arr[i] !== arr[j]) {
+          movesArr.push({ from: arr[i], to: arr[j] });
+        }
         const temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
@@ -20,6 +25,7 @@ const quickSortHandler = (arr, sortByVariable) => {
     };
 
     let pivot, partitionIndex;
+
     if (left < right) {
       pivot = right;
       partitionIndex = partition(arr, pivot, left, right);
@@ -28,8 +34,7 @@ const quickSortHandler = (arr, sortByVariable) => {
     }
     return arr;
   };
-
-  console.log(quickSort(arr, 0, arr.length - 1));
+  setMovesArr(movesArr);
   return quickSort(arr, 0, arr.length - 1);
 };
 
