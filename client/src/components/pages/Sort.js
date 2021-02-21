@@ -41,11 +41,9 @@ const Sort = () => {
   const sortCollection = (e) => {
     e.preventDefault();
 
-    if (collectionType[0].value === 'digital' && confirmSort === false) {
-      setShowConfirmModal(true);
-    } else {
-      setConfirmSort(true);
-    }
+    collectionType[0].value === 'digital' && confirmSort === false
+      ? setShowConfirmModal(true)
+      : setConfirmSort(true);
   };
   const Sort = () => {
     if (confirmSort === true) {

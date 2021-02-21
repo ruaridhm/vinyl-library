@@ -18,11 +18,9 @@ const mergeSortHandler = (arr, sortByVariable, setMovesArr) => {
     let l = 0,
       r = 0;
     while (l < lLen && r < rLen) {
-      if (left[l][sortByVariable] < right[r][sortByVariable]) {
-        result.push(left[l++]);
-      } else {
-        result.push(right[r++]);
-      }
+      left[l][sortByVariable] < right[r][sortByVariable]
+        ? result.push(left[l++])
+        : result.push(right[r++]);
     }
     return result.concat(left.slice(l)).concat(right.slice(r));
   };

@@ -10,8 +10,6 @@ const DiscogsBtn = ({ setDiscogsResult }) => {
   const { setCurrent, current } = recordContext;
 
   const getData = async () => {
-    console.log('current');
-    console.log(current);
     if (current === null) {
       setAlert(
         'Please select a  saved record to edit to search discogs',
@@ -95,13 +93,12 @@ const DiscogsBtn = ({ setDiscogsResult }) => {
       console.log(discogsGetURL);
       let json;
 
-      if (response.ok) {
-        // if HTTP-status is 200-299
-        // get the response body (the method explained below)
-        json = await response.json();
-      } else {
-        alert('HTTP-Error: ' + response.status);
-      }
+      response.ok
+        ? // if HTTP-status is 200-299
+          // get the response body (the method explained below)
+          (json = await response.json())
+        : alert('HTTP-Error: ' + response.status);
+
       //json actions
 
       setDiscogsResult(json.results);

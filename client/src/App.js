@@ -22,9 +22,7 @@ import { ColorVariables } from './variables.ts';
 
 import './App.scss';
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
+localStorage.token && setAuthToken(localStorage.token);
 
 const App = () => {
   return (

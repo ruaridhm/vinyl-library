@@ -17,20 +17,15 @@ const SideBar = () => {
   const recordContext = useContext(RecordContext);
   const { isAuthenticated, logout, user } = authContext;
   const { clearRecords } = recordContext;
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const onLogout = () => {
     logout();
     clearRecords();
   };
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   if (isAuthenticated) {
     return (
-      <Menu isOpen={menuOpen} onClick={() => console.log('test')} right>
+      <Menu right>
         <Link to='/'>
           <SideBarLogo src={mainLogo} alt='Vinyl Library Logo' />
         </Link>
@@ -48,7 +43,7 @@ const SideBar = () => {
     );
   } else {
     return (
-      <Menu isOpen={menuOpen} right>
+      <Menu right>
         <Link to='/'>
           <SideBarLogo src={mainLogo} alt='Vinyl Library Logo' />
         </Link>

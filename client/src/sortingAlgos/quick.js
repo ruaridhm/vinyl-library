@@ -4,9 +4,7 @@ const quickSortHandler = (arr, sortByVariable, setMovesArr) => {
   const quickSort = (arr, left, right) => {
     const partition = (arr, pivot, left, right) => {
       const swap = (arr, i, j) => {
-        if (arr[i] !== arr[j]) {
-          movesArr.push({ from: arr[i], to: arr[j] });
-        }
+        arr[i] !== arr[j] && movesArr.push({ from: arr[i], to: arr[j] });
         const temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

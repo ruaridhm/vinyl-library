@@ -24,9 +24,8 @@ const Login = (props) => {
   const { login, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
-    if (isAuthenticated) {
-      props.history.push('/');
-    }
+    isAuthenticated && props.history.push('/');
+
     if (error === 'Invalid Credentials') {
       setAlert(error, 'danger');
       clearErrors();
@@ -46,14 +45,12 @@ const Login = (props) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    if (email === '' || password === '') {
-      setAlert('Please fill in all Fields', 'danger');
-    } else {
-      login({
-        email,
-        password,
-      });
-    }
+    email === '' || password === ''
+      ? setAlert('Please fill in all Fields', 'danger')
+      : login({
+          email,
+          password,
+        });
   };
 
   const LoginInputs = () => {
