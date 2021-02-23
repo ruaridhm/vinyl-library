@@ -2,24 +2,15 @@
 
 import React, { useState } from 'react';
 import Stars from './Star';
-import styled from 'styled-components';
+import { RatingContainer, Label } from './Style';
 
-export type Props = {
-  rating: number | null;
+interface StarRatingProps {
+  rating?: number;
   onChange: (rating: number) => void;
   label: string;
-};
+}
 
-const RatingContainer = styled.span`
-  margin-top: 1em;
-`;
-
-const Label = styled.span`
-  display: flex;
-  align-self: center;
-`;
-
-const StarRating = ({ rating, onChange, label }: Props) => {
+const StarRating: React.FC<StarRatingProps> = ({ rating, onChange, label }) => {
   const [override, setOverride] = useState<number | null>(null);
   return (
     <RatingContainer>

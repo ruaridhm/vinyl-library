@@ -17,21 +17,21 @@ const AuthCTALink = styled(Link)`
   color: #0b00d6;
 `;
 
-const Login = (props) => {
+const Login = ({ history }) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
   const { login, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
-    isAuthenticated && props.history.push('/');
+    isAuthenticated && history.push('/');
 
     if (error === 'Invalid Credentials') {
       setAlert(error, 'danger');
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, isAuthenticated, history]);
 
   const [user, setUser] = useState({
     email: '',

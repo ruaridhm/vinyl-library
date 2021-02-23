@@ -90,6 +90,7 @@ const Dropdown = ({
   const toggle = () => setOpen(!open);
 
   const handleOnClick = (item) => {
+    console.log(item);
     if (!selection.some((current) => current.id === item.id)) {
       if (!multiSelect) {
         setSelection([item]);

@@ -1,19 +1,18 @@
 import React, { useState, useCallback } from 'react';
-import styled from 'styled-components';
-
-export type Props = {
+import { Star } from './Style';
+interface StarProps {
   index: number;
   full: boolean;
   setOverride: (rating: number | null) => void;
   setRating: (rating: number) => void;
-};
+}
 
-const Star = styled.svg`
-  padding: 1em 0.15em;
-  cursor: pointer;
-`;
-
-const Stars = ({ index, full, setOverride, setRating }: Props) => {
+const Stars: React.FC<StarProps> = ({
+  index,
+  full,
+  setOverride,
+  setRating,
+}) => {
   const [down, setDown] = useState(false);
 
   const handleMouseDown = useCallback(() => {

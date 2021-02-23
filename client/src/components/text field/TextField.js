@@ -37,7 +37,7 @@ const TextFieldInputGroup = styled.div`
         border-left: none;
         border-right: none;
         &:focus {
-          border-bottom: 2px solid #0b00d6;
+          border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
           -webkit-transition: 0.2s ease-in;
           transition: 0.2s ease-in;
         }
@@ -47,16 +47,16 @@ const TextFieldInputGroup = styled.div`
     props.props.filled &&
     css`
       ${TextFieldInputArea} {
-        background-color: #d7d8da;
+        background-color: ${({ theme }) => theme.backgroundLight};
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-        border-bottom: 2px solid #333;
+        border-bottom: 2px solid ${({ theme }) => theme.darkGrey};
         border-top: none;
         border-left: none;
         border-right: none;
         color: #fff;
         &:focus {
-          border-bottom: 2px solid #0b00d6;
+          border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
           -webkit-transition: 0.2s ease-in;
           transition: 0.2s ease-in;
         }
@@ -66,10 +66,10 @@ const TextFieldInputGroup = styled.div`
     props.props.outline &&
     css`
       ${TextFieldInputArea} {
-        border: 2px solid #333;
+        border: 2px solid ${({ theme }) => theme.darkGrey};
         border-radius: 5px;
         &:focus {
-          border: 2px solid #0b00d6;
+          border: 2px solid ${({ theme }) => theme.primaryColor};
           -webkit-transition: 0.2s ease-in;
           transition: 0.2s ease-in;
         }
@@ -105,7 +105,7 @@ const TextFieldInputGroup = styled.div`
 
 const TextFieldLabel = styled.label`
   color: #333;
-  background: #fff;
+  background: ${({ theme }) => theme.white};
   -webkit-transition: 0.1s;
   transition: 0.1s;
   display: -webkit-box;

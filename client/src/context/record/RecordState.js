@@ -42,6 +42,7 @@ const RecordState = (props) => {
 
   // Add Record
   const addRecord = async (record) => {
+    console.log(record);
     const config = {
       headers: {
         'Content-Type': 'application/json',
