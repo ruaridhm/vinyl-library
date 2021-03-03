@@ -24,7 +24,7 @@ export interface boxesInterface {
   unboxed: RecordInterface[] | any[]; //TODO remove any and allow for empty array and never type
 }
 
-const Library: React.FC = () => {
+const Library = () => {
   const recordContext = useContext(RecordContext);
   const authContext = useContext(AuthContext);
 

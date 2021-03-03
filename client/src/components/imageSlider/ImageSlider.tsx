@@ -10,11 +10,11 @@ interface ImageSliderProps {
   coverLp?: string;
 }
 
-const ImageSlider: React.FC<ImageSliderProps> = ({
+const ImageSlider = ({
   coverFront = Placeholder,
   coverBack,
   coverLp,
-}) => {
+}: ImageSliderProps) => {
   const sliderArr = [<SliderImage src={coverFront} alt='Front Cover' />];
   coverBack && sliderArr.push(<SliderImage src={coverBack} alt='Back Cover' />);
   coverLp && sliderArr.push(<SliderImage src={coverLp} alt='Lp Cover' />);

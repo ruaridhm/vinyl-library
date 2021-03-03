@@ -24,7 +24,7 @@ import './App.scss';
 
 localStorage.token && setAuthToken(localStorage.token);
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <ThemeProvider theme={ColorVariables}>
       <AuthState>

@@ -6,7 +6,7 @@ interface RecordCollectionProps {
   boxes: boxesInterface;
 }
 
-const RecordCollection: React.FC<RecordCollectionProps> = ({ boxes }) => {
+const RecordCollection = ({ boxes }: RecordCollectionProps) => {
   return (
     <StyledRecordCollection>
       <RecordCollectionRow boxLetters={[boxes.a, boxes.b]} boxAmount={2} />

@@ -8,7 +8,7 @@ interface DiscogsBtnProps {
   setDiscogsResult: Dispatch<SetStateAction<any[]>>;
 }
 
-const DiscogsBtn: React.FC<DiscogsBtnProps> = ({ setDiscogsResult }) => {
+const DiscogsBtn = ({ setDiscogsResult }: DiscogsBtnProps) => {
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;

@@ -9,7 +9,7 @@ interface RecordsProps {
   setDisplayAddRecord: Dispatch<SetStateAction<boolean>>;
 }
 
-const Records: React.FC<RecordsProps> = ({ setDisplayAddRecord }) => {
+const Records = ({ setDisplayAddRecord }: RecordsProps) => {
   const recordContext = useContext(RecordContext);
 
   const { records, filtered, getRecords, loading } = recordContext;

@@ -9,7 +9,7 @@ interface PrivateRouteProps {
   path: string;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ component, ...rest }) => {
+const PrivateRoute = ({ component, ...rest }: PrivateRouteProps) => {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, loading } = authContext;
   return (

@@ -11,7 +11,7 @@ interface RecordProps {
   recordInfo: RecordInterface;
 }
 
-const Record: React.FC<RecordProps> = ({ recordInfo }) => {
+const Record = ({ recordInfo }: RecordProps) => {
   const recordContext = useContext(RecordContext);
   const { current, setCurrent, moveRecord } = recordContext;
 

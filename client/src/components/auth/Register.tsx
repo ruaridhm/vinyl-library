@@ -11,7 +11,7 @@ interface RegisterProps {
   };
 }
 
-const Register: React.FC<RegisterProps> = ({ history }) => {
+const Register = ({ history }: RegisterProps) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;

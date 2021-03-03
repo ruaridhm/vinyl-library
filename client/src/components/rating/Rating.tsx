@@ -10,7 +10,7 @@ interface StarRatingProps {
   label: string;
 }
 
-const StarRating: React.FC<StarRatingProps> = ({ rating, onChange, label }) => {
+const StarRating = ({ rating, onChange, label }: StarRatingProps) => {
   const [override, setOverride] = useState<number | null>(null);
   return (
     <RatingContainer>

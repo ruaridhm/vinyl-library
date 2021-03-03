@@ -15,12 +15,7 @@ interface CheckboxProps {
   handleChecked: (e: any) => void;
 }
 
-const CheckBox: React.FC<CheckboxProps> = ({
-  value,
-  label,
-  name,
-  handleChecked,
-}) => {
+const CheckBox = ({ value, label, name, handleChecked }: CheckboxProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   return (
     <CheckBoxContainer onClick={() => handleChecked(inputRef)}>

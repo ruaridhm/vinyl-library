@@ -3,7 +3,7 @@ import RecordContext from '../../../context/record/RecordContext';
 import Textfield from '../../text field/TextField';
 import { FilterFormContainer } from './Style';
 
-const RecordFilter: React.FC = () => {
+const RecordFilter = () => {
   const recordContext = useContext(RecordContext);
   const text = useRef<string>('');
 

@@ -25,13 +25,13 @@ interface DropdownProps {
   setSelection: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
+const Dropdown = ({
   title,
   items,
   multiSelect = false,
   selection,
   setSelection,
-}) => {
+}: DropdownProps) => {
   const [open, setOpen] = useState(false);
 
   const toggle = () => setOpen(!open);

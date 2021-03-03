@@ -12,7 +12,7 @@ interface FeatureProps {
   title: string;
   description: string;
 }
-const Feature: React.FC<FeatureProps> = ({ icon, title, description }) => {
+const Feature = ({ icon, title, description }: FeatureProps) => {
   return (
     <FeatureWrapper>
       <FeatureIcon>{icon}</FeatureIcon>

@@ -25,7 +25,7 @@ interface ButtonProps {
   keyCode?: string;
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+const Button = (props: ButtonProps) => {
   return <StyledButton {...props} />;
 };
 

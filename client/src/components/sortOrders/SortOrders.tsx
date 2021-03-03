@@ -10,7 +10,7 @@ interface SortOrdersProps {
   movesArr: Array<any>;
 }
 
-const SortOrders: React.FC<SortOrdersProps> = ({ movesArr }) => {
+const SortOrders = ({ movesArr }: SortOrdersProps) => {
   const [counter, setCounter] = useState(0);
   const recordContext = useContext(RecordContext);
   const {

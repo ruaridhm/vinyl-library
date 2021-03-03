@@ -9,7 +9,7 @@ interface communityValues {
   mostCommon: { title: string; artist: string; have: number | null };
 }
 
-const User: React.FC = () => {
+const User = () => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const { getRecords, records, loading } = recordContext;

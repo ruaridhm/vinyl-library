@@ -52,10 +52,7 @@ interface RecordItemProps {
   setDisplayAddRecord: Dispatch<SetStateAction<boolean>>;
 }
 
-const RecordItem: React.FC<RecordItemProps> = ({
-  record,
-  setDisplayAddRecord,
-}) => {
+const RecordItem = ({ record, setDisplayAddRecord }: RecordItemProps) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const recordContext = useContext(RecordContext);

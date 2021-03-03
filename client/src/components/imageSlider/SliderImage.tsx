@@ -7,10 +7,10 @@ interface SliderImageProps {
   alt: string;
 }
 
-const SliderImage: React.FC<SliderImageProps> = ({
+const SliderImage = ({
   src = Placeholder,
   alt = 'Slider Image',
-}) => {
+}: SliderImageProps) => {
   return <StyledSliderImage src={src} alt={alt}></StyledSliderImage>;
 };
 

@@ -11,12 +11,12 @@ interface ResultOptionProps {
   setDiscogsResult: Dispatch<SetStateAction<undefined[]>>;
 }
 
-const ResultOption: React.FC<ResultOptionProps> = ({
+const ResultOption = ({
   data,
   record,
   setRecord,
   setDiscogsResult,
-}) => {
+}: ResultOptionProps) => {
   const [iterator, setIterator] = useState(0);
 
   useEffect(() => {

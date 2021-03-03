@@ -7,7 +7,7 @@ interface RecordBoxProps {
   boxedRecords: Array<RecordInterface>;
 }
 
-const RecordBox: React.FC<RecordBoxProps> = ({ boxedRecords }) => {
+const RecordBox = ({ boxedRecords }: RecordBoxProps) => {
   return (
     <StyledRecordBox>
       {boxedRecords.map((record) => (

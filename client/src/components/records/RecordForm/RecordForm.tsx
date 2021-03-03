@@ -41,14 +41,14 @@ interface Step1Props {
   onChange: (e: any) => void;
 }
 
-const Step1: React.FC<Step1Props> = ({
+const Step1 = ({
   title,
   artist,
   label,
   catalogNumber,
   releaseDate,
   onChange,
-}) => {
+}: Step1Props) => {
   return (
     <StepContainer>
       <TextField
@@ -109,14 +109,14 @@ interface Step2Props {
   onChange: (e: any) => void;
 }
 
-const Step2: React.FC<Step2Props> = ({
+const Step2 = ({
   recordCondition,
   sleeveCondition,
   country,
   locationPrimary,
   locationSecondary,
   onChange,
-}) => {
+}: Step2Props) => {
   return (
     <StepContainer>
       <TextField
@@ -177,14 +177,14 @@ interface Step3Props {
   onChange: (e: any) => void;
 }
 
-const Step3: React.FC<Step3Props> = ({
+const Step3 = ({
   barcode,
   coverFront,
   genre,
   style,
   comment,
   onChange,
-}) => {
+}: Step3Props) => {
   return (
     <StepContainer>
       <TextField
@@ -246,7 +246,7 @@ interface Step4Props {
   handleRating: (e: any) => void;
 }
 
-const Step4: React.FC<Step4Props> = ({
+const Step4 = ({
   rating,
   cover,
   innerSleeve,
@@ -254,7 +254,7 @@ const Step4: React.FC<Step4Props> = ({
   wishList,
   handleChecked,
   handleRating,
-}) => {
+}: Step4Props) => {
   return (
     <CheckboxStepContainer>
       <Rating rating={rating} onChange={handleRating} label='Rating' />
@@ -291,10 +291,10 @@ interface RecordFormProps {
   setDisplayAddRecord: Dispatch<SetStateAction<boolean>>;
 }
 
-const RecordForm: React.FC<RecordFormProps> = ({
+const RecordForm = ({
   displayAddRecord,
   setDisplayAddRecord,
-}) => {
+}: RecordFormProps) => {
   const recordContext = useContext(RecordContext);
   const [discogsResult, setDiscogsResult] = useState([]);
   const [showAllSteps, setShowAllSteps] = useState(false);

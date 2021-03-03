@@ -9,7 +9,7 @@ import {
   Stat,
 } from './Style';
 
-const ViewInfo: React.FC<RecordInterface> = ({
+const ViewInfo = ({
   title,
   artist,
   label,
@@ -30,7 +30,7 @@ const ViewInfo: React.FC<RecordInterface> = ({
   innerSleeve,
   outerSleeve,
   wishList,
-}) => {
+}: RecordInterface) => {
   return (
     <ViewInfoContainer>
       <DetailsContainer>

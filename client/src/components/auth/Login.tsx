@@ -13,7 +13,7 @@ interface LoginProps {
   };
 }
 
-const Login: React.FC<LoginProps> = ({ history }) => {
+const Login = ({ history }: LoginProps) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;

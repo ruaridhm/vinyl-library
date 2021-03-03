@@ -19,7 +19,7 @@ import {
   AddRecordButtonDescription,
 } from './Style';
 
-const Home: React.FC = () => {
+const Home = () => {
   const authContext = useContext(AuthContext);
   const [displayAddRecord, setDisplayAddRecord] = useState(false);
 

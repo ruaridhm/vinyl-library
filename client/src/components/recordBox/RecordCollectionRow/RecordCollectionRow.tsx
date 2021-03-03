@@ -9,10 +9,10 @@ interface RecordCollectionRowProps {
   boxAmount: number;
 }
 
-const RecordCollectionRow: React.FC<RecordCollectionRowProps> = ({
+const RecordCollectionRow = ({
   boxLetters,
   boxAmount,
-}) => {
+}: RecordCollectionRowProps) => {
   if (boxAmount === 2) {
     return (
       <StyledRecordCollectionRow>

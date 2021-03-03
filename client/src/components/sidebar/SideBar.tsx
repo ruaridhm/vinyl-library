@@ -12,7 +12,7 @@ type SidebarProps = {
   outerContainerId: string;
 };
 
-const SideBar: React.FC<SidebarProps> = () => {
+const SideBar = () => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const { isAuthenticated, logout, user } = authContext;

@@ -7,7 +7,7 @@ import mainLogo from '../../images/Logo.png';
 
 import { SideBarLogo } from './Style';
 
-const SideBar: React.FC = () => {
+const SideBar = () => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const { isAuthenticated, logout, user } = authContext;

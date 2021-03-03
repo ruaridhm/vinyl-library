@@ -34,7 +34,7 @@ import {
   FooterBottom,
 } from './Style';
 
-const About: React.FC = () => {
+const About = () => {
   const redirect = () => {
     window.location.href = './register';
   };

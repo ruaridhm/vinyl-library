@@ -19,7 +19,7 @@ interface NavbarProps {
   title: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ title }) => {
+const Navbar = ({ title }: NavbarProps) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
 

@@ -8,7 +8,7 @@ interface FormProps {
   formInputs: () => void;
 }
 
-const Form: React.FC<FormProps> = ({ title, onSubmit, formInputs }) => {
+const Form = ({ title, onSubmit, formInputs }: FormProps) => {
   return (
     <FormContainer>
       <FormTitle>

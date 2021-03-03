@@ -12,7 +12,7 @@ import Form from '../../form/Form';
 import Modal from '../../modal/Modal';
 import { RecordInterface } from '../../records/RecordItem/RecordItem';
 
-const Sort: React.FC = () => {
+const Sort = () => {
   const [sortItems, setSortItems] = useState([]);
   const [sortBy, setSortBy] = useState([]);
   const [orderBy, setOrderBy] = useState([]);

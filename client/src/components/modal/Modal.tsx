@@ -23,7 +23,7 @@ interface ModalProps {
   confirmText: string;
 }
 
-const Modal: React.FC<ModalProps> = ({
+const Modal = ({
   headerText,
   bodyHeaderText,
   bodyText,
@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({
   close,
   confirm,
   confirmText,
-}): ReactElement => {
+}: ModalProps): ReactElement => {
   return (
     <ModalWrapper
       style={{

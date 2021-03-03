@@ -16,13 +16,13 @@ interface FeatureDetailsProps {
   description: string;
 }
 
-const FeatureDetails: React.FC<FeatureDetailsProps> = ({
+const FeatureDetails = ({
   left,
   right,
   image,
   title,
   description,
-}) => {
+}: FeatureDetailsProps) => {
   return (
     <FeatureDetailsWrapper>
       {left && (

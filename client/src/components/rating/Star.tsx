@@ -7,12 +7,7 @@ interface StarProps {
   setRating: (rating: number) => void;
 }
 
-const Stars: React.FC<StarProps> = ({
-  index,
-  full,
-  setOverride,
-  setRating,
-}) => {
+const Stars = ({ index, full, setOverride, setRating }: StarProps) => {
   const [down, setDown] = useState(false);
 
   const handleMouseDown = useCallback(() => {

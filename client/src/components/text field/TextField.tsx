@@ -22,7 +22,7 @@ export interface TextFieldProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextField: React.FC<TextFieldProps> = forwardRef((props, ref) => {
+const TextField = forwardRef((props: TextFieldProps, ref) => {
   return (
     <TextFieldInputGroup props={props}>
       <TextFieldLabel>
