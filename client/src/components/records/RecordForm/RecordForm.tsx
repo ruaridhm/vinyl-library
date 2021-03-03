@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import RecordContext from '../../../context/record/RecordContext';
 import Button from '../../button/Button';
 import DiscogsBtn from '../../discogs/DiscogsBtn';
@@ -281,8 +287,8 @@ const Step4: React.FC<Step4Props> = ({
 };
 
 interface RecordFormProps {
-  displayAddRecord: () => void;
-  setDisplayAddRecord: () => void;
+  displayAddRecord: boolean;
+  setDisplayAddRecord: Dispatch<SetStateAction<boolean>>;
 }
 
 const RecordForm: React.FC<RecordFormProps> = ({
@@ -332,16 +338,16 @@ const RecordForm: React.FC<RecordFormProps> = ({
         barcode: '',
         locationPrimary: '',
         locationSecondary: '',
-        want: '',
-        have: '',
+        want: 0,
+        have: 0,
         genre: '',
         style: '',
         cover: null,
         innerSleeve: null,
         outerSleeve: null,
         comment: '',
-        rating: '',
-        wishList: null,
+        rating: null,
+        wishList: false,
       });
     }
   }, [recordContext, current]);
@@ -361,16 +367,16 @@ const RecordForm: React.FC<RecordFormProps> = ({
     barcode: '',
     locationPrimary: '',
     locationSecondary: '',
-    want: '',
-    have: '',
+    want: 0,
+    have: 0,
     genre: '',
     style: '',
     cover: null,
     innerSleeve: null,
     outerSleeve: null,
     comment: '',
-    rating: '',
-    wishList: null,
+    rating: null,
+    wishList: false,
   });
 
   const {
@@ -379,15 +385,18 @@ const RecordForm: React.FC<RecordFormProps> = ({
     label,
     catalogNumber,
     releaseDate,
+    // format,
     country,
     coverFront,
-    // coverBack,
-    // coverLp,
+    coverBack,
+    coverLp,
     recordCondition,
     sleeveCondition,
     barcode,
     locationPrimary,
     locationSecondary,
+    want,
+    have,
     genre,
     style,
     cover,

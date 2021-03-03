@@ -2,21 +2,14 @@ import React, { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../context/auth/AuthContext';
 import AlertContext from '../../context/alert/AlertContext';
 import TextField from '../text field/TextField';
-import Form, { FormGroup } from '../form/Form';
+import Form from '../form/Form';
+import { FormGroup } from '../form/Style';
 
 import { AltAuthCTA, AuthCTALink } from './Style';
 
 interface LoginProps {
   history: {
     push: (arg0: string) => void;
-  };
-}
-
-interface eInterface {
-  preventDefault: () => void;
-  target: {
-    name: string;
-    value: string;
   };
 }
 
@@ -43,10 +36,10 @@ const Login: React.FC<LoginProps> = ({ history }) => {
 
   const { email, password } = user;
 
-  const onChange = (e) => {
+  const onChange = (e: { target: { name: string; value: string } }) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     email === '' || password === ''
       ? setAlert('Please fill in all Fields', 'danger')

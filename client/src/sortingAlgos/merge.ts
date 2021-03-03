@@ -1,9 +1,11 @@
 const mergeSortHandler = (
   arr: Array<any>,
   sortByVariable: string,
-  setMovesArr: () => void
+  setMovesArr: React.Dispatch<
+    React.SetStateAction<({ from: number; to: number } | null)[]>
+  >
 ) => {
-  const movesArr: Array<any> = [];
+  const movesArr: Array<{ from: number; to: number } | null> = [];
 
   const mergeSort = (arr) => {
     const len = arr.length;

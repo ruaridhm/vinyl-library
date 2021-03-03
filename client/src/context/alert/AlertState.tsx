@@ -9,7 +9,7 @@ const AlertState: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(AlertReducer, []);
 
   //SET ALERT
-  const setAlert = (msg: string, type: string, timeout = 5000) => {
+  const setAlert = (msg: string, type: string, timeout = 3000) => {
     const id = uuid();
     dispatch({
       type: SET_ALERT,

@@ -1,7 +1,7 @@
 import React from 'react';
-import Feature from '../feature/Feature';
-import Button from '../button/Button';
-import FeatureDetails from '../feature/FeatureDetails';
+import Feature from '../../feature/Feature';
+import Button from '../../button/Button';
+import FeatureDetails from '../../feature/FeatureDetails';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlayCircle,
@@ -31,6 +31,7 @@ import {
   StyledFontAwesomeIconDemoCTA,
   FooterLine,
   FooterCopyright,
+  FooterBottom,
 } from './Style';
 
 const About: React.FC = () => {
@@ -56,7 +57,7 @@ const About: React.FC = () => {
             type='button'
             solidSuccess
             medium
-            children='Sign Up'
+            label='Sign Up'
           />
 
           <LandingDemoCTA>

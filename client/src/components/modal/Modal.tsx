@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { ReactElement } from 'react';
 import Button from '../button/Button';
 import {
   ModalWrapper,
@@ -15,7 +16,7 @@ import {
 interface ModalProps {
   headerText: string;
   bodyHeaderText?: string;
-  bodyText: string | Element;
+  bodyText: string | ReactNode;
   show: boolean;
   close: () => void;
   confirm: () => void;
@@ -30,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({
   close,
   confirm,
   confirmText,
-}) => {
+}): ReactElement => {
   return (
     <ModalWrapper
       style={{
@@ -54,7 +55,7 @@ const Modal: React.FC<ModalProps> = ({
             solidDanger
             type='button'
             medium
-            children='Cancel'
+            label='Cancel'
           />
 
           <Button
@@ -62,7 +63,7 @@ const Modal: React.FC<ModalProps> = ({
             solidSuccess
             type='button'
             medium
-            children={confirmText}
+            label={confirmText}
           />
         </ModalFooter>
       </ModalContent>

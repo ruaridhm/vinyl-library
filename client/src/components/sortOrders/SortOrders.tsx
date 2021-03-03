@@ -4,6 +4,7 @@ import Button from '../button/Button';
 import RecordContext from '../../context/record/RecordContext';
 import useKey from '../../hooks/useKey';
 import { RecordCollectionContainer, MovesContainer } from './Style';
+import { RecordInterface } from '../records/RecordItem/RecordItem';
 
 interface SortOrdersProps {
   movesArr: Array<any>;
@@ -21,7 +22,15 @@ const SortOrders: React.FC<SortOrdersProps> = ({ movesArr }) => {
   } = recordContext;
   const [boxesLoaded, setBoxesLoaded] = useState(null);
 
-  const boxes = {
+  interface boxes {
+    a: Array<RecordInterface>;
+    b: Array<RecordInterface>;
+    c: Array<RecordInterface>;
+    d: Array<RecordInterface>;
+    unboxed: Array<RecordInterface>;
+  }
+
+  const boxes: boxes = {
     a: [],
     b: [],
     c: [],
@@ -37,7 +46,7 @@ const SortOrders: React.FC<SortOrdersProps> = ({ movesArr }) => {
   useEffect(() => {
     //Loop through each record and assign it a box depending on its primaryLocation ( box letter)
     if (records !== null && !loading) {
-      records.forEach((element) => {
+      records.forEach((element: RecordInterface) => {
         !boxes.hasOwnProperty(element.locationPrimary)
           ? boxes.unboxed.push(element)
           : boxes[element.locationPrimary].push(element);

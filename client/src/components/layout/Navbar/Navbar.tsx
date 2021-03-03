@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AuthContext from '../../context/auth/AuthContext';
-import RecordContext from '../../context/record/recordContext';
+import AuthContext from '../../../context/auth/AuthContext';
+import RecordContext from '../../../context/record/RecordContext';
 import mainLogo from '../../images/Logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';

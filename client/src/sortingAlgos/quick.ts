@@ -1,9 +1,20 @@
-const quickSortHandler = (arr, sortByVariable, setMovesArr) => {
-  const movesArr = [];
+const quickSortHandler = (
+  arr: Array<any>,
+  sortByVariable: string,
+  setMovesArr: React.Dispatch<
+    React.SetStateAction<({ from: number; to: number } | null)[]>
+  >
+) => {
+  const movesArr: Array<{ from: number; to: number } | null> = [];
 
-  const quickSort = (arr, left, right) => {
-    const partition = (arr, pivot, left, right) => {
-      const swap = (arr, i, j) => {
+  const quickSort = (arr: Array<any>, left: number, right: number) => {
+    const partition = (
+      arr: Array<any>,
+      pivot: number,
+      left: number,
+      right: number
+    ) => {
+      const swap = (arr: Array<any>, i: number, j: number) => {
         arr[i] !== arr[j] && movesArr.push({ from: arr[i], to: arr[j] });
         const temp = arr[i];
         arr[i] = arr[j];

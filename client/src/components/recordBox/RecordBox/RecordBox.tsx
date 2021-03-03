@@ -1,9 +1,10 @@
 import React from 'react';
-import Record from './Record/Record';
+import { RecordInterface } from '../../records/RecordItem/RecordItem';
+import Record from '../Record/Record';
 import { StyledRecordBox } from './Style';
 
 interface RecordBoxProps {
-  boxedRecords: Array<string>;
+  boxedRecords: Array<RecordInterface>;
 }
 
 const RecordBox: React.FC<RecordBoxProps> = ({ boxedRecords }) => {

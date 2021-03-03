@@ -1,6 +1,24 @@
 import styled, { css } from 'styled-components';
 
-export const StyledButton = styled.button`
+interface StyledButton {
+  solidPrimary?: boolean;
+  solidWarning?: boolean;
+  solidDanger?: boolean;
+  solidSuccess?: boolean;
+  outlinePrimary?: boolean;
+  outlineWarning?: boolean;
+  outlineDanger?: boolean;
+  outlineSuccess?: boolean;
+  circlePrimary?: boolean;
+  circleWarning?: boolean;
+  circleDanger?: boolean;
+  circleSuccess?: boolean;
+  small?: boolean;
+  medium?: boolean;
+  large?: boolean;
+}
+
+export const StyledButton = styled.button<StyledButton>`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   border-radius: 10px;
@@ -13,37 +31,40 @@ export const StyledButton = styled.button`
     color: ${({ theme }) => theme.white};
   }
 
-  ${(props) =>
-    props.solidPrimary &&
+  ${({ solidPrimary }) =>
+    solidPrimary &&
     css`
       background-color: ${({ theme }) => theme.primaryColor};
       color: ${({ theme }) => theme.lightColor};
       border: none;
     `}
 
-  ${(props) =>
-    props.solidWarning &&
+  ${({ solidWarning }) =>
+    solidWarning &&
     css`
       background-color: ${({ theme }) => theme.warningColor};
       color: ${({ theme }) => theme.darkColor};
       border: none;
     `}
-    ${(props) =>
-    props.solidDanger &&
+    
+    ${({ solidDanger }) =>
+    solidDanger &&
     css`
       background-color: ${({ theme }) => theme.dangerColor};
       color: ${({ theme }) => theme.white};
       border: none;
     `}
-    ${(props) =>
-    props.solidSuccess &&
+
+    ${({ solidSuccess }) =>
+    solidSuccess &&
     css`
       background-color: ${({ theme }) => theme.successColor};
       color: ${({ theme }) => theme.lightColor};
       border: none;
     `}
-    ${(props) =>
-    props.outlinePrimary &&
+
+    ${({ outlinePrimary }) =>
+    outlinePrimary &&
     css`
       background-color: transparent;
       color: ${({ theme }) => theme.primaryColor};
@@ -52,35 +73,38 @@ export const StyledButton = styled.button`
         color: ${({ theme }) => theme.secondaryColor};
       }
     `}
-    ${(props) =>
-    props.outlineWarning &&
+
+    ${({ outlineWarning }) =>
+    outlineWarning &&
     css`
       background-color: transparent;
       color: ${({ theme }) => theme.warningColor};
       border: 2px solid ${({ theme }) => theme.warningColor};
     `}
-    ${(props) =>
-    props.outlineDanger &&
+
+    ${({ outlineDanger }) =>
+    outlineDanger &&
     css`
       background-color: transparent;
       color: ${({ theme }) => theme.dangerColor};
       border: 2px solid ${({ theme }) => theme.dangerColor};
     `}
-    ${(props) =>
-    props.outlineSuccess &&
+
+    ${({ outlineSuccess }) =>
+    outlineSuccess &&
     css`
       background-color: transparent;
       color: ${({ theme }) => theme.successColor};
       border: 2px solid ${({ theme }) => theme.successColor};
     `}
 
-    /* ${(props) => props.circlePrimary && css``}
-    ${(props) => props.circleWarning && css``}
-    ${(props) => props.circleDanger && css``} */
+    /* ${({ circlePrimary }) => circlePrimary && css``}
+    ${({ circleWarning }) => circleWarning && css``}
+    ${({ circleDanger }) => circleDanger && css``} */
 
 
-    ${(props) =>
-    props.circleSuccess &&
+    ${({ circleSuccess }) =>
+    circleSuccess &&
     css`
       margin: 0;
       padding: 0;
@@ -95,23 +119,22 @@ export const StyledButton = styled.button`
       color: ${({ theme }) => theme.lightColor};
     `}
 
-
-
-    ${(props) =>
-    props.small &&
+    ${({ small }) =>
+    small &&
     css`
       padding: 0.3em 0.7em;
       font-size: 1rem;
     `}
-    ${(props) =>
-    props.medium &&
+
+    ${({ medium }) =>
+    medium &&
     css`
       padding: 0.315em 1.05em;
       font-size: 1.5rem;
     `}
 
-    ${(props) =>
-    props.large &&
+    ${({ large }) =>
+    large &&
     css`
       padding: 0.6em 1.4em;
       font-size: 2rem;

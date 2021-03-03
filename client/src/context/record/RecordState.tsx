@@ -24,6 +24,7 @@ const RecordState: React.FC = ({ children }) => {
     moveRecord: null,
     filtered: null,
     error: null,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(RecordReducer, initialState);
@@ -126,6 +127,7 @@ const RecordState: React.FC = ({ children }) => {
         moveRecord: state.moveRecord,
         filtered: state.filtered,
         error: state.error,
+        loading: state.loading,
         addRecord,
         deleteRecord,
         setCurrent,

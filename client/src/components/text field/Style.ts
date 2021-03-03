@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { TextFieldProps } from './TextField';
 
-export const TextFieldInputGroup = styled.div`
+export const TextFieldInputGroup = styled.div<TextFieldProps>`
   position: relative;
   margin-top: 1em;
   height: -webkit-fit-content;
@@ -10,8 +11,8 @@ export const TextFieldInputGroup = styled.div`
   width: -moz-fit-content;
   width: fit-content;
 
-  ${(props) =>
-    props.props.standard &&
+  ${({ standard }) =>
+    standard &&
     css`
       ${TextFieldInputArea} {
         border-bottom: 2px solid ${({ theme }) => theme.checkboxGreyBorder};
@@ -25,8 +26,8 @@ export const TextFieldInputGroup = styled.div`
         }
       }
     `}
-  ${(props) =>
-    props.props.filled &&
+  ${({ filled }) =>
+    filled &&
     css`
       ${TextFieldInputArea} {
         background-color: ${({ theme }) => theme.backgroundLight};
@@ -44,8 +45,8 @@ export const TextFieldInputGroup = styled.div`
         }
       }
     `}
-  ${(props) =>
-    props.props.outline &&
+  ${({ outline }) =>
+    outline &&
     css`
       ${TextFieldInputArea} {
         border: 2px solid ${({ theme }) => theme.darkGrey};
@@ -58,16 +59,16 @@ export const TextFieldInputGroup = styled.div`
       }
     `}
 
-    ${(props) =>
-    props.props.small &&
+    ${({ small }) =>
+    small &&
     css`
       ${TextFieldInputArea} {
         padding: 0.8em 0.6em;
         font-size: 0.9rem;
       }
     `}
-  ${(props) =>
-    props.props.medium &&
+  ${({ medium }) =>
+    medium &&
     css`
       ${TextFieldInputArea} {
         padding: 0.9em 0.8em;
@@ -75,8 +76,8 @@ export const TextFieldInputGroup = styled.div`
       }
     `}
   
-  ${(props) =>
-    props.props.large &&
+  ${({ large }) =>
+    large &&
     css`
       ${TextFieldInputArea} {
         padding: 1em 1em;

@@ -129,6 +129,34 @@ router.put('/:id', auth, async (req, res) => {
     comment,
   } = req.body;
 
+  interface RecordFields {
+    title: string;
+    artist: string;
+    label: string;
+    catalogNumber: string;
+    releaseDate: string;
+    format: string;
+    country: string;
+    coverFront: string;
+    coverBack: string;
+    coverLp: string;
+    recordCondition: string;
+    sleeveCondition: string;
+    barcode: string;
+    locationPrimary: string;
+    locationSecondary: string;
+    want: number;
+    have: number;
+    genre: string;
+    style: string;
+    cover: string;
+    innerSleeve: string;
+    outerSleeve: string;
+    wishList: boolean;
+    rating: string;
+    comment: string;
+  }
+
   //Build record object
   const recordFields = {};
   if (title) recordFields.title = title;

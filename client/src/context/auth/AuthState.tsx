@@ -71,7 +71,7 @@ const AuthState: React.FC = ({ children }) => {
     }
   };
   //Login User
-  const login = async (formData: { name: string; password: string }) => {
+  const login = async (formData: { email: string; password: string }) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',

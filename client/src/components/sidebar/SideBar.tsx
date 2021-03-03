@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import { slide as Menu } from 'react-burger-menu';
-
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
-import RecordContext from '../../context/record/recordContext';
+import RecordContext from '../../context/record/RecordContext';
 import mainLogo from '../../images/Logo.png';
 
-const SideBarLogo = styled.img`
-  max-height: 5rem;
-`;
+import { SideBarLogo } from './Style';
 
-const SideBar = () => {
+type SidebarProps = {
+  pageWrapId: string;
+  outerContainerId: string;
+};
+
+const SideBar: React.FC<SidebarProps> = () => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const { isAuthenticated, logout, user } = authContext;
@@ -57,15 +57,4 @@ const SideBar = () => {
     );
   }
 };
-
-SideBar.propTypes = {
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.string,
-};
-
-SideBar.defaultProps = {
-  title: 'Vinyl Library',
-  icon: mainLogo,
-};
-
 export default SideBar;

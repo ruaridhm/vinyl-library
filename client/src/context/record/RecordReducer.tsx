@@ -36,7 +36,7 @@ type Actions =
     }
   | {
       type: 'UPDATE_RECORD';
-      payload: AxiosResponse<any>;
+      payload: { _id: string };
     }
   | {
       type: 'FILTER_RECORDS';

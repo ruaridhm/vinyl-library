@@ -3,7 +3,7 @@ import { StyledButton } from './Style';
 
 interface ButtonProps {
   onClick?: () => void;
-  type: string;
+  type: 'submit' | 'reset' | 'button';
   children?: string | JSX.Element;
   label: string;
   solidPrimary?: boolean;
@@ -21,6 +21,8 @@ interface ButtonProps {
   small?: boolean;
   medium?: boolean;
   large?: boolean;
+  keyPressNumber?: number;
+  keyCode?: string;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {

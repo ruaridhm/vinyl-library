@@ -1,9 +1,9 @@
 import React from 'react';
-import RecordCollectionRow from './RecordCollectionRow';
+import { boxesInterface } from '../../pages/Library/Library';
+import RecordCollectionRow from '../RecordCollectionRow/RecordCollectionRow';
 import { StyledRecordCollection } from './Style';
-
 interface RecordCollectionProps {
-  boxes: Array<any>;
+  boxes: boxesInterface;
 }
 
 const RecordCollection: React.FC<RecordCollectionProps> = ({ boxes }) => {

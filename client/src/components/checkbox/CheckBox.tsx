@@ -12,7 +12,7 @@ interface CheckboxProps {
   value?: string | boolean;
   label: string;
   name: string;
-  handleChecked: () => void;
+  handleChecked: (e: any) => void;
 }
 
 const CheckBox: React.FC<CheckboxProps> = ({

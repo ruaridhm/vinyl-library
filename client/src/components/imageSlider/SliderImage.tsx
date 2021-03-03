@@ -11,11 +11,6 @@ const SliderImage: React.FC<SliderImageProps> = ({
   src = Placeholder,
   alt = 'Slider Image',
 }) => {
-  if (src === '') {
-    src = Placeholder;
-    alt = 'No image available';
-  }
-
   return <StyledSliderImage src={src} alt={alt}></StyledSliderImage>;
 };
 

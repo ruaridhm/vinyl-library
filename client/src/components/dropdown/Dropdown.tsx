@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import {
   DropdownContainer,
   DropdownWrapper,
   DropdownHeader,
-  DrodownHeaderTitle,
+  DropdownHeaderTitle,
   DropdownHeaderTitleBold,
   DropdownHeaderAction,
+  DropdownList,
   DropdownListItem,
   DropdownListItemButton,
 } from './Style';
 
+interface itemInterface {
+  id: number;
+  title: string;
+}
+
 interface DropdownProps {
   title: string;
-  items: Array<object>;
-  multiSelect: boolean;
-  selection: Array<string>;
-  setSelection: () => void;
+  items: Array<itemInterface>;
+  multiSelect?: boolean;
+  selection: Array<{ id: number; title: string }>;
+  setSelection: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -30,13 +36,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   const toggle = () => setOpen(!open);
 
-  interface itemInterface {
-    id: Number;
-    title: string;
-    value: string;
-  }
-
-  const handleOnClick = (item: itemInterface) => {
+  const handleOnClick = (item) => {
     if (!selection.some((current) => current.id === item.id)) {
       if (!multiSelect) {
         setSelection([item]);

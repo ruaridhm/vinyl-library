@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const LandingPage = styled.div`
   width: 100%;
@@ -159,7 +160,7 @@ export const StyledFontAwesomeIconDemoCTA = styled(FontAwesomeIcon)`
   margin-right: 0.5rem;
   color: ${({ theme }) => theme.dangerColor};
   fill: ${({ theme }) => theme.lightColor};
-  font-size: 2em;
+  font-size: 2rem;
 `;
 
 export const FooterLine = styled.hr`

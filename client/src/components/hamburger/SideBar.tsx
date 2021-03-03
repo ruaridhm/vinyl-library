@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
-import RecordContext from '../../context/record/recordContext';
+import RecordContext from '../../context/record/RecordContext';
 import mainLogo from '../../images/Logo.png';
 
 import { SideBarLogo } from './Style';

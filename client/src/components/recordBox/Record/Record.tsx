@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import RecordContext from '../../context/record/recordContext';
+import RecordContext from '../../../context/record/RecordContext';
+import { RecordInterface } from '../../records/RecordItem/RecordItem';
 import {
   StyledRecord,
   RecordHighlighted,
@@ -7,9 +8,7 @@ import {
 } from './Style';
 
 interface RecordProps {
-  recordInfo: {
-    _id: string;
-  };
+  recordInfo: RecordInterface;
 }
 
 const Record: React.FC<RecordProps> = ({ recordInfo }) => {

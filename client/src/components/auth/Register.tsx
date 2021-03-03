@@ -2,19 +2,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/AlertContext';
 import AuthContext from '../../context/auth/AuthContext';
 import TextField from '../text field/TextField';
-import Form, { FormGroup } from '../form/Form';
+import Form from '../form/Form';
+import { FormGroup } from '../form/Style';
 import { AltAuthCTA, AuthCTALink } from './Style';
 interface RegisterProps {
   history: {
     push: (arg0: string) => void;
-  };
-}
-
-interface eInterface {
-  preventDefault: () => void;
-  target: {
-    name: string;
-    value: string;
   };
 }
 
@@ -43,10 +36,10 @@ const Register: React.FC<RegisterProps> = ({ history }) => {
 
   const { name, email, password, password2 } = user;
 
-  const onChange = (e) => {
+  const onChange = (e: { target: { name: string; value: string } }) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (name === '' || email === '' || password === '' || password2 === '') {
       setAlert('Please enter all fields', 'danger');
@@ -100,7 +93,7 @@ const Register: React.FC<RegisterProps> = ({ history }) => {
             value={password}
             onChange={onChange}
             required
-            minLength='6'
+            minLength={6}
             standard
             medium
           />
@@ -113,7 +106,7 @@ const Register: React.FC<RegisterProps> = ({ history }) => {
             value={password2}
             onChange={onChange}
             required
-            minLength='6'
+            minLength={6}
             standard
             medium
           />

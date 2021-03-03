@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import RecordContext from '../../../context/record/RecordContext';
 import RecordItem from '../RecordItem/RecordItem';
@@ -6,14 +6,10 @@ import Spinner from '../../layout/Spinner/Spinner';
 import { StyledTransitionGroup } from './Style';
 
 interface RecordsProps {
-  displayAddRecord: () => void;
-  setDisplayAddRecord: () => void;
+  setDisplayAddRecord: Dispatch<SetStateAction<boolean>>;
 }
 
-const Records: React.FC<RecordsProps> = ({
-  displayAddRecord,
-  setDisplayAddRecord,
-}) => {
+const Records: React.FC<RecordsProps> = ({ setDisplayAddRecord }) => {
   const recordContext = useContext(RecordContext);
 
   const { records, filtered, getRecords, loading } = recordContext;
@@ -36,7 +32,6 @@ const Records: React.FC<RecordsProps> = ({
                 <CSSTransition key={record._id} timeout={500} classNames='item'>
                   <RecordItem
                     record={record}
-                    displayAddRecord={displayAddRecord}
                     setDisplayAddRecord={setDisplayAddRecord}
                   />
                 </CSSTransition>
@@ -45,7 +40,6 @@ const Records: React.FC<RecordsProps> = ({
                 <CSSTransition key={record._id} timeout={500} classNames='item'>
                   <RecordItem
                     record={record}
-                    displayAddRecord={displayAddRecord}
                     setDisplayAddRecord={setDisplayAddRecord}
                   />
                 </CSSTransition>

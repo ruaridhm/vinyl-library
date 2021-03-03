@@ -5,11 +5,20 @@ import {
   TextFieldInputArea,
 } from './Style';
 
-interface TextFieldProps {
+export interface TextFieldProps {
   title: string;
   name: string;
   type: string;
   value: string;
+  standard?: boolean;
+  filled?: boolean;
+  outline?: boolean;
+  small?: boolean;
+  medium?: boolean;
+  large?: boolean;
+  required?: boolean;
+  minLength?: number;
+
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

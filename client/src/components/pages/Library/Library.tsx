@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useState } from 'react';
-import ImageSlider from '../imageSlider/ImageSlider';
-import RecordContext from '../../context/record/recordContext';
-import AuthContext from '../../context/auth/AuthContext';
-import Button from '../button/Button';
-import RecordCollection from '../recordBox/RecordCollection';
-import Spinner from '../layout/spinner';
-import useKey from '../../hooks/useKey';
+import ImageSlider from '../../imageSlider/ImageSlider';
+import RecordContext from '../../../context/record/RecordContext';
+import AuthContext from '../../../context/auth/AuthContext';
+import Button from '../../button/Button';
+import RecordCollection from '../../recordBox/RecordCollection/RecordCollection';
+import Spinner from '../../layout/Spinner/Spinner';
+import useKey from '../../../hooks/useKey';
 
 import {
   SpinnerContainer,
@@ -14,6 +14,15 @@ import {
   CurrentRecordDetailsContainer,
   CurrentRecordDetails,
 } from './Style';
+import { RecordInterface } from '../../records/RecordItem/RecordItem';
+
+export interface boxesInterface {
+  a: Array<RecordInterface> | [];
+  b: RecordInterface[] | [];
+  c: RecordInterface[] | [];
+  d: RecordInterface[] | [];
+  unboxed: RecordInterface[] | any[]; //TODO remove any and allow for empty array and never type
+}
 
 const Library: React.FC = () => {
   const recordContext = useContext(RecordContext);
@@ -21,9 +30,9 @@ const Library: React.FC = () => {
 
   const { getRecords, records, loading, current, setCurrent } = recordContext;
 
-  const [boxesLoaded, setBoxesLoaded] = useState<object | null>(null);
+  const [boxesLoaded, setBoxesLoaded] = useState<boxesInterface | null>(null);
 
-  const boxes = {
+  const boxes: boxesInterface = {
     a: [],
     b: [],
     c: [],

@@ -1,10 +1,12 @@
 const insertionSort = (
   arr: Array<any>,
   sortByVariable: string,
-  setMovesArr: (arg0: Array<any>) => void
+  setMovesArr: React.Dispatch<
+    React.SetStateAction<({ from: number; to: number } | null)[]>
+  >
 ) => {
   const inputArr = arr,
-    movesArr = [],
+    movesArr: Array<{ from: number; to: number } | null> = [],
     n = inputArr.length;
 
   for (let i = 1; i < n; i++) {
@@ -21,7 +23,9 @@ const insertionSort = (
     inputArr[j + 1] = current;
   }
 
-  const shrinkMovesArr = (movesArr: Array<any>) => {
+  const shrinkMovesArr = (
+    movesArr: Array<{ from: number; to: number } | null>
+  ) => {
     let i = 0,
       j = i + 1;
     while (i < movesArr.length && j < movesArr.length) {

@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import Button from '../button/Button';
 import AlertContext from '../../context/alert/AlertContext';
-import RecordContext from '../../context/record/recordContext';
+import RecordContext from '../../context/record/RecordContext';
 
 interface DiscogsBtnProps {
-  setDiscogsResult: (arg0: object) => void;
+  discogsResult: any[];
+  setDiscogsResult: Dispatch<SetStateAction<any[]>>;
 }
 
 const DiscogsBtn: React.FC<DiscogsBtnProps> = ({ setDiscogsResult }) => {

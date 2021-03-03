@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Records from '../records/Records';
-import RecordFilter from '../records/RecordFilter';
-import AuthContext from '../../context/auth/AuthContext';
-import Button from '../button/Button';
-import RecordForm from '../records/RecordForm';
+import Records from '../../records/Records/Records';
+import RecordFilter from '../../records/RecordFilter/RecordFilter';
+import AuthContext from '../../../context/auth/AuthContext';
+import Button from '../../button/Button';
+import RecordForm from '../../records/RecordForm/RecordForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -72,10 +72,7 @@ const Home: React.FC = () => {
           </AddRecordButtonContainer>
         </AddRecordButtonWrapper>
       </HomeGrid>
-      <Records
-        displayAddRecord={displayAddRecord}
-        setDisplayAddRecord={setDisplayAddRecord}
-      />
+      <Records setDisplayAddRecord={setDisplayAddRecord} />
     </HomeContainer>
   );
 };

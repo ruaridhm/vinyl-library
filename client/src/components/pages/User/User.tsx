@@ -1,8 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Spinner from '../layout/spinner';
-import AuthContext from '../../context/auth/AuthContext';
-import RecordContext from '../../context/record/recordContext';
+import Spinner from '../../layout/Spinner/Spinner';
+import AuthContext from '../../../context/auth/AuthContext';
+import RecordContext from '../../../context/record/RecordContext';
 import { UserStatsContainer, UserTitle, UserStats, UserStat } from './Style';
+
+interface communityValues {
+  mostWanted: { title: string; artist: string; want: number | null };
+  mostCommon: { title: string; artist: string; have: number | null };
+}
 
 const User: React.FC = () => {
   const authContext = useContext(AuthContext);
@@ -13,7 +18,10 @@ const User: React.FC = () => {
   const [averageSleeveCondition, setAverageSleeveCondition] = useState('');
   const [mostPopularArtist, setMostPopularArtist] = useState('');
   const [mostPopularLabel, setMostPopularLabel] = useState('');
-  const [communityValues, setCommunityValues] = useState('');
+  const [communityValues, setCommunityValues] = useState<communityValues>({
+    mostWanted: { title: '', artist: '', want: null },
+    mostCommon: { title: '', artist: '', have: null },
+  });
 
   useEffect(() => {
     authContext.loadUser();
@@ -80,7 +88,7 @@ const User: React.FC = () => {
         });
 
       const tempArr = [6, 2, 4, 4, 6, 2, 2, 3, 1, 3, 6, 2, 6, 3, 1, 6, 5];
-      const average = (nums) => {
+      const average = (nums: Array<number>) => {
         const avg = Math.round(nums.reduce((a, b) => a + b) / nums.length);
 
         switch (avg) {
@@ -105,7 +113,7 @@ const User: React.FC = () => {
       return average(tempArr);
     };
 
-    const calculateMostPopular = (stat) => {
+    const calculateMostPopular = (stat: string) => {
       const mostPopular = {};
       let winningStat;
 

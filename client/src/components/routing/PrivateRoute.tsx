@@ -4,13 +4,12 @@ import { Route, Redirect } from 'react-router-dom';
 import AuthContext from '../../context/auth/AuthContext';
 
 interface PrivateRouteProps {
-  component: Component;
+  component: React.FC<{}>;
+  exact: boolean;
+  path: string;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({
-  component: Component,
-  ...rest
-}) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ component, ...rest }) => {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, loading } = authContext;
   return (

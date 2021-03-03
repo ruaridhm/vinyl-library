@@ -1,15 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Dropdown from '../dropdown/Dropdown';
-import AuthContext from '../../context/auth/AuthContext';
-import RecordContext from '../../context/record/recordContext';
-import AlertContext from '../../context/alert/AlertContext';
-import bubbleSort from '../../sortingAlgos/bubble';
-import insertionSort from '../../sortingAlgos/insertion';
-import mergeSortHandler from '../../sortingAlgos/merge';
-import quickSortHandler from '../../sortingAlgos/quick';
-import SortOrders from '../sortOrders/SortOrders';
-import Form from '../form/Form';
-import Modal from '../modal/Modal';
+import Dropdown from '../../dropdown/Dropdown';
+import AuthContext from '../../../context/auth/AuthContext';
+import RecordContext from '../../../context/record/RecordContext';
+import AlertContext from '../../../context/alert/AlertContext';
+import bubbleSort from '../../../sortingAlgos/bubble';
+import insertionSort from '../../../sortingAlgos/insertion';
+import mergeSortHandler from '../../../sortingAlgos/merge';
+import quickSortHandler from '../../../sortingAlgos/quick';
+import SortOrders from '../../sortOrders/SortOrders';
+import Form from '../../form/Form';
+import Modal from '../../modal/Modal';
+import { RecordInterface } from '../../records/RecordItem/RecordItem';
 
 const Sort: React.FC = () => {
   const [sortItems, setSortItems] = useState([]);
@@ -38,7 +39,7 @@ const Sort: React.FC = () => {
     setShowConfirmModal(false);
   };
 
-  const sortCollection = (e) => {
+  const sortCollection = (e: React.FormEvent) => {
     e.preventDefault();
 
     collectionType[0].value === 'digital' && confirmSort === false
@@ -94,7 +95,7 @@ const Sort: React.FC = () => {
           ? (selectedBoxes = records.filter(
               (record) => record.locationPrimary === ''
             ))
-          : console.alert('selected boxes hit default case');
+          : console.log('selected boxes hit default case');
 
         sortingAlgorithm[0].value === 'bubble'
           ? (sorted = bubbleSort(selectedBoxes, sortBy[0].value, setMovesArr))
@@ -126,8 +127,8 @@ const Sort: React.FC = () => {
 
         //physical check
         if (collectionType[0].value === 'digital') {
-          sorted.map((sortedRecord, index) => {
-            sortedRecord.locationSecondary = index + 1;
+          sorted.map((sortedRecord: RecordInterface, index: number) => {
+            sortedRecord.locationSecondary = (index + 1).toString();
 
             // const match = records.findIndex((r) => r._id === sortedRecord._id);
             // setCurrent(match);

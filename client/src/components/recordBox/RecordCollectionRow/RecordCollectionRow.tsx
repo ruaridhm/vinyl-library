@@ -1,9 +1,11 @@
 import React from 'react';
-import RecordBox from './RecordBox/RecordBox';
+import { boxesInterface } from '../../pages/Library/Library';
+import { RecordInterface } from '../../records/RecordItem/RecordItem';
+import RecordBox from '../RecordBox/RecordBox';
 import { StyledRecordCollectionRow } from './Style';
 
 interface RecordCollectionRowProps {
-  boxLetters: Array<string>;
+  boxLetters: Array<RecordInterface[]>;
   boxAmount: number;
 }
 

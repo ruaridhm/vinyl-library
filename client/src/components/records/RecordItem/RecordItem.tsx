@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import RecordContext from '../../../context/record/recordContext';
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
+import RecordContext from '../../../context/record/RecordContext';
 import Button from '../../button/Button';
 import Modal from '../../modal/Modal';
 import ImageSlider from '../../imageSlider/ImageSlider';
@@ -19,36 +19,37 @@ import {
 } from './Style';
 
 export interface RecordInterface {
-  _id: string;
-  title: string;
-  artist: string;
-  label: string;
-  catalogNumber: string;
-  releaseDate: string;
-  format: string;
-  country: string;
-  coverFront: string;
-  coverBack: string;
-  coverLp: string;
-  condition: string;
-  barcode: string;
-  locationPrimary: string;
-  locationSecondary: string;
-  recordCondition: string;
-  sleeveCondition: string;
-  genre: string;
-  style: string;
-  comment: string;
-  rating: string;
-  cover: string;
-  innerSleeve: string;
-  outerSleeve: string;
-  wishList: boolean;
+  _id?: string;
+  title?: string;
+  artist?: string;
+  label?: string;
+  catalogNumber?: string;
+  releaseDate?: string;
+  format?: string;
+  country?: string;
+  coverFront?: string;
+  coverBack?: string;
+  coverLp?: string;
+  recordCondition?: string;
+  sleeveCondition?: string;
+  barcode?: string;
+  locationPrimary?: string;
+  locationSecondary?: string;
+  want?: number;
+  have?: number;
+  genre?: string;
+  style?: string;
+  cover?: boolean;
+  innerSleeve?: boolean;
+  outerSleeve?: boolean;
+  comment?: string;
+  rating?: number;
+  wishList?: boolean;
 }
 
 interface RecordItemProps {
   record: RecordInterface;
-  setDisplayAddRecord: () => void;
+  setDisplayAddRecord: Dispatch<SetStateAction<boolean>>;
 }
 
 const RecordItem: React.FC<RecordItemProps> = ({
@@ -75,19 +76,20 @@ const RecordItem: React.FC<RecordItemProps> = ({
     coverFront,
     coverBack,
     coverLp,
-    condition,
     barcode,
     locationPrimary,
     locationSecondary,
     recordCondition,
     sleeveCondition,
+    want,
+    have,
     genre,
     style,
-    comment,
-    rating,
     cover,
     innerSleeve,
     outerSleeve,
+    comment,
+    rating,
     wishList,
   } = record;
 
@@ -158,9 +160,14 @@ const RecordItem: React.FC<RecordItemProps> = ({
                 <strong>Country:</strong> {country}
               </li>
             )}
-            {condition && (
+            {recordCondition && (
               <li>
-                <strong>Condition:</strong> {condition}
+                <strong>Record Condition:</strong> {recordCondition}
+              </li>
+            )}
+            {sleeveCondition && (
+              <li>
+                <strong>Sleeve Condition:</strong> {sleeveCondition}
               </li>
             )}
             {barcode && (

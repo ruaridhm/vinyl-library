@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -13,7 +12,7 @@ import {
 type Actions =
   | {
       type: 'REGISTER_SUCCESS';
-      payload: AxiosResponse<any>;
+      payload: { token: string };
     }
   | {
       type: 'REGISTER_FAIL';
@@ -25,10 +24,11 @@ type Actions =
     }
   | {
       type: 'AUTH_ERROR';
+      payload?: string;
     }
   | {
       type: 'LOGIN_SUCCESS';
-      payload: AxiosResponse<any>;
+      payload: { token: string };
     }
   | {
       type: 'LOGIN_FAIL';
@@ -36,22 +36,24 @@ type Actions =
     }
   | {
       type: 'LOGOUT';
+      payload?: string;
     }
   | {
       type: 'CLEAR_ERRORS';
     };
 
-interface State {
-  // token: string;
-  // isAuthenticated: boolean;
-  // loading: boolean;
-  // user: string;
-  // error: string;
+interface AuthState {
+  token: string;
+  isAuthenticated: boolean;
+  loading: boolean;
+  user: {
+    name: string;
+    id: string;
+  };
+  error: string;
 }
 
-// type State = Auth[];
-
-export default (state: State, action: Actions) => {
+export default (state: AuthState, action: Actions) => {
   switch (action.type) {
     case USER_LOADED:
       return {

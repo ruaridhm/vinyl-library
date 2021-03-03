@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 
-const useKey = (key, cb) => {
-  const callbackRef = useRef<() => void>(cb);
+const useKey = (key: string, cb: () => void) => {
+  const callbackRef = useRef<(e: object) => void>(cb);
 
   useEffect(() => {
     callbackRef.current = cb;
   });
 
   useEffect(() => {
-    const handle = (e) => {
+    const handle = (e: { code: string }) => {
       e.code === key && callbackRef.current(e);
     };
 

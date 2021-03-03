@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import Button from '../button/Button';
 import useKey from '../../hooks/useKey';
 import { Results, TextResults, ButtonContainer, ResultImage } from './Style';
+import { RecordInterface } from '../records/RecordItem/RecordItem';
 
 interface ResultOptionProps {
   data: Array<any>;
-  record: Object;
-  setRecord: () => void;
-  setDiscogsResult: () => void;
+  record: RecordInterface;
+  setRecord: Dispatch<SetStateAction<RecordInterface>>;
+  setDiscogsResult: Dispatch<SetStateAction<undefined[]>>;
 }
 
 const ResultOption: React.FC<ResultOptionProps> = ({
