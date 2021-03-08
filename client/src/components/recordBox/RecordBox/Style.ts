@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import BorderImg from '../../images/woodborder.jpg';
+import BorderImg from '../../../images/woodborder.jpg';
 
 export const StyledRecordBox = styled.div`
   border: 20px solid transparent;

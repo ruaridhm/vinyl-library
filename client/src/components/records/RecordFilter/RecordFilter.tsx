@@ -5,17 +5,17 @@ import { FilterFormContainer } from './Style';
 
 const RecordFilter = () => {
   const recordContext = useContext(RecordContext);
-  const text = useRef<string>('');
+  const text = useRef<HTMLInputElement>(null);
 
   const { filterRecords, clearFilter, filtered } = recordContext;
 
   useEffect(() => {
-    if (filtered === null) {
+    if (filtered === null && text.current) {
       text.current.value = '';
     }
   });
 
-  const onChange = (e) => {
+  const onChange = (e: { target: { value: string } }) => {
     if (text.current.value !== '') {
       filterRecords(e.target.value);
     } else {
@@ -27,6 +27,8 @@ const RecordFilter = () => {
     <FilterFormContainer>
       <form>
         <Textfield
+          name='Filter Records'
+          value='Search...'
           ref={text}
           type='text'
           title='Filter Records...'

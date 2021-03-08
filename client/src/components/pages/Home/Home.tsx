@@ -21,7 +21,7 @@ import {
 
 const Home = () => {
   const authContext = useContext(AuthContext);
-  const [displayAddRecord, setDisplayAddRecord] = useState(false);
+  const [displayAddRecord, setDisplayAddRecord] = useState<boolean>(false);
 
   useEffect(() => {
     authContext.loadUser();
@@ -48,9 +48,8 @@ const Home = () => {
               medium
               circleSuccess
               onClick={() => setDisplayAddRecord(!displayAddRecord)}
-              children={<FontAwesomeIcon icon={faPlus} />}
+              label={<FontAwesomeIcon icon={faPlus} />}
               type='button'
-              label='Add Record'
             />
           </MobileControlsContainer>
         )}
@@ -64,9 +63,8 @@ const Home = () => {
               medium
               circleSuccess
               onClick={() => setDisplayAddRecord(!displayAddRecord)}
-              children={<FontAwesomeIcon icon={faPlus} />}
+              label={<FontAwesomeIcon icon={faPlus} />}
               type='button'
-              label='Add Record'
             />
             <AddRecordButtonDescription>Add Record</AddRecordButtonDescription>
           </AddRecordButtonContainer>

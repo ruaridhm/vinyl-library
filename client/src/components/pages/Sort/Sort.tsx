@@ -19,9 +19,9 @@ const Sort = () => {
   const [sortingAlgorithm, setSortingAlgorithm] = useState([]);
   const [collectionType, setCollectionType] = useState([]);
   const [movesArr, setMovesArr] = useState([]);
-  const [showSortForm, setShowSortForm] = useState(true);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [confirmSort, setConfirmSort] = useState(false);
+  const [showSortForm, setShowSortForm] = useState<boolean>(true);
+  const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
+  const [confirmSort, setConfirmSort] = useState<boolean>(false);
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const alertContext = useContext(AlertContext);
@@ -127,7 +127,7 @@ const Sort = () => {
 
         //physical check
         if (collectionType[0].value === 'digital') {
-          sorted.map((sortedRecord: RecordInterface, index: number) => {
+          sorted.forEach((sortedRecord: RecordInterface, index: number) => {
             sortedRecord.locationSecondary = (index + 1).toString();
 
             // const match = records.findIndex((r) => r._id === sortedRecord._id);

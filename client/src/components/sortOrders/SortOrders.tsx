@@ -5,13 +5,14 @@ import RecordContext from '../../context/record/RecordContext';
 import useKey from '../../hooks/useKey';
 import { RecordCollectionContainer, MovesContainer } from './Style';
 import { RecordInterface } from '../records/RecordItem/RecordItem';
+import { boxesInterface } from '../pages/Library/Library';
 
 interface SortOrdersProps {
   movesArr: Array<any>;
 }
 
 const SortOrders = ({ movesArr }: SortOrdersProps) => {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState<number>(0);
   const recordContext = useContext(RecordContext);
   const {
     records,
@@ -20,17 +21,9 @@ const SortOrders = ({ movesArr }: SortOrdersProps) => {
     setCurrent,
     setMoveRecord,
   } = recordContext;
-  const [boxesLoaded, setBoxesLoaded] = useState(null);
+  const [boxesLoaded, setBoxesLoaded] = useState<boxesInterface | null>(null);
 
-  interface boxes {
-    a: Array<RecordInterface>;
-    b: Array<RecordInterface>;
-    c: Array<RecordInterface>;
-    d: Array<RecordInterface>;
-    unboxed: Array<RecordInterface>;
-  }
-
-  const boxes: boxes = {
+  const boxes: boxesInterface = {
     a: [],
     b: [],
     c: [],

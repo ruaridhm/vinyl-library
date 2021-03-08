@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
   DropdownContainer,
@@ -32,7 +32,7 @@ const Dropdown = ({
   selection,
   setSelection,
 }: DropdownProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const toggle = () => setOpen(!open);
 

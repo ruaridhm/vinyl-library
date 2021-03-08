@@ -11,7 +11,7 @@ import {
   faSort,
   faInfo,
 } from '@fortawesome/free-solid-svg-icons';
-import mainLogo from '../../images/Logo.png';
+import mainLogo from '../../../images/Logo.png';
 
 import {
   LandingPage,
@@ -105,7 +105,7 @@ const About = () => {
           left
           image='https://placeimg.com/300/300/any'
           title='Sort'
-          description='Re-organise your collection both digitally and physically by any metric with step by step directions for the fastest solution.'
+          description='Re-organize your collection both digitally and physically by any metric with step by step directions for the fastest solution.'
         />
         <FeatureDetails
           right

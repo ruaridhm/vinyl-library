@@ -7,7 +7,15 @@ import mainLogo from '../../images/Logo.png';
 
 import { SideBarLogo } from './Style';
 
-const SideBar = () => {
+interface SidebarInterface {
+  pageWrapId: string;
+  outerContainerId: string;
+}
+
+const SideBar = ({
+  pageWrapId = 'page-wrap',
+  outerContainerId = 'App',
+}: SidebarInterface) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const { isAuthenticated, logout, user } = authContext;

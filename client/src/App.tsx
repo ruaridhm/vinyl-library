@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import PrivateRoute from './components/routing/PrivateRoute';
+import PrivateRoute from './components/routing/PrivateRoute.js';
 import Navbar from './components/layout/Navbar/Navbar';
 import Home from './components/pages/Home/Home';
 import Library from './components/pages/Library/Library';
@@ -32,7 +32,7 @@ const App = () => {
           <AlertState>
             <Router>
               <Fragment>
-                <SideBar pageWrapId={'page-wrap'} outerContainerId={'App'} />
+                <SideBar pageWrapId='page-wrap' outerContainerId='App' />
                 <Navbar title='Vinyl Library' />
                 <Alerts />
                 <Switch>

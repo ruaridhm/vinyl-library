@@ -17,7 +17,7 @@ import {
 import { RecordInterface } from '../../records/RecordItem/RecordItem';
 
 export interface boxesInterface {
-  a: Array<RecordInterface> | [];
+  a: RecordInterface[] | [];
   b: RecordInterface[] | [];
   c: RecordInterface[] | [];
   d: RecordInterface[] | [];
@@ -120,7 +120,6 @@ const Library = () => {
           onClick={findPreviousRecord}
           label='Previous Record'
           type='button'
-          children='Prev'
           solidSuccess
           medium
         />
@@ -139,7 +138,6 @@ const Library = () => {
           onClick={findNextRecord}
           label='Next Record'
           type='button'
-          children='Next'
           solidSuccess
           medium
         />

@@ -1,5 +1,4 @@
 import React from 'react';
-import { boxesInterface } from '../../pages/Library/Library';
 import { RecordInterface } from '../../records/RecordItem/RecordItem';
 import RecordBox from '../RecordBox/RecordBox';
 import { StyledRecordCollectionRow } from './Style';

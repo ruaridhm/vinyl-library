@@ -14,10 +14,14 @@ const User = () => {
   const recordContext = useContext(RecordContext);
   const { getRecords, records, loading } = recordContext;
   const { user } = authContext;
-  const [averageRecordCondition, setAverageRecordCondition] = useState('');
-  const [averageSleeveCondition, setAverageSleeveCondition] = useState('');
-  const [mostPopularArtist, setMostPopularArtist] = useState('');
-  const [mostPopularLabel, setMostPopularLabel] = useState('');
+  const [averageRecordCondition, setAverageRecordCondition] = useState<string>(
+    ''
+  );
+  const [averageSleeveCondition, setAverageSleeveCondition] = useState<string>(
+    ''
+  );
+  const [mostPopularArtist, setMostPopularArtist] = useState<string>('');
+  const [mostPopularLabel, setMostPopularLabel] = useState<string>('');
   const [communityValues, setCommunityValues] = useState<communityValues>({
     mostWanted: { title: '', artist: '', want: null },
     mostCommon: { title: '', artist: '', have: null },

@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-interface Alert {
+interface AlertInterface {
   type: string;
 }
 
-export const Alert = styled.div<Alert>`
+export const Alert = styled.div<AlertInterface>`
   padding: 0.7em;
   margin: 1em;
   opacity: 0.9;

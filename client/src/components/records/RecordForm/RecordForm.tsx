@@ -10,7 +10,7 @@ import Button from '../../button/Button';
 import DiscogsBtn from '../../discogs/DiscogsBtn';
 import TextField from '../../text field/TextField';
 import CheckBox from '../../checkbox/CheckBox';
-import ResultOption from '../../resultOption/ResultOption.js';
+import ResultOption from '../../resultOption/ResultOption';
 import useKey from '../../../hooks/useKey';
 import Rating from '../../rating/Rating';
 import {
@@ -31,6 +31,7 @@ import {
   StepContainer,
   CheckboxStepContainer,
 } from './Style';
+import { RecordInterface } from '../RecordItem/RecordItem';
 
 interface Step1Props {
   title?: string;
@@ -237,10 +238,10 @@ const Step3 = ({
 };
 
 interface Step4Props {
-  rating?: string;
-  cover?: string | null;
-  innerSleeve?: string | null;
-  outerSleeve?: string | null;
+  rating?: number;
+  cover?: boolean | null;
+  innerSleeve?: boolean | null;
+  outerSleeve?: boolean | null;
   wishList?: boolean | null;
   handleChecked: (e: any) => void;
   handleRating: (e: any) => void;
@@ -297,20 +298,18 @@ const RecordForm = ({
 }: RecordFormProps) => {
   const recordContext = useContext(RecordContext);
   const [discogsResult, setDiscogsResult] = useState([]);
-  const [showAllSteps, setShowAllSteps] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [showAllSteps, setShowAllSteps] = useState<boolean>(false);
+  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const { addRecord, current, clearCurrent, updateRecord } = recordContext;
 
-  const updateDimensions = () => {
-    console.log(windowWidth);
-    setWindowWidth(window.innerWidth);
-  };
-
   useEffect(() => {
+    const updateDimensions = () => {
+      setWindowWidth(window.innerWidth);
+    };
     window.addEventListener('resize', updateDimensions);
     return () => window.removeEventListener('resize', updateDimensions);
-  }, [window.innerWidth]);
+  }, []);
 
   useEffect(() => {
     if (windowWidth < 1100) {
@@ -352,7 +351,7 @@ const RecordForm = ({
     }
   }, [recordContext, current]);
 
-  const [record, setRecord] = useState({
+  const [record, setRecord] = useState<RecordInterface>({
     title: '',
     artist: '',
     label: '',
@@ -388,15 +387,15 @@ const RecordForm = ({
     // format,
     country,
     coverFront,
-    coverBack,
-    coverLp,
+    // coverBack,
+    // coverLp,
     recordCondition,
     sleeveCondition,
     barcode,
     locationPrimary,
     locationSecondary,
-    want,
-    have,
+    // want,
+    // have,
     genre,
     style,
     cover,
@@ -407,13 +406,15 @@ const RecordForm = ({
     wishList,
   } = record;
 
-  const onChange = (e) => {
+  const onChange = (e: { target: { type: string; name: any; value: any } }) => {
     if (e.target.type !== undefined && e.target.type === 'text') {
       setRecord({ ...record, [e.target.name]: e.target.value });
     }
   };
 
-  const handleChecked = (e) => {
+  const handleChecked = (e: {
+    current: { type: string; checked: boolean; name: any };
+  }) => {
     if (e.current.type === 'checkbox') {
       console.log(e.current.checked);
       e.current.checked = !e.current.checked;
@@ -421,11 +422,11 @@ const RecordForm = ({
       setRecord({ ...record, [e.current.name]: e.current.checked });
     }
   };
-  const handleRating = (e) => {
+  const handleRating = (e: any) => {
     setRecord({ ...record, rating: e });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     if (current === null) {

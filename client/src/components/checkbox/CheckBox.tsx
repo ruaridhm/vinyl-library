@@ -9,14 +9,14 @@ import {
 } from './Style';
 
 interface CheckboxProps {
-  value?: string | boolean;
+  value?: boolean;
   label: string;
   name: string;
-  handleChecked: (e: any) => void;
+  handleChecked: (e: React.MutableRefObject<HTMLInputElement>) => void;
 }
 
 const CheckBox = ({ value, label, name, handleChecked }: CheckboxProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   return (
     <CheckBoxContainer onClick={() => handleChecked(inputRef)}>
       <LabelContainer>

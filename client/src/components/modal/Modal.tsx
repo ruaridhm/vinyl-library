@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import { ReactElement } from 'react';
 import Button from '../button/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import {
   ModalWrapper,
   ModalHeader,
@@ -52,7 +54,7 @@ const Modal = ({
         <ModalFooter>
           <Button
             onClick={close}
-            solidDanger
+            solidPrimary
             type='button'
             medium
             label='Cancel'
@@ -60,10 +62,11 @@ const Modal = ({
 
           <Button
             onClick={confirm}
-            solidSuccess
+            solidDanger
             type='button'
             medium
             label={confirmText}
+            children={<FontAwesomeIcon icon={faTrashAlt} />}
           />
         </ModalFooter>
       </ModalContent>

@@ -17,7 +17,7 @@ const ResultOption = ({
   setRecord,
   setDiscogsResult,
 }: ResultOptionProps) => {
-  const [iterator, setIterator] = useState(0);
+  const [iterator, setIterator] = useState<number>(0);
 
   useEffect(() => {
     const artist = data[iterator].title.split(' - ')[0];
@@ -38,7 +38,7 @@ const ResultOption = ({
       genre: data[iterator].genre,
       style: data[iterator].style,
     });
-  }, [iterator]);
+  }, [iterator]); // TODO ESLINT suggestion [data, record, setRecord, iterator]
 
   const next = () => {
     if (iterator < data.length - 1) {

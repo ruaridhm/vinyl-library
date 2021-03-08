@@ -58,9 +58,9 @@ type Actions =
     };
 
 interface Record {
-  records: Array<RecordInterface>;
+  records: Array<RecordInterface> | null;
   current: RecordInterface | null;
-  moveRecord: Array<RecordInterface> | null;
+  moveRecord: RecordInterface | null;
   filtered: Array<RecordInterface> | null;
   error: string | null;
   loading: boolean;

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-interface StyledButton {
+interface StyledButtonInterface {
   solidPrimary?: boolean;
   solidWarning?: boolean;
   solidDanger?: boolean;
@@ -18,7 +18,8 @@ interface StyledButton {
   large?: boolean;
 }
 
-export const StyledButton = styled.button<StyledButton>`
+export const StyledButton = styled.button<StyledButtonInterface>`
+  height: fit-content;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   border-radius: 10px;

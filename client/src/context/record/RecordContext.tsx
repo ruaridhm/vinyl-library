@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import { RecordInterface } from '../../components/records/RecordItem/RecordItem';
 
-type RecordContext = {
+type RecordContextType = {
   getRecords: () => Promise<void>;
   addRecord: (record: RecordInterface) => Promise<void>;
   deleteRecord: (id: string) => Promise<void>;
@@ -14,13 +14,13 @@ type RecordContext = {
   clearFilter: () => void;
 
   records: Array<RecordInterface> | null;
-  current: RecordInterface;
-  moveRecord: RecordInterface | RecordInterface[];
+  current: RecordInterface | null;
+  moveRecord: RecordInterface | null;
   filtered: Array<RecordInterface> | null;
-  error: string;
+  error: string | null;
   loading: boolean;
 };
 
-const RecordContext = createContext<RecordContext>(undefined!); //TODO A more robust type is possible
+const RecordContext = createContext<RecordContextType>(undefined!); //TODO A more robust type is possible
 
 export default RecordContext;

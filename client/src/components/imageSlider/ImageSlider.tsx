@@ -19,7 +19,7 @@ const ImageSlider = ({
   coverBack && sliderArr.push(<SliderImage src={coverBack} alt='Back Cover' />);
   coverLp && sliderArr.push(<SliderImage src={coverLp} alt='Lp Cover' />);
 
-  const [x, setX] = useState(0);
+  const [x, setX] = useState<number>(0);
 
   const goLeft = () => {
     x === 0 ? setX(-100 * (sliderArr.length - 1)) : setX(x + 100);

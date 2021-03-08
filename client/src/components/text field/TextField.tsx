@@ -18,13 +18,14 @@ export interface TextFieldProps {
   large?: boolean;
   required?: boolean;
   minLength?: number;
+  ref?;
 
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextField = forwardRef((props: TextFieldProps, ref) => {
+const TextField: React.FC<TextFieldProps> = forwardRef((props, ref) => {
   return (
-    <TextFieldInputGroup props={props}>
+    <TextFieldInputGroup {...props}>
       <TextFieldLabel>
         {props.title}
         <TextFieldInputArea
@@ -32,7 +33,7 @@ const TextField = forwardRef((props: TextFieldProps, ref) => {
           name={props.name}
           value={props.value}
           onChange={props.onChange}
-          ref={ref}
+          {...ref}
         />
       </TextFieldLabel>
     </TextFieldInputGroup>

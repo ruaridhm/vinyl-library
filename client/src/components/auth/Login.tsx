@@ -29,7 +29,7 @@ const Login = ({ history }: LoginProps) => {
     // eslint-disable-next-line
   }, [error, isAuthenticated, history]);
 
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<{ email: string; password: string }>({
     email: '',
     password: '',
   });

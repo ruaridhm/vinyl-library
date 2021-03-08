@@ -17,13 +17,7 @@ const Form = ({ title, onSubmit, formInputs }: FormProps) => {
       <StyledForm onSubmit={onSubmit}>
         {formInputs()}
 
-        <Button
-          type='submit'
-          solidSuccess
-          medium
-          label={title}
-          children={title}
-        />
+        <Button type='submit' solidSuccess medium label={title} />
       </StyledForm>
     </FormContainer>
   );

@@ -8,7 +8,7 @@ interface StarProps {
 }
 
 const Stars = ({ index, full, setOverride, setRating }: StarProps) => {
-  const [down, setDown] = useState(false);
+  const [down, setDown] = useState<boolean>(false);
 
   const handleMouseDown = useCallback(() => {
     setDown(true);

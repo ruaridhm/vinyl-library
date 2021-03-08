@@ -5,7 +5,7 @@ interface ButtonProps {
   onClick?: () => void;
   type: 'submit' | 'reset' | 'button';
   children?: string | JSX.Element;
-  label: string;
+  label: string | JSX.Element;
   solidPrimary?: boolean;
   solidWarning?: boolean;
   solidDanger?: boolean;
@@ -26,7 +26,12 @@ interface ButtonProps {
 }
 
 const Button = (props: ButtonProps) => {
-  return <StyledButton {...props} />;
+  return (
+    <StyledButton {...props}>
+      {' '}
+      {props.children} {props.label}
+    </StyledButton>
+  );
 };
 
 export default Button;

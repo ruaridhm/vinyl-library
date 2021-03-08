@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-type authContext = {
+type authContextType = {
   loadUser: () => Promise<void>;
   register: (formData: {
     name: string;
@@ -19,6 +19,6 @@ type authContext = {
   token: string;
 };
 
-const authContext = createContext<authContext>(undefined!); //TODO A more robust type is possible
+const authContext = createContext<authContextType>(undefined!); //TODO A more robust type is possible
 
 export default authContext;

@@ -53,8 +53,8 @@ interface RecordItemProps {
 }
 
 const RecordItem = ({ record, setDisplayAddRecord }: RecordItemProps) => {
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [showInfoModal, setShowInfoModal] = useState<boolean>(false);
   const recordContext = useContext(RecordContext);
   const { deleteRecord, setCurrent, clearCurrent } = recordContext;
 
@@ -78,8 +78,8 @@ const RecordItem = ({ record, setDisplayAddRecord }: RecordItemProps) => {
     locationSecondary,
     recordCondition,
     sleeveCondition,
-    want,
-    have,
+    // want,
+    // have,
     genre,
     style,
     cover,
