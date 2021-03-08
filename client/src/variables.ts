@@ -11,4 +11,9 @@ export enum ColorVariables {
   black = '#000',
   darkGrey = '#333',
   grey = '#a4a5a7',
+  checkboxRed = '#f72414',
+  checkboxRedShadow = '#ffbeb8',
+  checkboxRedHover = '#ff9d96',
+  checkboxGreenShadow = '#92ff97',
+  checkboxGreyBorder = '#dadce0',
 }
