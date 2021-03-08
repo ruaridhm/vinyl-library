@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import useKey from '../../hooks/useKey';
 import { ReactElement } from 'react';
 import Button from '../button/Button';
@@ -73,50 +73,50 @@ const Modal = ({
   useKey('Escape', close);
 
   return (
-    <TransitionGroup>
-      <CSSTransition timeout={500} classNames='item'>
-        <ModalWrapper
-          style={{
-            transform: show ? 'translateY(0vh)' : 'translateY(-100vh)',
-            opacity: show ? '1' : '0',
-            display: show ? 'block' : 'none',
-          }}
-        >
-          <ModalHeader>
-            <HeaderText>{headerText}</HeaderText>
-            <ModalClose onClick={close}>x</ModalClose>
-          </ModalHeader>
-          <ModalContent>
-            <ModalBodyContainer>
-              <ModalBodyHeader>{bodyHeaderText}</ModalBodyHeader>
-              <ModalBody>{bodyText}</ModalBody>
-            </ModalBodyContainer>
-            <ModalFooter>
-              {showCancel && (
-                <Button
-                  onClick={close}
-                  {...cancelStyle}
-                  type='button'
-                  {...cancelSize}
-                  label='Cancel'
-                  children={cancelIcon}
-                />
-              )}
-              {showConfirm && (
-                <Button
-                  onClick={confirm}
-                  {...confirmStyle}
-                  type='button'
-                  {...confirmSize}
-                  label={confirmText}
-                  children={confirmIcon}
-                />
-              )}
-            </ModalFooter>
-          </ModalContent>
-        </ModalWrapper>
-      </CSSTransition>
-    </TransitionGroup>
+    // <TransitionGroup>
+    //   <CSSTransition timeout={500} classNames='item'>
+    <ModalWrapper
+      style={{
+        transform: show ? 'translateY(0vh)' : 'translateY(-100vh)',
+        opacity: show ? '1' : '0',
+        display: show ? 'block' : 'none',
+      }}
+    >
+      <ModalHeader>
+        <HeaderText>{headerText}</HeaderText>
+        <ModalClose onClick={close}>x</ModalClose>
+      </ModalHeader>
+      <ModalContent>
+        <ModalBodyContainer>
+          <ModalBodyHeader>{bodyHeaderText}</ModalBodyHeader>
+          <ModalBody>{bodyText}</ModalBody>
+        </ModalBodyContainer>
+        <ModalFooter>
+          {showCancel && (
+            <Button
+              onClick={close}
+              {...cancelStyle}
+              type='button'
+              {...cancelSize}
+              label='Cancel'
+              children={cancelIcon}
+            />
+          )}
+          {showConfirm && (
+            <Button
+              onClick={confirm}
+              {...confirmStyle}
+              type='button'
+              {...confirmSize}
+              label={confirmText}
+              children={confirmIcon}
+            />
+          )}
+        </ModalFooter>
+      </ModalContent>
+    </ModalWrapper>
+    // </CSSTransition>
+    //</TransitionGroup>
   );
 };
 
