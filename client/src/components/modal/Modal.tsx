@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 import { ReactElement } from 'react';
 import Button from '../button/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import {
   ModalWrapper,
   ModalHeader,
@@ -15,6 +13,26 @@ import {
   ModalFooter,
 } from './Style';
 
+interface StyleOptions {
+  solidSuccess?: boolean;
+  solidPrimary?: boolean;
+  solidWarning?: boolean;
+  solidDanger?: boolean;
+  outlinePrimary?: boolean;
+  outlineWarning?: boolean;
+  outlineDanger?: boolean;
+  outlineSuccess?: boolean;
+  circlePrimary?: boolean;
+  circleWarning?: boolean;
+  circleDanger?: boolean;
+  circleSuccess?: boolean;
+}
+interface SizeOptions {
+  small?: boolean;
+  medium?: boolean;
+  large?: boolean;
+}
+
 interface ModalProps {
   headerText: string;
   bodyHeaderText?: string;
@@ -22,7 +40,15 @@ interface ModalProps {
   show: boolean;
   close: () => void;
   confirm: () => void;
-  confirmText: string;
+  confirmText?: string;
+  confirmStyle?: StyleOptions;
+  cancelStyle?: StyleOptions;
+  showCancel?: boolean;
+  showConfirm?: boolean;
+  cancelIcon?: JSX.Element;
+  confirmIcon?: JSX.Element;
+  confirmSize?: SizeOptions;
+  cancelSize?: SizeOptions;
 }
 
 const Modal = ({
@@ -33,6 +59,14 @@ const Modal = ({
   close,
   confirm,
   confirmText,
+  confirmStyle = { solidSuccess: true },
+  cancelStyle = { solidDanger: true },
+  confirmSize = { medium: true },
+  cancelSize = { medium: true },
+  showCancel = true,
+  showConfirm = true,
+  cancelIcon,
+  confirmIcon,
 }: ModalProps): ReactElement => {
   return (
     <ModalWrapper
@@ -52,22 +86,26 @@ const Modal = ({
           <ModalBody>{bodyText}</ModalBody>
         </ModalBodyContainer>
         <ModalFooter>
-          <Button
-            onClick={close}
-            solidPrimary
-            type='button'
-            medium
-            label='Cancel'
-          />
-
-          <Button
-            onClick={confirm}
-            solidDanger
-            type='button'
-            medium
-            label={confirmText}
-            children={<FontAwesomeIcon icon={faTrashAlt} />}
-          />
+          {showCancel && (
+            <Button
+              onClick={close}
+              {...cancelStyle}
+              type='button'
+              {...cancelSize}
+              label='Cancel'
+              children={cancelIcon}
+            />
+          )}
+          {showConfirm && (
+            <Button
+              onClick={confirm}
+              {...confirmStyle}
+              type='button'
+              {...confirmSize}
+              label={confirmText}
+              children={confirmIcon}
+            />
+          )}
         </ModalFooter>
       </ModalContent>
     </ModalWrapper>

@@ -217,7 +217,10 @@ const RecordItem = ({ record, setDisplayAddRecord }: RecordItemProps) => {
         confirm={onDelete}
         headerText='Confirm Delete'
         bodyText='Are you sure you want to delete this item?'
-        confirmText='Select'
+        confirmText='Delete'
+        confirmStyle={{ solidDanger: true }}
+        cancelStyle={{ solidPrimary: true }}
+        confirmIcon={<FontAwesomeIcon icon={faTrashAlt} />}
       />
       <Modal
         show={showInfoModal}
@@ -248,7 +251,8 @@ const RecordItem = ({ record, setDisplayAddRecord }: RecordItemProps) => {
             wishList={wishList}
           />
         }
-        confirmText='confirmText'
+        showCancel={false}
+        showConfirm={false}
       />
     </>
   );
