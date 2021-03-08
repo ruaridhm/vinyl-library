@@ -22,8 +22,8 @@ const DiscogsBtn = ({ setDiscogsResult }: DiscogsBtnProps) => {
       );
       return;
     } else {
-      const appkey = process.env.DiscogsAppKey;
-      const appsecret = process.env.DiscogsAppSecret;
+      const appkey = process.env.REACT_APP_DISCOGS_KEY;
+      const appsecret = process.env.REACT_APP_DISCOGS_SECRET;
 
       let titleSearchParam = '';
       let artistSearchParam = '';
