@@ -9,7 +9,7 @@ export interface TextFieldProps {
   title: string;
   name: string;
   type: string;
-  value: string;
+  value?: string;
   standard?: boolean;
   filled?: boolean;
   outline?: boolean;

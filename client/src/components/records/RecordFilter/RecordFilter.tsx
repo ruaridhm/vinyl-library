@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef } from 'react';
 import RecordContext from '../../../context/record/RecordContext';
 import Textfield from '../../text field/TextField';
 import { FilterFormContainer } from './Style';
@@ -6,17 +6,10 @@ import { FilterFormContainer } from './Style';
 const RecordFilter = () => {
   const recordContext = useContext(RecordContext);
   const text = useRef<HTMLInputElement>(null);
-
-  const { filterRecords, clearFilter, filtered } = recordContext;
-
-  useEffect(() => {
-    if (filtered === null && text.current) {
-      text.current.value = '';
-    }
-  });
+  const { filterRecords, clearFilter } = recordContext;
 
   const onChange = (e: { target: { value: string } }) => {
-    if (text.current.value !== '') {
+    if (e.target.value !== '') {
       filterRecords(e.target.value);
     } else {
       clearFilter();
@@ -28,10 +21,9 @@ const RecordFilter = () => {
       <form>
         <Textfield
           name='Filter Records'
-          value='Search...'
           ref={text}
           type='text'
-          title='Filter Records...'
+          title='Filter Records'
           onChange={onChange}
           medium
           standard
