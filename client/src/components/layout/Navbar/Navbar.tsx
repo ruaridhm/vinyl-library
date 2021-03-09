@@ -1,10 +1,11 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../../context/auth/AuthContext';
 import RecordContext from '../../../context/record/RecordContext';
 import mainLogo from '../../../images/Logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import Modal from '../../modal/Modal';
 
 import {
   NavbarContainer,
@@ -22,7 +23,7 @@ interface NavbarProps {
 const Navbar = ({ title }: NavbarProps) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
-
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState<boolean>(false);
   const { isAuthenticated, logout, user } = authContext;
   const { clearRecords } = recordContext;
 
@@ -43,7 +44,12 @@ const Navbar = ({ title }: NavbarProps) => {
         <Link to='/sort'>Sort Library</Link>
       </NavListItem>
       <NavListItem>
-        <a onClick={onLogout} href='#!'>
+        <a
+          onClick={() => {
+            setShowLogoutConfirm(!showLogoutConfirm);
+          }}
+          href='#!'
+        >
           <FontAwesomeIcon icon={faSignOutAlt} />
           <span className=''>Logout</span>
         </a>
@@ -66,21 +72,37 @@ const Navbar = ({ title }: NavbarProps) => {
   );
 
   return (
-    <NavbarContainer>
-      <NavLinkList>
-        <NavListItem>
-          <Link to='/'>
-            <NavTitle>
-              <NavLogo src={mainLogo} alt='Site Logo' className='main-logo' />
-              {title}
-            </NavTitle>
-          </Link>
-        </NavListItem>
-      </NavLinkList>
-      <NavLinkListRight>
-        {isAuthenticated ? authLinks : guestLinks}
-      </NavLinkListRight>
-    </NavbarContainer>
+    <>
+      <NavbarContainer>
+        <NavLinkList>
+          <NavListItem>
+            <Link to='/'>
+              <NavTitle>
+                <NavLogo src={mainLogo} alt='Site Logo' className='main-logo' />
+                {title}
+              </NavTitle>
+            </Link>
+          </NavListItem>
+        </NavLinkList>
+        <NavLinkListRight>
+          {isAuthenticated ? authLinks : guestLinks}
+        </NavLinkListRight>
+      </NavbarContainer>
+      <Modal
+        bodyText='Are you sure you want to logout?'
+        confirm={() => {
+          onLogout();
+          setShowLogoutConfirm(!showLogoutConfirm);
+        }}
+        confirmIcon={<FontAwesomeIcon icon={faSignOutAlt} />}
+        confirmText='Logout'
+        headerText='Confirm Logout'
+        close={() => {
+          setShowLogoutConfirm(!showLogoutConfirm);
+        }}
+        show={showLogoutConfirm}
+      />
+    </>
   );
 };
 
