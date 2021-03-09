@@ -9,9 +9,15 @@ import { boxesInterface } from '../pages/Library/Library';
 
 interface SortOrdersProps {
   movesArr: Array<any>;
+  setShowSortForm;
+  resetFormValues;
 }
 
-const SortOrders = ({ movesArr }: SortOrdersProps) => {
+const SortOrders = ({
+  movesArr,
+  setShowSortForm,
+  resetFormValues,
+}: SortOrdersProps) => {
   const [counter, setCounter] = useState<number>(0);
   const recordContext = useContext(RecordContext);
   const {
@@ -120,7 +126,16 @@ const SortOrders = ({ movesArr }: SortOrdersProps) => {
           </p>
           {movesArr.length - counter - 1 === 0 && (
             <>
-              <Button solidSuccess medium label='Finish' type='button' />
+              <Button
+                solidSuccess
+                medium
+                label='Finish'
+                type='button'
+                onClick={() => {
+                  setShowSortForm(true);
+                  resetFormValues();
+                }}
+              />
 
               <Button
                 solidPrimary

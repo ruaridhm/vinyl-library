@@ -12,12 +12,29 @@ import Form from '../../form/Form';
 import Modal from '../../modal/Modal';
 import { RecordInterface } from '../../records/RecordItem/RecordItem';
 
+interface SortStateOptionsInterface {
+  id: number;
+  title: string;
+  value: string;
+}
+
+interface MovesArrInterface {
+  from: RecordInterface;
+  to: RecordInterface;
+}
+
 const Sort = () => {
-  const [sortItems, setSortItems] = useState([]);
-  const [sortBy, setSortBy] = useState([]);
-  const [orderBy, setOrderBy] = useState([]);
-  const [sortingAlgorithm, setSortingAlgorithm] = useState([]);
-  const [collectionType, setCollectionType] = useState([]);
+  const [sortItems, setSortItems] = useState<SortStateOptionsInterface[] | []>(
+    []
+  );
+  const [sortBy, setSortBy] = useState<SortStateOptionsInterface[] | []>([]);
+  const [orderBy, setOrderBy] = useState<SortStateOptionsInterface[] | []>([]);
+  const [sortingAlgorithm, setSortingAlgorithm] = useState<
+    SortStateOptionsInterface[] | []
+  >([]);
+  const [collectionType, setCollectionType] = useState<
+    SortStateOptionsInterface[] | []
+  >([]);
   const [movesArr, setMovesArr] = useState([]);
   const [showSortForm, setShowSortForm] = useState<boolean>(true);
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
@@ -28,17 +45,35 @@ const Sort = () => {
   const { getRecords, records, updateRecord } = recordContext;
   const { setAlert } = alertContext;
 
+  //function called in SortOrders to clear the Dropdown selections and MovesArr once the user clicks Finish after sorting.
+  const resetFormValues = () => {
+    setSortItems([]);
+    setSortBy([]);
+    setOrderBy([]);
+    setSortingAlgorithm([]);
+    setCollectionType([]);
+    setMovesArr([]);
+  };
+
   useEffect(() => {
     authContext.loadUser();
     getRecords();
     // eslint-disable-next-line
   }, []);
 
+  //Waits for confirmSort to be true and then runs the Sort function
+  useEffect(() => {
+    confirmSort === true && Sort();
+    //eslint-disable-next-line
+  }, [confirmSort]);
+
+  //Function to cancel out of the confirmation modal for sorting collection digitally
   const cancelModel = () => {
     setConfirmSort(false);
     setShowConfirmModal(false);
   };
 
+  //On form submit this function is called, then if digital is selected it shows the confirmation modal or if physical it sets ConfirmSort to True and the above useEffect is run.
   const sortCollection = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -46,9 +81,12 @@ const Sort = () => {
       ? setShowConfirmModal(true)
       : setConfirmSort(true);
   };
+
+  //Main Sorting Function
   const Sort = () => {
+    //Function should only be run by the above useEffect so confirmSort should always be true here. This is a check to make sure it is not called independently from the useEffect.
     if (confirmSort === true) {
-      //check for null values in Sort by form
+      //check for null values in Sort form
       if (
         !sortItems.length ||
         !sortBy.length ||
@@ -72,7 +110,10 @@ const Sort = () => {
         // ];
         // console.log(selectedOptions);
 
+        //Filters out selected records to sort determined by the 'Sort By' Dropdown in the Sort Form.
+
         let selectedBoxes;
+
         sortItems[0].value === 'all'
           ? (selectedBoxes = records)
           : sortItems[0].value === 'a'
@@ -97,6 +138,8 @@ const Sort = () => {
             ))
           : console.log('selected boxes hit default case');
 
+        //Determines which sorting algorithm is selected and calls the sorting function for that algorithm.
+
         sortingAlgorithm[0].value === 'bubble'
           ? (sorted = bubbleSort(selectedBoxes, sortBy[0].value, setMovesArr))
           : sortingAlgorithm[0].value === 'merge'
@@ -118,14 +161,15 @@ const Sort = () => {
               setMovesArr
             ))
           : setAlert(
-              'Default Case hit on sortingAlgorithm switch statement.... something went wrong',
+              'Default Case hit on sortingAlgorithm switch statement.... something went wrong!',
               'danger'
             );
 
-        //Checks for descending order and reverses array
+        //Checks for descending order and reverses the sorted results array
+        //TODO Room to improve .reverse method has a BigO of O(N)
         orderBy[0].value === 'descending' && sorted.reverse();
 
-        //physical check
+        //Checks for Digital Sort and iterates through each sorted record then updates each record in order with the correct sorted record.
         if (collectionType[0].value === 'digital') {
           sorted.forEach((sortedRecord: RecordInterface, index: number) => {
             sortedRecord.locationSecondary = (index + 1).toString();
@@ -137,26 +181,12 @@ const Sort = () => {
           });
         }
 
-        //   // box a,b,c,d, unsorted?
-        //   //match record with record in collection
-        //   //replace record with updateRecord
-        // } else if (collectionType[0].value === 'physical') {
-        //   console.log('physical');
-        // } else if (collectionType[0].value === 'both') {
-        //   console.log('both');
-        // }
-
         collectionType[0].value !== 'digital' && setShowSortForm(false);
 
         return sorted;
       }
     }
   };
-
-  useEffect(() => {
-    confirmSort === true && Sort();
-    //eslint-disable-next-line
-  }, [confirmSort]);
 
   const itemsToBeSorted = [
     {
@@ -345,7 +375,13 @@ const Sort = () => {
         confirmText='Sort!'
       />
 
-      {!showSortForm && <SortOrders movesArr={movesArr} />}
+      {!showSortForm && (
+        <SortOrders
+          movesArr={movesArr}
+          setShowSortForm={setShowSortForm}
+          resetFormValues={resetFormValues}
+        />
+      )}
     </>
   );
 };
