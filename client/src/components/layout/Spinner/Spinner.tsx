@@ -1,9 +1,13 @@
 import React from 'react';
 import spinner from './Spinner.gif';
-import { StyledSpinner } from './Style';
+import { SpinnerContainer, StyledSpinner } from './Style';
 
 const Spinner = () => {
-  return <StyledSpinner src={spinner} alt='Loading...' />;
+  return (
+    <SpinnerContainer>
+      <StyledSpinner src={spinner} alt='Loading...' />
+    </SpinnerContainer>
+  );
 };
 
 export default Spinner;
