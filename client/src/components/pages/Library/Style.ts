@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const SpinnerContainer = styled.div`
-  height: 80vh;
-  display: flex;
-  align-content: center;
-`;
 export const LibraryContainer = styled.div`
   display: flex;
   flex-direction: column;

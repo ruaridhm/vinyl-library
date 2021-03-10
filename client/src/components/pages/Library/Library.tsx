@@ -8,7 +8,6 @@ import Spinner from '../../layout/Spinner/Spinner';
 import useKey from '../../../hooks/useKey';
 
 import {
-  SpinnerContainer,
   LibraryContainer,
   ImageContainer,
   CurrentRecordDetailsContainer,
@@ -103,9 +102,7 @@ const Library = () => {
   useKey('ArrowLeft', findPreviousRecord);
 
   return loading ? (
-    <SpinnerContainer>
-      <Spinner />
-    </SpinnerContainer>
+    <Spinner />
   ) : (
     <LibraryContainer>
       <ImageContainer>
