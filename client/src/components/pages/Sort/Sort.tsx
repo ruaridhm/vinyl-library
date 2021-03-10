@@ -77,115 +77,87 @@ const Sort = () => {
   const sortCollection = (e: React.FormEvent) => {
     e.preventDefault();
 
-    collectionType[0].value === 'digital' && confirmSort === false
-      ? setShowConfirmModal(true)
-      : setConfirmSort(true);
+    if (
+      !sortItems.length ||
+      !sortBy.length ||
+      !orderBy.length ||
+      !sortingAlgorithm.length ||
+      !collectionType.length
+    ) {
+      setAlert('You must select an option from each Dropdown below ', 'danger');
+    } else if (collectionType[0].value === 'digital' && confirmSort === false) {
+      setShowConfirmModal(true);
+    } else {
+      setConfirmSort(true);
+    }
   };
 
   //Main Sorting Function
   const Sort = () => {
-    //Function should only be run by the above useEffect so confirmSort should always be true here. This is a check to make sure it is not called independently from the useEffect.
-    if (confirmSort === true) {
-      //check for null values in Sort form
-      if (
-        !sortItems.length ||
-        !sortBy.length ||
-        !orderBy.length ||
-        !sortingAlgorithm.length ||
-        !collectionType.length
-      ) {
-        setAlert(
-          'You must select an option from each Dropdown below ',
+    var sorted;
+
+    //Filters out selected records to sort determined by the 'Sort By' Dropdown in the Sort Form.
+
+    let selectedBoxes;
+
+    sortItems[0].value === 'all'
+      ? (selectedBoxes = records)
+      : sortItems[0].value === 'a'
+      ? (selectedBoxes = records.filter(
+          (record) => record.locationPrimary === 'a'
+        ))
+      : sortItems[0].value === 'b'
+      ? (selectedBoxes = records.filter(
+          (record) => record.locationPrimary === 'b'
+        ))
+      : sortItems[0].value === 'c'
+      ? (selectedBoxes = records.filter(
+          (record) => record.locationPrimary === 'c'
+        ))
+      : sortItems[0].value === 'd'
+      ? (selectedBoxes = records.filter(
+          (record) => record.locationPrimary === 'd'
+        ))
+      : sortItems[0].value === ''
+      ? (selectedBoxes = records.filter(
+          (record) => record.locationPrimary === ''
+        ))
+      : console.log('selected boxes hit default case');
+
+    //Determines which sorting algorithm is selected and calls the sorting function for that algorithm.
+
+    sortingAlgorithm[0].value === 'bubble'
+      ? (sorted = bubbleSort(selectedBoxes, sortBy[0].value, setMovesArr))
+      : sortingAlgorithm[0].value === 'merge'
+      ? (sorted = mergeSortHandler(selectedBoxes, sortBy[0].value, setMovesArr))
+      : sortingAlgorithm[0].value === 'insertion'
+      ? (sorted = insertionSort(selectedBoxes, sortBy[0].value, setMovesArr))
+      : sortingAlgorithm[0].value === 'quick'
+      ? (sorted = quickSortHandler(selectedBoxes, sortBy[0].value, setMovesArr))
+      : setAlert(
+          'Default Case hit on sortingAlgorithm switch statement.... something went wrong!',
           'danger'
         );
-      } else {
-        var sorted;
-        //make a new array of records containing the _id and the selected sortBy from the sortBy useState
-        // let selectedOptions = [
-        //   sortItems[0].value,
-        //   sortBy[0].value,
-        //   orderBy[0].value,
-        //   sortingAlgorithm[0].value,
-        //   collectionType[0].value,
-        // ];
-        // console.log(selectedOptions);
 
-        //Filters out selected records to sort determined by the 'Sort By' Dropdown in the Sort Form.
+    //Checks for descending order and reverses the sorted results array
+    //TODO Room to improve .reverse method has a BigO of O(N)
+    orderBy[0].value === 'descending' && sorted.reverse();
 
-        let selectedBoxes;
+    //Checks for Digital Sort and iterates through each sorted record then updates each record in order with the correct sorted record.
+    if (collectionType[0].value === 'digital') {
+      sorted.forEach((sortedRecord: RecordInterface, index: number) => {
+        sortedRecord.locationSecondary = (index + 1).toString();
 
-        sortItems[0].value === 'all'
-          ? (selectedBoxes = records)
-          : sortItems[0].value === 'a'
-          ? (selectedBoxes = records.filter(
-              (record) => record.locationPrimary === 'a'
-            ))
-          : sortItems[0].value === 'b'
-          ? (selectedBoxes = records.filter(
-              (record) => record.locationPrimary === 'b'
-            ))
-          : sortItems[0].value === 'c'
-          ? (selectedBoxes = records.filter(
-              (record) => record.locationPrimary === 'c'
-            ))
-          : sortItems[0].value === 'd'
-          ? (selectedBoxes = records.filter(
-              (record) => record.locationPrimary === 'd'
-            ))
-          : sortItems[0].value === ''
-          ? (selectedBoxes = records.filter(
-              (record) => record.locationPrimary === ''
-            ))
-          : console.log('selected boxes hit default case');
-
-        //Determines which sorting algorithm is selected and calls the sorting function for that algorithm.
-
-        sortingAlgorithm[0].value === 'bubble'
-          ? (sorted = bubbleSort(selectedBoxes, sortBy[0].value, setMovesArr))
-          : sortingAlgorithm[0].value === 'merge'
-          ? (sorted = mergeSortHandler(
-              selectedBoxes,
-              sortBy[0].value,
-              setMovesArr
-            ))
-          : sortingAlgorithm[0].value === 'insertion'
-          ? (sorted = insertionSort(
-              selectedBoxes,
-              sortBy[0].value,
-              setMovesArr
-            ))
-          : sortingAlgorithm[0].value === 'quick'
-          ? (sorted = quickSortHandler(
-              selectedBoxes,
-              sortBy[0].value,
-              setMovesArr
-            ))
-          : setAlert(
-              'Default Case hit on sortingAlgorithm switch statement.... something went wrong!',
-              'danger'
-            );
-
-        //Checks for descending order and reverses the sorted results array
-        //TODO Room to improve .reverse method has a BigO of O(N)
-        orderBy[0].value === 'descending' && sorted.reverse();
-
-        //Checks for Digital Sort and iterates through each sorted record then updates each record in order with the correct sorted record.
-        if (collectionType[0].value === 'digital') {
-          sorted.forEach((sortedRecord: RecordInterface, index: number) => {
-            sortedRecord.locationSecondary = (index + 1).toString();
-
-            // const match = records.findIndex((r) => r._id === sortedRecord._id);
-            // setCurrent(match);
-            // console.log(current);
-            updateRecord(sortedRecord);
-          });
-        }
-
-        collectionType[0].value !== 'digital' && setShowSortForm(false);
-
-        return sorted;
-      }
+        // const match = records.findIndex((r) => r._id === sortedRecord._id);
+        // setCurrent(match);
+        // console.log(current);
+        updateRecord(sortedRecord);
+      });
     }
+
+    collectionType[0].value !== 'digital' && setShowSortForm(false);
+
+    return sorted;
   };
 
   const itemsToBeSorted = [
