@@ -32,6 +32,15 @@ export const NavLinkListRight = styled(NavLinkList)`
   }
 `;
 
+export const ThemeToggleContainer = styled.div`
+  position: relative;
+  top: 20px;
+  right: 75px;
+  @media (min-width: 981px) {
+    display: none;
+  }
+`;
+
 export const NavListItem = styled.li`
   margin: 1em;
   color: ${({ theme }) => theme.backgroundLight};
