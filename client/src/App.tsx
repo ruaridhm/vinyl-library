@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/routing/PrivateRoute.js';
 import Navbar from './components/layout/Navbar/Navbar';
@@ -18,22 +18,30 @@ import setAuthToken from './utils/setAuthToken';
 import SideBar from './components/hamburger/SideBar';
 
 import { ThemeProvider } from 'styled-components';
-import { ColorVariables } from './variables';
+import { ColorVariables, DarkModeColorVariables } from './variables';
 
 import './App.scss';
 
 localStorage.token && setAuthToken(localStorage.token);
 
 const App = () => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
+
   return (
-    <ThemeProvider theme={ColorVariables}>
+    <ThemeProvider
+      theme={theme === 'light' ? ColorVariables : DarkModeColorVariables}
+    >
       <AuthState>
         <RecordState>
           <AlertState>
             <Router>
               <Fragment>
                 <SideBar pageWrapId='page-wrap' outerContainerId='App' />
-                <Navbar title='Vinyl Library' />
+                <Navbar title='Vinyl Library' toggleTheme={toggleTheme} />
                 <Alerts />
                 <Switch>
                   <PrivateRoute exact path='/' component={Home} />

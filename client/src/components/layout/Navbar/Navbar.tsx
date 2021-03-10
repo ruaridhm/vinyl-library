@@ -4,8 +4,9 @@ import AuthContext from '../../../context/auth/AuthContext';
 import RecordContext from '../../../context/record/RecordContext';
 import mainLogo from '../../../images/Logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../../modal/Modal';
+import ToggleSwitch from '../../toggleSwitch/ToggleSwitch';
 
 import {
   NavbarContainer,
@@ -18,14 +19,17 @@ import {
 
 interface NavbarProps {
   title: string;
+  toggleTheme: () => void;
 }
 
-const Navbar = ({ title }: NavbarProps) => {
+const Navbar = ({ title, toggleTheme }: NavbarProps) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState<boolean>(false);
   const { isAuthenticated, logout, user } = authContext;
   const { clearRecords } = recordContext;
+
+  const [mode, setMode] = useState(false);
 
   const onLogout = () => {
     logout();
@@ -42,6 +46,21 @@ const Navbar = ({ title }: NavbarProps) => {
       </NavListItem>
       <NavListItem>
         <Link to='/sort'>Sort Library</Link>
+      </NavListItem>
+      <NavListItem>
+        <ToggleSwitch
+          name='newsletter'
+          onValue={
+            <FontAwesomeIcon icon={faMoon} style={{ color: '#121212' }} />
+          }
+          offValue={<FontAwesomeIcon icon={faSun} style={{ color: '#f90' }} />}
+          checked={mode}
+          onChange={() => {
+            setMode(!mode);
+            toggleTheme();
+          }}
+          icon
+        />
       </NavListItem>
       <NavListItem>
         <a
