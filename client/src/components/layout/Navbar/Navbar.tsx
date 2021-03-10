@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import { Fragment, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../../context/auth/AuthContext';
 import RecordContext from '../../../context/record/RecordContext';
@@ -15,6 +15,7 @@ import {
   NavLinkListRight,
   NavListItem,
   NavTitle,
+  ThemeToggleContainer,
 } from './Style';
 
 interface NavbarProps {
@@ -79,13 +80,28 @@ const Navbar = ({ title, toggleTheme }: NavbarProps) => {
   const guestLinks = (
     <Fragment>
       <NavListItem>
-        <Link to='/about'>About</Link>
-      </NavListItem>
-      <NavListItem>
         <Link to='/register'>Register</Link>
       </NavListItem>
       <NavListItem>
         <Link to='/login'>Login</Link>
+      </NavListItem>
+      <NavListItem>
+        <Link to='/about'>About</Link>
+      </NavListItem>
+      <NavListItem>
+        <ToggleSwitch
+          name='newsletter'
+          onValue={
+            <FontAwesomeIcon icon={faMoon} style={{ color: '#121212' }} />
+          }
+          offValue={<FontAwesomeIcon icon={faSun} style={{ color: '#f90' }} />}
+          checked={mode}
+          onChange={() => {
+            setMode(!mode);
+            toggleTheme();
+          }}
+          icon
+        />
       </NavListItem>
     </Fragment>
   );
@@ -106,6 +122,24 @@ const Navbar = ({ title, toggleTheme }: NavbarProps) => {
         <NavLinkListRight>
           {isAuthenticated ? authLinks : guestLinks}
         </NavLinkListRight>
+
+        <ThemeToggleContainer>
+          <ToggleSwitch
+            name='newsletter'
+            onValue={
+              <FontAwesomeIcon icon={faMoon} style={{ color: '#121212' }} />
+            }
+            offValue={
+              <FontAwesomeIcon icon={faSun} style={{ color: '#f90' }} />
+            }
+            checked={mode}
+            onChange={() => {
+              setMode(!mode);
+              toggleTheme();
+            }}
+            icon
+          />
+        </ThemeToggleContainer>
       </NavbarContainer>
       <Modal
         bodyText='Are you sure you want to logout?'
