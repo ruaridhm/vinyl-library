@@ -359,7 +359,12 @@ const Sort = () => {
   return (
     <>
       {showSortForm && (
-        <Form title='Sort' onSubmit={sortCollection} formInputs={SortInputs} />
+        <Form
+          title='Sort Records'
+          onSubmit={sortCollection}
+          formInputs={SortInputs}
+          confirm='Sort'
+        />
       )}
 
       <Modal

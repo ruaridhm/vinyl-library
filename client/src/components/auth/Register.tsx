@@ -122,7 +122,12 @@ const Register = ({ history }: RegisterProps) => {
 
   return (
     <>
-      <Form title='Register' onSubmit={onSubmit} formInputs={RegisterInputs} />
+      <Form
+        title='Account Register'
+        onSubmit={onSubmit}
+        formInputs={RegisterInputs}
+        confirm='Register'
+      />
       <AltAuthCTA>
         Already have an Account?
         <AuthCTALink to='/login'>Login Here</AuthCTALink>
