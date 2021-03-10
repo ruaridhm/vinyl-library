@@ -81,7 +81,12 @@ const Login = ({ history }: LoginProps) => {
   };
   return (
     <>
-      <Form title='Login' onSubmit={onSubmit} formInputs={LoginInputs} />
+      <Form
+        title='Account Login'
+        onSubmit={onSubmit}
+        formInputs={LoginInputs}
+        confirm='Login'
+      />
       <AltAuthCTA>
         Don't have an Account?
         <AuthCTALink to='/register'>Register Here</AuthCTALink>

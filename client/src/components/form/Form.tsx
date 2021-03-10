@@ -6,18 +6,19 @@ interface FormProps {
   title: string;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   formInputs: () => void;
+  confirm: string;
 }
 
-const Form = ({ title, onSubmit, formInputs }: FormProps) => {
+const Form = ({ title, onSubmit, formInputs, confirm }: FormProps) => {
   return (
     <FormContainer>
       <FormTitle>
-        Account <TextHighlight>{title}</TextHighlight>
+        <TextHighlight>{title}</TextHighlight>
       </FormTitle>
       <StyledForm onSubmit={onSubmit}>
         {formInputs()}
 
-        <Button type='submit' solidSuccess medium label={title} />
+        <Button type='submit' solidSuccess medium label={confirm} />
       </StyledForm>
     </FormContainer>
   );
