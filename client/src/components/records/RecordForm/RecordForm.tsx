@@ -440,6 +440,7 @@ const RecordForm = ({
     } else {
       updateRecord(record);
       clearCurrent();
+      setDisplayAddRecord(false);
     }
   };
 
