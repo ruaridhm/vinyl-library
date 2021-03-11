@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Records from '../../records/Records/Records';
 import RecordFilter from '../../records/RecordFilter/RecordFilter';
 import AuthContext from '../../../context/auth/AuthContext';

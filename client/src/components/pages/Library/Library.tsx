@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import ImageSlider from '../../imageSlider/ImageSlider';
 import RecordContext from '../../../context/record/RecordContext';
 import AuthContext from '../../../context/auth/AuthContext';
@@ -80,21 +80,35 @@ const Library = () => {
   }, [records, loading]);
 
   const findNextRecord = () => {
-    const currentIndex = boxesLoaded[`${current.locationPrimary}`].findIndex(
-      (element) => element._id === current._id
-    );
-    if (boxesLoaded[`${current.locationPrimary}`][currentIndex + 1]) {
-      setCurrent(boxesLoaded[`${current.locationPrimary}`][currentIndex + 1]);
+    if (current.locationPrimary !== 'a' || 'b' || 'c' || 'd') {
+      const currentIndex = boxesLoaded.unboxed.findIndex(
+        (element) => element._id === current._id
+      );
+      boxesLoaded.unboxed[currentIndex + 1] &&
+        setCurrent(boxesLoaded.unboxed[currentIndex + 1]);
+    } else {
+      const currentIndex = boxesLoaded[`${current.locationPrimary}`].findIndex(
+        (element) => element._id === current._id
+      );
+      boxesLoaded[`${current.locationPrimary}`][currentIndex + 1] &&
+        setCurrent(boxesLoaded[`${current.locationPrimary}`][currentIndex + 1]);
     }
   };
 
   //Get the previous record before current and assign it to current
   const findPreviousRecord = () => {
-    const currentIndex = boxesLoaded[`${current.locationPrimary}`].findIndex(
-      (element) => element._id === current._id
-    );
-    if (boxesLoaded[`${current.locationPrimary}`][currentIndex - 1]) {
-      setCurrent(boxesLoaded[`${current.locationPrimary}`][currentIndex - 1]);
+    if (current.locationPrimary !== 'a' || 'b' || 'c' || 'd') {
+      const currentIndex = boxesLoaded.unboxed.findIndex(
+        (element) => element._id === current._id
+      );
+      boxesLoaded.unboxed[currentIndex - 1] &&
+        setCurrent(boxesLoaded.unboxed[currentIndex - 1]);
+    } else {
+      const currentIndex = boxesLoaded[`${current.locationPrimary}`].findIndex(
+        (element) => element._id === current._id
+      );
+      boxesLoaded[`${current.locationPrimary}`][currentIndex - 1] &&
+        setCurrent(boxesLoaded[`${current.locationPrimary}`][currentIndex - 1]);
     }
   };
 
