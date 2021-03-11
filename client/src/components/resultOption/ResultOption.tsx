@@ -38,7 +38,8 @@ const ResultOption = ({
       genre: data[iterator].genre,
       style: data[iterator].style,
     });
-  }, [iterator]); // TODO ESLINT suggestion [data, record, setRecord, iterator]
+    // eslint-disable-next-line
+  }, [iterator, data, setRecord]); // TODO ESLINT suggestion [record]
 
   const next = () => {
     if (iterator < data.length - 1) {

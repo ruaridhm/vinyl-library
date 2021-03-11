@@ -68,7 +68,7 @@ interface Record {
 
 type State = Record;
 
-export default (state: State, action: Actions) => {
+const RecordReducer = (state: State, action: Actions) => {
   switch (action.type) {
     case GET_RECORDS:
       return {
@@ -153,3 +153,4 @@ export default (state: State, action: Actions) => {
       return state;
   }
 };
+export default RecordReducer;

@@ -18,10 +18,10 @@ interface SortStateOptionsInterface {
   value: string;
 }
 
-interface MovesArrInterface {
-  from: RecordInterface;
-  to: RecordInterface;
-}
+// interface MovesArrInterface {
+//   from: RecordInterface;
+//   to: RecordInterface;
+// }
 
 const Sort = () => {
   const [sortItems, setSortItems] = useState<SortStateOptionsInterface[] | []>(
