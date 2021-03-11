@@ -18,7 +18,7 @@ interface Alert {
 
 type State = Alert[];
 
-export default (state: State, action: Actions) => {
+const AlertReducer = (state: State, action: Actions) => {
   switch (action.type) {
     case SET_ALERT:
       return [...state, action.payload];
@@ -28,3 +28,5 @@ export default (state: State, action: Actions) => {
       return state;
   }
 };
+
+export default AlertReducer;

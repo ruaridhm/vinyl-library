@@ -53,7 +53,7 @@ interface AuthState {
   error: string;
 }
 
-export default (state: AuthState, action: Actions) => {
+const AuthReducer = (state: AuthState, action: Actions) => {
   switch (action.type) {
     case USER_LOADED:
       return {
@@ -93,3 +93,5 @@ export default (state: AuthState, action: Actions) => {
       return state;
   }
 };
+
+export default AuthReducer;
