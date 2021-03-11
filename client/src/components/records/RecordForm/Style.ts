@@ -65,21 +65,34 @@ export const RecordFormCloseButtonIcon = styled.i`
   }
 `;
 
-export const RecordFormStepButtonContainer = styled.div``;
+export const RecordFormStepButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
 
 export const RecordFormStepButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
   border-radius: 50%;
-  height: 1rem;
-  width: 1rem;
+  height: 1.75rem;
+  width: 1.75rem;
   border: none;
   margin: 1rem;
   background-color: ${({ theme }) => theme.backgroundLight};
   opacity: 0.5;
+  border: 2px solid black;
   &:hover {
     opacity: 1;
+    border-color: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.primaryColor};
   }
   &:active {
-    background-color: ${({ theme }) => theme.darkGrey};
+    background-color: ${({ theme }) => theme.primaryColor};
+    border-color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.white};
   }
 `;
 

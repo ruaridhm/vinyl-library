@@ -9,6 +9,6 @@ export const Label = styled.span`
   align-self: center;
 `;
 export const Star = styled.svg`
-  padding: 1em 0.15em;
+  padding: 1em 0.15em 0.727em 0.15em;
   cursor: pointer;
 `;

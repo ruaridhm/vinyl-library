@@ -523,7 +523,7 @@ const RecordForm = ({
                 type='button'
                 aria-label='Show all steps'
               >
-                Show All
+                All
               </RecordFormStepButton>
             </RecordFormStepButtonContainer>
             <RecordFormButtonContainer>
@@ -651,7 +651,7 @@ const RecordForm = ({
                 type='button'
                 aria-label='Show all steps'
               >
-                Show All
+                All
               </ShowAllRecordFormStepButton>
             </RecordFormStepButtonContainer>
             <RecordFormButtonContainer>
