@@ -1,4 +1,4 @@
-import React, {
+import {
   useState,
   useContext,
   useEffect,
@@ -33,6 +33,32 @@ import {
 } from './Style';
 import { RecordInterface } from '../RecordItem/RecordItem';
 
+const emptyRecordObject = {
+  title: '',
+  artist: '',
+  label: '',
+  catalogNumber: '',
+  releaseDate: '',
+  recordCondition: '',
+  sleeveCondition: '',
+  country: '',
+  locationPrimary: '',
+  locationSecondary: '',
+  barcode: '',
+  coverFront: '',
+  coverBack: '',
+  coverLp: '',
+  genre: '',
+  style: '',
+  comment: '',
+  rating: null,
+  cover: null,
+  innerSleeve: null,
+  outerSleeve: null,
+  wishList: false,
+  want: 0,
+  have: 0,
+};
 interface Step1Props {
   title?: string;
   artist?: string;
@@ -200,7 +226,7 @@ const Step3 = ({
       <TextField
         medium
         outline
-        type='url'
+        type='text'
         title='Cover Front'
         name='coverFront'
         value={coverFront}
@@ -292,12 +318,42 @@ interface RecordFormProps {
   setDisplayAddRecord: Dispatch<SetStateAction<boolean>>;
 }
 
+interface DiscogsResult {
+  country: string;
+  year: string;
+  format: string[];
+  label: string[];
+  type: string;
+  genre: string[];
+  style: string[];
+  id: number;
+  barcode: string[];
+  master_id: number;
+  master_url: string;
+  uri: string;
+  catno: string;
+  title: string;
+  thumb: string;
+  cover_image: string;
+  resource_url: string;
+  community: { have: number; want: number };
+  format_quantity: number;
+  formats: {
+    name: string;
+    qty: string;
+    text: string;
+    descriptions: string[];
+  }[];
+}
+
 const RecordForm = ({
   displayAddRecord,
   setDisplayAddRecord,
 }: RecordFormProps) => {
   const recordContext = useContext(RecordContext);
-  const [discogsResult, setDiscogsResult] = useState([]);
+  const [discogsResult, setDiscogsResult] = useState<Array<DiscogsResult> | []>(
+    []
+  );
   const [showAllSteps, setShowAllSteps] = useState<boolean>(false);
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
@@ -322,61 +378,11 @@ const RecordForm = ({
     if (current !== null) {
       setRecord(current);
     } else {
-      setRecord({
-        title: '',
-        artist: '',
-        label: '',
-        catalogNumber: '',
-        releaseDate: '',
-        country: '',
-        coverFront: '',
-        coverBack: '',
-        coverLp: '',
-        recordCondition: '',
-        sleeveCondition: '',
-        barcode: '',
-        locationPrimary: '',
-        locationSecondary: '',
-        want: 0,
-        have: 0,
-        genre: '',
-        style: '',
-        cover: null,
-        innerSleeve: null,
-        outerSleeve: null,
-        comment: '',
-        rating: null,
-        wishList: false,
-      });
+      setRecord(emptyRecordObject);
     }
   }, [recordContext, current]);
 
-  const [record, setRecord] = useState<RecordInterface>({
-    title: '',
-    artist: '',
-    label: '',
-    catalogNumber: '',
-    releaseDate: '',
-    country: '',
-    coverFront: '',
-    coverBack: '',
-    coverLp: '',
-    recordCondition: '',
-    sleeveCondition: '',
-    barcode: '',
-    locationPrimary: '',
-    locationSecondary: '',
-    want: 0,
-    have: 0,
-    genre: '',
-    style: '',
-    cover: null,
-    innerSleeve: null,
-    outerSleeve: null,
-    comment: '',
-    rating: null,
-    wishList: false,
-  });
+  const [record, setRecord] = useState<RecordInterface>(emptyRecordObject);
 
   const {
     title,
