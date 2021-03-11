@@ -30,6 +30,8 @@ const ViewInfo = ({
   innerSleeve,
   outerSleeve,
   wishList,
+  want,
+  have,
 }: RecordInterface) => {
   return (
     <ViewInfoContainer>
@@ -146,6 +148,18 @@ const ViewInfo = ({
           <Stat>
             <strong>Wishlist: </strong>
             {wishList}
+          </Stat>
+        )}
+        {want && (
+          <Stat>
+            <strong>Want: </strong>
+            {want}
+          </Stat>
+        )}
+        {have && (
+          <Stat>
+            <strong>Have: </strong>
+            {have}
           </Stat>
         )}
       </DetailsContainer>

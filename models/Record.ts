@@ -20,10 +20,22 @@ const RecordSchema = mongoose.Schema({
   releaseDate: {
     type: String,
   },
-  format: {
+  recordCondition: {
+    type: String,
+  },
+  sleeveCondition: {
     type: String,
   },
   country: {
+    type: String,
+  },
+  locationPrimary: {
+    type: String,
+  },
+  locationSecondary: {
+    type: String,
+  },
+  barcode: {
     type: String,
   },
   coverFront: {
@@ -35,36 +47,17 @@ const RecordSchema = mongoose.Schema({
   coverLp: {
     type: String,
   },
-  recordCondition: {
-    type: String,
-  },
-  sleeveCondition: {
-    type: String,
-  },
-  barcode: {
-    type: String,
-  },
-  locationPrimary: {
-    type: String,
-  },
-  locationSecondary: {
-    type: String,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-  want: {
-    type: Number,
-  },
-  have: {
-    type: Number,
-  },
   genre: {
     type: Array,
   },
   style: {
     type: Array,
+  },
+  comment: {
+    type: String,
+  },
+  rating: {
+    type: Number,
   },
   cover: {
     type: Boolean,
@@ -78,10 +71,17 @@ const RecordSchema = mongoose.Schema({
   wishList: {
     type: Boolean,
   },
-  rating: {
+  want: {
     type: Number,
   },
-  comment: {
+  have: {
+    type: Number,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  format: {
     type: String,
   },
 });
