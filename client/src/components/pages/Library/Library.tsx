@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import ImageSlider from '../../imageSlider/ImageSlider';
 import RecordContext from '../../../context/record/RecordContext';
 import AuthContext from '../../../context/auth/AuthContext';
