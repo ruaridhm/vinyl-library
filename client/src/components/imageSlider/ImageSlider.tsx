@@ -33,7 +33,7 @@ const ImageSlider = ({
       {sliderArr.map((item, index) => {
         return (
           <Slide
-            key={index}
+            key={index} //TODO probably shouldn't have index as key here
             children={item}
             style={{ transform: `translateX(${x}%)` }}
           />

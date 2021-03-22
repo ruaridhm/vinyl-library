@@ -36,9 +36,9 @@ const SideBar = () => {
 
         <Link to='/sort'>Sort Library</Link>
 
-        <a onClick={onLogout} href='#!'>
+        <Link onClick={onLogout} to='#!'>
           <i className='fas fa-sign-out-alt'></i> <span>Logout</span>
-        </a>
+        </Link>
       </Menu>
     );
   } else {

@@ -1,6 +1,11 @@
 node_modules/
 build/
 /client/build
+.cache/
+dist/
+.env
+coverage/
+.vscode/
 
 .DS_Store
 /client/.env.local

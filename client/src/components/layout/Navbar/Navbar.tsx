@@ -64,15 +64,15 @@ const Navbar = ({ title, toggleTheme }: NavbarProps) => {
         />
       </NavListItem>
       <NavListItem>
-        <a
+        <Link
           onClick={() => {
             setShowLogoutConfirm(!showLogoutConfirm);
           }}
-          href='#!'
+          to='#!'
         >
           <FontAwesomeIcon icon={faSignOutAlt} />
           <span className=''>Logout</span>
-        </a>
+        </Link>
       </NavListItem>
     </Fragment>
   );
