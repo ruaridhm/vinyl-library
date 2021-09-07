@@ -4,6 +4,7 @@ import Button from '../../button/Button';
 import Modal from '../../modal/Modal';
 import ImageSlider from '../../imageSlider/ImageSlider';
 import ViewInfo from '../../viewInfo/ViewInfo';
+import ModalPortal from '../../modal/ModalPortal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faInfo } from '@fortawesome/free-solid-svg-icons';
@@ -211,49 +212,57 @@ const RecordItem = ({ record, setDisplayAddRecord }: RecordItemProps) => {
           />
         </ButtonContainer>
       </Card>
-      <Modal
-        show={showDeleteModal}
-        close={closeDeleteModalHandler}
-        confirm={onDelete}
-        headerText='Confirm Delete'
-        bodyText='Are you sure you want to delete this item?'
-        confirmText='Delete'
-        confirmStyle={{ solidDanger: true }}
-        cancelStyle={{ solidPrimary: true }}
-        confirmIcon={<FontAwesomeIcon icon={faTrashAlt} />}
-      />
-      <Modal
-        show={showInfoModal}
-        close={closeInfoModalHandler}
-        confirm={() => {}}
-        headerText='Record Info'
-        bodyText={
-          <ViewInfo
-            title={title}
-            artist={artist}
-            label={label}
-            catalogNumber={catalogNumber}
-            releaseDate={releaseDate}
-            country={country}
-            coverFront={coverFront}
-            barcode={barcode}
-            locationPrimary={locationPrimary}
-            locationSecondary={locationSecondary}
-            recordCondition={recordCondition}
-            sleeveCondition={sleeveCondition}
-            genre={genre}
-            style={style}
-            comment={comment}
-            rating={rating}
-            cover={cover}
-            innerSleeve={innerSleeve}
-            outerSleeve={outerSleeve}
-            wishList={wishList}
+
+      {showDeleteModal && (
+        <ModalPortal>
+          <Modal
+            close={closeDeleteModalHandler}
+            confirm={onDelete}
+            headerText='Confirm Delete'
+            bodyText='Are you sure you want to delete this item?'
+            confirmText='Delete'
+            confirmStyle={{ solidDanger: true }}
+            cancelStyle={{ solidPrimary: true }}
+            confirmIcon={<FontAwesomeIcon icon={faTrashAlt} />}
           />
-        }
-        showCancel={false}
-        showConfirm={false}
-      />
+        </ModalPortal>
+      )}
+
+      {showInfoModal && (
+        <ModalPortal>
+          <Modal
+            close={closeInfoModalHandler}
+            confirm={() => {}}
+            headerText='Record Info'
+            bodyText={
+              <ViewInfo
+                title={title}
+                artist={artist}
+                label={label}
+                catalogNumber={catalogNumber}
+                releaseDate={releaseDate}
+                country={country}
+                coverFront={coverFront}
+                barcode={barcode}
+                locationPrimary={locationPrimary}
+                locationSecondary={locationSecondary}
+                recordCondition={recordCondition}
+                sleeveCondition={sleeveCondition}
+                genre={genre}
+                style={style}
+                comment={comment}
+                rating={rating}
+                cover={cover}
+                innerSleeve={innerSleeve}
+                outerSleeve={outerSleeve}
+                wishList={wishList}
+              />
+            }
+            showCancel={false}
+            showConfirm={false}
+          />
+        </ModalPortal>
+      )}
     </>
   );
 };

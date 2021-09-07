@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../../modal/Modal';
 import ToggleSwitch from '../../toggleSwitch/ToggleSwitch';
+import ModalPortal from '../../modal/ModalPortal';
 
 import {
   NavbarContainer,
@@ -26,7 +27,9 @@ interface NavbarProps {
 const Navbar = ({ title, toggleTheme }: NavbarProps) => {
   const authContext = useContext(AuthContext);
   const recordContext = useContext(RecordContext);
-  const [showLogoutConfirm, setShowLogoutConfirm] = useState<boolean>(false);
+  const [showLogoutConfirmModal, setShowLogoutConfirmModal] = useState<boolean>(
+    false
+  );
   const { isAuthenticated, logout, user } = authContext;
   const { clearRecords } = recordContext;
 
@@ -35,6 +38,10 @@ const Navbar = ({ title, toggleTheme }: NavbarProps) => {
   const onLogout = () => {
     logout();
     clearRecords();
+  };
+
+  const toggleModal = () => {
+    setShowLogoutConfirmModal(!showLogoutConfirmModal);
   };
 
   const authLinks = (
@@ -66,7 +73,7 @@ const Navbar = ({ title, toggleTheme }: NavbarProps) => {
       <NavListItem>
         <Link
           onClick={() => {
-            setShowLogoutConfirm(!showLogoutConfirm);
+            toggleModal();
           }}
           to='#!'
         >
@@ -141,20 +148,24 @@ const Navbar = ({ title, toggleTheme }: NavbarProps) => {
           />
         </ThemeToggleContainer>
       </NavbarContainer>
-      <Modal
-        bodyText='Are you sure you want to logout?'
-        confirm={() => {
-          onLogout();
-          setShowLogoutConfirm(!showLogoutConfirm);
-        }}
-        confirmIcon={<FontAwesomeIcon icon={faSignOutAlt} />}
-        confirmText='Logout'
-        headerText='Confirm Logout'
-        close={() => {
-          setShowLogoutConfirm(!showLogoutConfirm);
-        }}
-        show={showLogoutConfirm}
-      />
+
+      {showLogoutConfirmModal && (
+        <ModalPortal>
+          <Modal
+            bodyText='Are you sure you want to logout?'
+            confirm={() => {
+              onLogout();
+              toggleModal();
+            }}
+            confirmIcon={<FontAwesomeIcon icon={faSignOutAlt} />}
+            confirmText='Logout'
+            headerText='Confirm Logout'
+            close={() => {
+              toggleModal();
+            }}
+          />
+        </ModalPortal>
+      )}
     </>
   );
 };

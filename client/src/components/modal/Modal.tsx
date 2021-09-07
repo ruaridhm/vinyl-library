@@ -13,6 +13,7 @@ import {
   ModalBodyHeader,
   ModalBodyContainer,
   ModalFooter,
+  ModalBackground,
 } from './Style';
 
 interface StyleOptions {
@@ -39,7 +40,6 @@ interface ModalProps {
   headerText: string;
   bodyHeaderText?: string;
   bodyText: string | ReactNode;
-  show: boolean;
   close: () => void;
   confirm: () => void;
   confirmText?: string;
@@ -57,7 +57,6 @@ const Modal = ({
   headerText,
   bodyHeaderText,
   bodyText,
-  show,
   close,
   confirm,
   confirmText,
@@ -75,46 +74,42 @@ const Modal = ({
   return (
     // <TransitionGroup>
     //   <CSSTransition timeout={500} classNames='item'>
-    <ModalWrapper
-      style={{
-        transform: show ? 'translateY(0vh)' : 'translateY(-100vh)',
-        opacity: show ? '1' : '0',
-        display: show ? 'block' : 'none',
-      }}
-    >
-      <ModalHeader>
-        <HeaderText>{headerText}</HeaderText>
-        <ModalClose onClick={close}>x</ModalClose>
-      </ModalHeader>
-      <ModalContent>
-        <ModalBodyContainer>
-          <ModalBodyHeader>{bodyHeaderText}</ModalBodyHeader>
-          <ModalBody>{bodyText}</ModalBody>
-        </ModalBodyContainer>
-        <ModalFooter>
-          {showCancel && (
-            <Button
-              onClick={close}
-              {...cancelStyle}
-              type='button'
-              {...cancelSize}
-              label='Cancel'
-              children={cancelIcon}
-            />
-          )}
-          {showConfirm && (
-            <Button
-              onClick={confirm}
-              {...confirmStyle}
-              type='button'
-              {...confirmSize}
-              label={confirmText}
-              children={confirmIcon}
-            />
-          )}
-        </ModalFooter>
-      </ModalContent>
-    </ModalWrapper>
+    <ModalBackground>
+      <ModalWrapper>
+        <ModalHeader>
+          <HeaderText>{headerText}</HeaderText>
+          <ModalClose onClick={close}>x</ModalClose>
+        </ModalHeader>
+        <ModalContent>
+          <ModalBodyContainer>
+            <ModalBodyHeader>{bodyHeaderText}</ModalBodyHeader>
+            <ModalBody>{bodyText}</ModalBody>
+          </ModalBodyContainer>
+          <ModalFooter>
+            {showCancel && (
+              <Button
+                onClick={close}
+                {...cancelStyle}
+                type='button'
+                {...cancelSize}
+                label='Cancel'
+                children={cancelIcon}
+              />
+            )}
+            {showConfirm && (
+              <Button
+                onClick={confirm}
+                {...confirmStyle}
+                type='button'
+                {...confirmSize}
+                label={confirmText}
+                children={confirmIcon}
+              />
+            )}
+          </ModalFooter>
+        </ModalContent>
+      </ModalWrapper>
+    </ModalBackground>
     // </CSSTransition>
     //</TransitionGroup>
   );
