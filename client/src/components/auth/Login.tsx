@@ -4,8 +4,9 @@ import AlertContext from '../../context/alert/AlertContext';
 import TextField from '../text field/TextField';
 import Form from '../form/Form';
 import { FormGroup } from '../form/Style';
+import TestAccount from './TestAccount';
 
-import { AltAuthCTA, AuthCTALink } from './Style';
+import { AltAuthCTA, AuthCTALink, Container } from './Style';
 
 interface LoginProps {
   history: {
@@ -80,18 +81,19 @@ const Login = ({ history }: LoginProps) => {
     );
   };
   return (
-    <>
+    <Container>
       <Form
         title='Account Login'
         onSubmit={onSubmit}
         formInputs={LoginInputs}
         confirm='Login'
       />
+      <TestAccount />
       <AltAuthCTA>
         Don't have an Account?
         <AuthCTALink to='/register'>Register Here</AuthCTALink>
       </AltAuthCTA>
-    </>
+    </Container>
   );
 };
 

@@ -11,6 +11,7 @@ import SortOrders from '../../sortOrders/SortOrders';
 import Form from '../../form/Form';
 import Modal from '../../modal/Modal';
 import { RecordInterface } from '../../records/RecordItem/RecordItem';
+import ModalPortal from '../../modal/ModalPortal';
 
 interface SortStateOptionsInterface {
   id: number;
@@ -71,6 +72,10 @@ const Sort = () => {
   const cancelModel = () => {
     setConfirmSort(false);
     setShowConfirmModal(false);
+  };
+
+  const toggleModal = () => {
+    setShowConfirmModal(!showConfirmModal);
   };
 
   //On form submit this function is called, then if digital is selected it shows the confirmation modal or if physical it sets ConfirmSort to True and the above useEffect is run.
@@ -339,18 +344,21 @@ const Sort = () => {
         />
       )}
 
-      <Modal
-        headerText='Confirm Sort'
-        bodyHeaderText='Are you sure you want to sort your digital collection?'
-        bodyText='(this operation is irreversible!)'
-        show={showConfirmModal}
-        close={cancelModel}
-        confirm={() => {
-          setConfirmSort(true);
-          setShowConfirmModal(false);
-        }}
-        confirmText='Sort!'
-      />
+      {showConfirmModal && (
+        <ModalPortal>
+          <Modal
+            headerText='Confirm Sort'
+            bodyHeaderText='Are you sure you want to sort your digital collection?'
+            bodyText='(this operation is irreversible!)'
+            close={cancelModel}
+            confirm={() => {
+              setConfirmSort(true);
+              setShowConfirmModal(false);
+            }}
+            confirmText='Sort!'
+          />
+        </ModalPortal>
+      )}
 
       {!showSortForm && (
         <SortOrders
